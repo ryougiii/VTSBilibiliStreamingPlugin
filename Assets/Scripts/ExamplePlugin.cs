@@ -123,18 +123,9 @@ namespace VTS.Examples
 
 
 
-            GetHotkeysInCurrentModel(null, (a) =>
-            {
-                print("HT");
-                hotkeys = new List<HotkeyData>(a.data.availableHotkeys);
-                foreach (var i in hotkeys)
-                {
-                    print(i.name);
-                    print(i.hotkeyID);
-                    TriggerHotkey(i.hotkeyID, (a) =>
-                    { }, (a) => { });
-                }
-            }, (a) => { });
+            var tt = (GameObject)Resources.Load("Prefabs/taskShowPn");
+            tt.transform.SetParent(GameObject.Find("TaskListContent").transform);
+            // tt.transform.parent = GameObject.Find("TaskListContent").transform;
 
         }
 
@@ -155,9 +146,9 @@ namespace VTS.Examples
             // audioFileReader = new AudioFileReader(au);
             // waveOutDevice.Init(audioFileReader);
             // waveOutDevice.Play();
-            // var ti = Resources.Load("Prefabs/tex");
-            // Instantiate(ti, Vector3.zero, Quaternion.identity);
-
+            var ti = Resources.Load("Prefabs/taskShowPn");
+            var g = Instantiate((GameObject)ti, Vector3.zero, Quaternion.identity);
+            g.transform.SetParent(GameObject.Find("TaskRegListContent").transform);
 
         }
 
@@ -250,31 +241,60 @@ namespace VTS.Examples
             var taskPn = Instantiate((GameObject)Resources.Load("Prefabs/CreateTaskPanel"), Vector3.zero, Quaternion.identity);
             taskPn.transform.parent = parentgo.transform;
             taskPn.transform.localPosition = new Vector3(taskPn.GetComponent<RectTransform>().rect.width / 2 + parentgo.GetComponent<RectTransform>().rect.width / 2, 0, 0);
-
+            //取消按钮
+            taskPn.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
+            {
+                Destroy(rootgo);
+                return;
+            });
             var hotkeyDropdownComp = taskPn.transform.GetChild(3).GetComponent<Dropdown>();
             var dropdownData = new List<Dropdown.OptionData>();
-            print("get htttt");
-            // GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
-            print(hotkeys.Count);
+            var audioSourcePn = taskPn.transform.GetChild(1);
+            var choiseAudiosourceContent = "";
+            var choiseHotkeyContent = "";
+            //异步处理
+            //获取hotkey和选择结果
             foreach (var i in hotkeys)
             {
                 dropdownData.Add(new Dropdown.OptionData() { text = i.name });
             }
 
             hotkeyDropdownComp.AddOptions(dropdownData);
-            
-            //添加任务
-            var audioSourcePn = taskPn.transform.GetChild(1);
-            var choiseAudiosourceContent = "";
-            var choiseHotkeyContent = "";
-            //异步处理
-            audioSourcePn.GetComponent<Button>().onClick.AddListener(()=>{
-                choiseAudiosourceContent = EditorUtility.OpenFilePanel("opppp", "", "*");
+
+            hotkeyDropdownComp.onValueChanged.AddListener((num) =>
+            {
+                choiseHotkeyContent = hotkeyDropdownComp.options[num].text;
+                if (num != 0)
+                {
+                    halfpt.hotKey = choiseHotkeyContent;
+                }
+                print("HKD " + choiseHotkeyContent);
+            });
+
+            //打开audio选择面板
+            audioSourcePn.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                choiseAudiosourceContent = EditorUtility.OpenFilePanel("选个播放的声音吧", "", "*");
+                halfpt.audio = choiseAudiosourceContent;
+                audioSourcePn.transform.GetChild(0).GetComponent<Text>().text = choiseAudiosourceContent;
                 print("aud souuuuuiii " + choiseAudiosourceContent);
             });
 
-            print("aud souuuuu " + choiseAudiosourceContent);
-            taskPn.GetComponent<Button>().onClick.AddListener(() => { });
+            //完成选择，推入任务
+            taskPn.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                if (halfpt.audio == "" && halfpt.hotKey == "")
+                {
+                    //选个任务吧
+                }
+                else
+                {
+                    Tasks.pushRegTaskIntoList(halfpt);
+                    Destroy(rootgo);
+                }
+            });
+
+
         }
 
 
@@ -286,6 +306,10 @@ namespace VTS.Examples
             choiseStartPn.transform.localPosition = new Vector3(addRegButton.GetComponent<RectTransform>().rect.width / 2 + choiseStartPn.GetComponent<RectTransform>().rect.width / 2, 0, 0);
             choiseStartPn.GetComponent<Dropdown>().onValueChanged.AddListener((val) =>
             {
+                playTask pt = new playTask();
+                pt.hotKey = "";
+                pt.audio = "";
+                pt.taskParameters = new string[0];
                 switch (val)
                 {
                     case 0:
@@ -309,7 +333,6 @@ namespace VTS.Examples
                                 return;
                             }
                             //添加任务
-                            playTask pt = new playTask();
                             pt.taskType = "danmu";
                             pt.taskParameters = new string[1];
                             pt.taskParameters[0] = inputval;
@@ -379,7 +402,7 @@ namespace VTS.Examples
                         info.text += $"\n{danmu_msg[1]} 的礼物触发了 {captainTrigger.name}({captainTrigger.file})";
                         break;
 
-                    // 速帕恰
+                    // SC
                     case 'S':
                         show_danmu.text += $"\nS[{danmu_msg[0]}] 发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}";
                         if (danmu_msg[3].Contains(superchatKeyword))

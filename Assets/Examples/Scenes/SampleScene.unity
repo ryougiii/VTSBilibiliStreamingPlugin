@@ -576,7 +576,7 @@ MonoBehaviour:
       - m_Target: {fileID: 863546772}
         m_TargetAssemblyTypeName: VTS.Examples.ExamplePlugin, Assembly-CSharp
         m_MethodName: changeTrigerMaxtime
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3931,13 +3931,9 @@ MonoBehaviour:
   info: {fileID: 1652142700}
   show_danmu: {fileID: 908661956}
   _portConnectButtonPrefab: {fileID: 6482392915167756318, guid: 74945500060e2f0448beb59073d9cb8e, type: 3}
-  _tryConnectButton: {fileID: 521713395}
   _portConnectButtonParent: {fileID: 1002706914}
   _connectionLight: {fileID: 1302218137}
   _connectionText: {fileID: 17735967}
-  liwuDropdown: {fileID: 1243128449}
-  SCDropdown: {fileID: 826619086}
-  captainList: {fileID: 795069665}
 --- !u!4 &863546773
 Transform:
   m_ObjectHideFlags: 0
@@ -5761,13 +5757,9 @@ MonoBehaviour:
   info: {fileID: 0}
   show_danmu: {fileID: 0}
   _portConnectButtonPrefab: {fileID: 0}
-  _tryConnectButton: {fileID: 0}
   _portConnectButtonParent: {fileID: 0}
   _connectionLight: {fileID: 0}
   _connectionText: {fileID: 0}
-  liwuDropdown: {fileID: 0}
-  SCDropdown: {fileID: 0}
-  captainList: {fileID: 0}
 --- !u!114 &1380000265
 MonoBehaviour:
   m_ObjectHideFlags: 0

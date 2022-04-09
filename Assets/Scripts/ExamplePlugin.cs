@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-
+using System;
+using System.Timers;
 using VTS.Networking.Impl;
 using VTS.Models.Impl;
 using VTS.Models;
@@ -7,7 +8,7 @@ using VTS.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-using UnityEditor;
+// using UnityEditor;
 
 
 using NAudio;
@@ -29,8 +30,8 @@ namespace VTS.Examples
         [SerializeField]
         private Button _portConnectButtonPrefab = null;
 
-        [SerializeField]
-        private Button _tryConnectButton = null;
+        // [SerializeField]
+        // private Button _tryConnectButton = null;
 
         [SerializeField]
         private RectTransform _portConnectButtonParent = null;
@@ -41,21 +42,21 @@ namespace VTS.Examples
         [SerializeField]
         private Text _connectionText = null;
 
+        private bool taskExcuteAvaliable = true;
+
         // [SerializeField]
         // private Dropdown hotkeyDropdown = null;
-        [SerializeField]
-        private Dropdown liwuDropdown = null;
-        [SerializeField]
-        private Dropdown SCDropdown = null;
-        [SerializeField]
-        private Dropdown captainList = null;
+        // [SerializeField]
+        // private Dropdown liwuDropdown = null;
+        // [SerializeField]
+        // private Dropdown SCDropdown = null;
+        // [SerializeField]
+        // private Dropdown captainList = null;
 
 
         private List<HotkeyData> hotkeys = null;
 
         private readonly Queue<string> danmumen = new Queue<string>();
-        private int guazi = int.MaxValue;
-        private string superchatKeyword = "";
 
         private float maxTrigerTime = 0;
         IWavePlayer waveOutDevice;
@@ -69,6 +70,7 @@ namespace VTS.Examples
             Application.targetFrameRate = 30;
             GameObject.Find("AddReg").GetComponent<Button>().onClick.AddListener(() =>
             {
+                //添加规则按钮
                 addReg();
             });
         }
@@ -78,6 +80,11 @@ namespace VTS.Examples
             {
                 waveOutDevice.Stop();
                 waveOutDevice.Dispose();
+                waveOutDevice = null;
+            }
+            if (audioFileReader != null)
+            {
+                audioFileReader.Dispose();
                 waveOutDevice = null;
             }
         }
@@ -110,58 +117,66 @@ namespace VTS.Examples
         {
             Connect();
         }
+        private System.Timers.Timer _TimersTimer;
+
+        private void setTimerWaitTaskExcute(float timeInterval)
+        {
+            this._TimersTimer = new System.Timers.Timer();
+            this._TimersTimer.Interval = timeInterval;
+            this._TimersTimer.AutoReset = false;
+
+            this._TimersTimer.Elapsed += new System.Timers.ElapsedEventHandler((s, e) =>
+            {
+                // Tasks avaliable
+                taskExcuteAvaliable = true;
+            });
+            this._TimersTimer.Start();
+        }
+
 
         public void TestB()
         {
 
-            // var au = EditorUtility.OpenFilePanel("opppp", "", "*");
-            // print(au);
-            // waveOutDevice = new WaveOut();
-            // audioFileReader = new AudioFileReader(au);
-            // waveOutDevice.Init(audioFileReader);
-            // waveOutDevice.Play();
-
-
-
-            var tt = (GameObject)Resources.Load("Prefabs/taskShowPn");
-            tt.transform.SetParent(GameObject.Find("TaskListContent").transform);
-            // tt.transform.parent = GameObject.Find("TaskListContent").transform;
-
+            // var choiseAudiosourceContent = EditorUtility.OpenFilePanel("选个播放的声音吧", "", "*");
+            // var choiseAudiosourceContent = OpenFileByWin32.OpenFile();
+            // print("OPEN FILE " + choiseAudiosourceContent);
+            // print(playaudio(choiseAudiosourceContent));
         }
 
-        public void changeTrigerMaxtime()
+
+        private static void HandleTimer()
         {
-            maxTrigerTime = float.Parse(GameObject.Find("maxTrigerTime").GetComponent<InputField>().text);
-            print(maxTrigerTime);
-            // print(gameObject.name);
+            Console.WriteLine("\nHandler not implemented...");
+            throw new NotImplementedException();
+        }
 
 
+        public void changeTrigerMaxtime(string tistr)
+        {
+            maxTrigerTime = float.Parse(tistr);
+            print("change tritime " + maxTrigerTime);
         }
         public void TestB2()
         {
 
-            // var au = EditorUtility.OpenFilePanel("opppp", "", "*");
-            // print(au);
-            // waveOutDevice = new WaveOut();
-            // audioFileReader = new AudioFileReader(au);
-            // waveOutDevice.Init(audioFileReader);
-            // waveOutDevice.Play();
-            var ti = Resources.Load("Prefabs/taskShowPn");
-            var g = Instantiate((GameObject)ti, Vector3.zero, Quaternion.identity);
-            g.transform.SetParent(GameObject.Find("TaskRegListContent").transform);
+
+            // var ti = Resources.Load("Prefabs/taskShowPn");
+            // var g = Instantiate((GameObject)ti, Vector3.zero, Quaternion.identity);
+            // g.transform.SetParent(GameObject.Find("TaskRegListContent").transform);
 
         }
 
 
-        private HotkeyData TriggerSelectedHotkey(Dropdown dp)
+        private HotkeyData TriggerSelectedHotkey(string currentHotkeySelected)
         {
-            string currentHotkeySelected = dp.options[dp.value].text;
+            print("TRI START");
             foreach (var hotkey in hotkeys)
             {
-                if (hotkey.file == currentHotkeySelected)
+                print(" - " + hotkey.name);
+                if (hotkey.name == currentHotkeySelected)
                 {
                     TriggerHotkey(hotkey.hotkeyID,
-                        (r) => { },
+                        (r) => { print("HOT SUCESS"); },
                         e => { info.text = $"热键不存在，请刷新"; }
                         );
                     return hotkey;
@@ -201,26 +216,6 @@ namespace VTS.Examples
             }
         }
 
-        public void ChangeGuazi(string msg)
-        {
-            if (msg == "")
-            {
-                guazi = int.MaxValue;
-                info.text = "取消金瓜子设定";
-            }
-            else
-            {
-                int.TryParse(msg, out guazi);
-                info.text = $"礼物阈值：{guazi}金瓜子";
-            }
-        }
-
-        public void ChangeKeyword(string msg)
-        {
-            superchatKeyword = msg;
-            info.text = $"SuperChat关键词：{superchatKeyword}";
-        }
-
         // 人气  f'R[{client.room_id}] 当前人气: {message.popularity}'
         // 弹幕  f'D[{client.room_id}] {message.uname}: {message.msg}'
         // 礼物  f'G[{client.room_id}] {message.uname} 赠送了 {message.gift_name}x{message.num}'
@@ -229,10 +224,14 @@ namespace VTS.Examples
         // 艾西  f'S[{client.room_id}] 醒目留言 ￥{message.price} {message.uname}：{message.message}'
         public void receiveDanmu(string message) => danmumen.Enqueue(message);
 
-        private void playaudio(string file)
+        private float playaudio(string audiofile)
         {
-
-
+            // audioFileReader.Close();
+            waveOutDevice = new WaveOut();
+            audioFileReader = new AudioFileReader(audiofile);
+            waveOutDevice.Init(audioFileReader);
+            waveOutDevice.Play();
+            return (float)audioFileReader.TotalTime.TotalMilliseconds;
         }
 
         public void fillTask(GameObject rootgo, GameObject parentgo, playTask halfpt)
@@ -274,7 +273,7 @@ namespace VTS.Examples
             //打开audio选择面板
             audioSourcePn.GetComponent<Button>().onClick.AddListener(() =>
             {
-                choiseAudiosourceContent = EditorUtility.OpenFilePanel("选个播放的声音吧", "", "*");
+                choiseAudiosourceContent = OpenFileByWin32.OpenFile(); ;
                 halfpt.audio = choiseAudiosourceContent;
                 audioSourcePn.transform.GetChild(0).GetComponent<Text>().text = choiseAudiosourceContent;
                 print("aud souuuuuiii " + choiseAudiosourceContent);
@@ -307,8 +306,6 @@ namespace VTS.Examples
             choiseStartPn.GetComponent<Dropdown>().onValueChanged.AddListener((val) =>
             {
                 playTask pt = new playTask();
-                pt.hotKey = "";
-                pt.audio = "";
                 pt.taskParameters = new string[0];
                 switch (val)
                 {
@@ -356,17 +353,31 @@ namespace VTS.Examples
 
         public void FixedUpdate()
         {
-            // GetExpressionStateList((a) =>
-            // {
-            //     print(a.data.expressionFile);
-            //     // print(a.data.);
-            //     for (var i = 0; i < a.data.expressions.Length; i++)
-            //     {
-            //         print("expx " + i + " " + a.data.expressions[i].name);
-            //         print("expxx " + i + " " + a.data.expressions[i].active);
-            //         print("expxxx " + i + " " + a.data.expressions[i].file);
-            //     }
-            // }, (a) => { });
+            //更新执行的任务情况
+            if (taskExcuteAvaliable && Tasks.TaskInstances.Count > 0)
+            {
+                print("EEEEEXXX");
+                taskExcuteAvaliable = false;
+                var nt = Tasks.TaskInstances[0];
+                Tasks.TaskInstances.Remove(nt);
+                print("TESK NUM " + Tasks.TaskInstances.Count);
+                // Tasks.executeTask(nt);
+                var audiotime = 0.0f;
+                var hotkeytime = 0.0f;
+                if (nt.audio != "")
+                {
+                    audiotime = playaudio(nt.audio);
+                }
+                if (nt.hotKey != "")
+                {
+                    hotkeytime = maxTrigerTime * 1000;
+                    var res = TriggerSelectedHotkey(nt.hotKey);
+                    print("TRI HOT " + nt.hotKey);
+                }
+                print("TIMES " + audiotime + " " + hotkeytime + " " + Math.Max(audiotime, hotkeytime));
+                //设置定时
+                setTimerWaitTaskExcute(Math.Max(audiotime, hotkeytime));
+            }
 
 
             while (danmumen.Count > 0)
@@ -375,12 +386,13 @@ namespace VTS.Examples
                 string[] danmu_msg = danmu.Split("$#**#$");
                 //                Debug.Log(string.Join(",", danmu_msg));
                 // Debug.Log(danmu[0]);
-                print("md type " + danmu[0] + " - " + danmu);
+                // print("md type " + danmu[0] + " - " + danmu);
                 switch (danmu[0])
                 {
                     // 收到弹幕
                     case 'D':
-                        // show_danmu.text += $"\nD[{danmu_msg[0]}] {danmu_msg[1]}: {danmu_msg[2]}";
+                        Tasks.testTrigerTask("danmu", new string[1] { danmu_msg[2] });
+                        show_danmu.text += $"\nD[{danmu_msg[0]}] {danmu_msg[1]}: {danmu_msg[2]}";
                         break;
 
                     // 收到礼物
@@ -388,28 +400,28 @@ namespace VTS.Examples
                         // if (!(danmu_msg[4] == "silver"))
                         // show_danmu.text += $"\nG[{danmu_msg[0]}] {danmu_msg[1]} 赠送了 {danmu_msg[2]}x{danmu_msg[3]}"
                         //                 + $" ({danmu_msg[4]} 瓜子 x {danmu_msg[5]})";
-                        if (danmu_msg[4] == "gold" && int.Parse(danmu_msg[5]) >= guazi)
-                        {
-                            HotkeyData giftTrigger = TriggerSelectedHotkey(liwuDropdown);
-                            info.text += $"\n{danmu_msg[1]} 的礼物触发了 {giftTrigger.name}({giftTrigger.file})";
-                        }
+                        // if (danmu_msg[4] == "gold" && int.Parse(danmu_msg[5]) >= guazi)
+                        // {
+                        //     HotkeyData giftTrigger = TriggerSelectedHotkey(liwuDropdown);
+                        //     info.text += $"\n{danmu_msg[1]} 的礼物触发了 {giftTrigger.name}({giftTrigger.file})";
+                        // }
                         break;
 
                     // 有人上舰
                     case 'J':
-                        show_danmu.text += $"\nJ[{danmu_msg[0]}] {danmu_msg[1]} 购买了 {danmu_msg[2]}";
-                        HotkeyData captainTrigger = TriggerSelectedHotkey(captainList);
-                        info.text += $"\n{danmu_msg[1]} 的礼物触发了 {captainTrigger.name}({captainTrigger.file})";
+                        // show_danmu.text += $"\nJ[{danmu_msg[0]}] {danmu_msg[1]} 购买了 {danmu_msg[2]}";
+                        // HotkeyData captainTrigger = TriggerSelectedHotkey(captainList);
+                        // info.text += $"\n{danmu_msg[1]} 的礼物触发了 {captainTrigger.name}({captainTrigger.file})";
                         break;
 
                     // SC
                     case 'S':
                         show_danmu.text += $"\nS[{danmu_msg[0]}] 发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}";
-                        if (danmu_msg[3].Contains(superchatKeyword))
-                        {
-                            HotkeyData SCTrigger = TriggerSelectedHotkey(SCDropdown);
-                            info.text += $"\n{danmu_msg[1]} 的礼物触发了 {SCTrigger.name}({SCTrigger.file})";
-                        }
+                        // if (danmu_msg[3].Contains(superchatKeyword))
+                        // {
+                        //     HotkeyData SCTrigger = TriggerSelectedHotkey(SCDropdown);
+                        //     info.text += $"\n{danmu_msg[1]} 的礼物触发了 {SCTrigger.name}({SCTrigger.file})";
+                        // }
                         break;
                 }
             }

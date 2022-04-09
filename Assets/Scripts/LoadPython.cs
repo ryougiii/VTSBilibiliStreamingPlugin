@@ -24,7 +24,7 @@ public class LoadPython : MonoBehaviour
     public static string temp;
     Process p;
 
-    public static Thread pythonProcess;
+    // public static Thread pythonProcess;
 
     public ExamplePlugin mainScript;
 
@@ -36,13 +36,15 @@ public class LoadPython : MonoBehaviour
         // mainScript = GameObject.Find("ExamplePlugin");
     }
 
+    ThreadStart childRef;
+    Thread childThread;
+
     public void StartPy()
     {
         info.text = $"连接直播间{room_id}";
-        ThreadStart childRef = new ThreadStart(ThreadTest1);
-        Thread childThread = new Thread(childRef);
+        childRef = new ThreadStart(ThreadTest1);
+        childThread = new Thread(childRef);
         childThread.Start();
-        pythonProcess = childThread;
         GameObject.Find("RoomStates").GetComponent<Text>().text = room_id.ToString();
 
     }
@@ -114,10 +116,11 @@ public class LoadPython : MonoBehaviour
     void OnApplicationQuit()
     {
         p.Close();
-        if (pythonProcess != null && pythonProcess.IsAlive)
+        if (childThread.IsAlive)
         {
-            pythonProcess.Abort();
+            childThread.Abort();
         }
+
     }
 
 }

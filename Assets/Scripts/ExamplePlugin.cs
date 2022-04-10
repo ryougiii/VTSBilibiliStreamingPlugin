@@ -27,8 +27,8 @@ namespace VTS.Examples
         [SerializeField]
         private Text show_danmu = null;
 
-        [SerializeField]
-        private Button _portConnectButtonPrefab = null;
+        // [SerializeField]
+        // private Button _portConnectButtonPrefab = null;
 
         // [SerializeField]
         // private Button _tryConnectButton = null;
@@ -42,17 +42,7 @@ namespace VTS.Examples
         [SerializeField]
         private Text _connectionText = null;
 
-        private bool taskExcuteAvaliable = true;
-
-        // [SerializeField]
-        // private Dropdown hotkeyDropdown = null;
-        // [SerializeField]
-        // private Dropdown liwuDropdown = null;
-        // [SerializeField]
-        // private Dropdown SCDropdown = null;
-        // [SerializeField]
-        // private Dropdown captainList = null;
-
+        public static bool taskExcuteAvaliable = true;
 
         private List<HotkeyData> hotkeys = null;
 
@@ -117,39 +107,26 @@ namespace VTS.Examples
         {
             Connect();
         }
-        private System.Timers.Timer _TimersTimer;
 
-        private void setTimerWaitTaskExcute(float timeInterval)
+        public void taskExcuteFinish()
         {
-            this._TimersTimer = new System.Timers.Timer();
-            this._TimersTimer.Interval = timeInterval;
-            this._TimersTimer.AutoReset = false;
-
-            this._TimersTimer.Elapsed += new System.Timers.ElapsedEventHandler((s, e) =>
+            var todestory = GameObject.Find("TaskListContent").transform.GetChild(0).gameObject;
+            if (todestory != null)
             {
-                // Tasks avaliable
-                taskExcuteAvaliable = true;
-            });
-            this._TimersTimer.Start();
+                Destroy(todestory);
+            }
+            else
+            {
+                print("ERROR not find todestory task excute pn");
+            }
+            taskExcuteAvaliable = true;
         }
-
 
         public void TestB()
         {
-
-            // var choiseAudiosourceContent = EditorUtility.OpenFilePanel("选个播放的声音吧", "", "*");
-            // var choiseAudiosourceContent = OpenFileByWin32.OpenFile();
-            // print("OPEN FILE " + choiseAudiosourceContent);
-            // print(playaudio(choiseAudiosourceContent));
+            // setTimerWaitTaskExcute(1000);
+            // Destroy(GameObject.Find("TaskListContent").transform.GetChild(0).gameObject);
         }
-
-
-        private static void HandleTimer()
-        {
-            Console.WriteLine("\nHandler not implemented...");
-            throw new NotImplementedException();
-        }
-
 
         public void changeTrigerMaxtime(string tistr)
         {
@@ -159,20 +136,15 @@ namespace VTS.Examples
         public void TestB2()
         {
 
-
-            // var ti = Resources.Load("Prefabs/taskShowPn");
-            // var g = Instantiate((GameObject)ti, Vector3.zero, Quaternion.identity);
-            // g.transform.SetParent(GameObject.Find("TaskRegListContent").transform);
-
         }
 
 
         private HotkeyData TriggerSelectedHotkey(string currentHotkeySelected)
         {
-            print("TRI START");
+            // print("TRI START");
             foreach (var hotkey in hotkeys)
             {
-                print(" - " + hotkey.name);
+                // print(" - " + hotkey.name);
                 if (hotkey.name == currentHotkeySelected)
                 {
                     TriggerHotkey(hotkey.hotkeyID,
@@ -203,16 +175,17 @@ namespace VTS.Examples
             }
             foreach (int port in ports)
             {
-                Button button = Instantiate<Button>(this._portConnectButtonPrefab, Vector3.zero, Quaternion.identity, this._portConnectButtonParent);
-                button.name = port.ToString();
-                button.GetComponentInChildren<Text>().text = button.name;
-                button.onClick.AddListener(() =>
-                {
-                    if (SetPort(int.Parse(button.name)))
-                    {
-                        Connect();
-                    }
-                });
+                //TOFIX
+                // Button button = Instantiate<Button>(this._portConnectButtonPrefab, Vector3.zero, Quaternion.identity, this._portConnectButtonParent);
+                // button.name = port.ToString();
+                // button.GetComponentInChildren<Text>().text = button.name;
+                // button.onClick.AddListener(() =>
+                // {
+                //     if (SetPort(int.Parse(button.name)))
+                //     {
+                //         Connect();
+                //     }
+                // });
             }
         }
 
@@ -227,7 +200,10 @@ namespace VTS.Examples
         private float playaudio(string audiofile)
         {
             // audioFileReader.Close();
-            waveOutDevice = new WaveOut();
+            if (waveOutDevice == null)
+            {
+                waveOutDevice = new WaveOut();
+            }
             audioFileReader = new AudioFileReader(audiofile);
             waveOutDevice.Init(audioFileReader);
             waveOutDevice.Play();
@@ -237,15 +213,14 @@ namespace VTS.Examples
         public void fillTask(GameObject rootgo, GameObject parentgo, playTask halfpt)
         {
             //添加设定任务面板
-            var taskPn = Instantiate((GameObject)Resources.Load("Prefabs/CreateTaskPanel"), Vector3.zero, Quaternion.identity);
-            taskPn.transform.parent = parentgo.transform;
+            var taskPn = Instantiate((GameObject)Resources.Load("Prefabs/CreateTaskPanel"), Vector3.zero, Quaternion.identity, parentgo.transform);
             taskPn.transform.localPosition = new Vector3(taskPn.GetComponent<RectTransform>().rect.width / 2 + parentgo.GetComponent<RectTransform>().rect.width / 2, 0, 0);
             //取消按钮
             taskPn.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
             {
                 Destroy(rootgo);
                 return;
-            });
+            }); ;
             var hotkeyDropdownComp = taskPn.transform.GetChild(3).GetComponent<Dropdown>();
             var dropdownData = new List<Dropdown.OptionData>();
             var audioSourcePn = taskPn.transform.GetChild(1);
@@ -300,8 +275,7 @@ namespace VTS.Examples
         public void addReg()
         {
             var addRegButton = GameObject.Find("AddReg");
-            var choiseStartPn = Instantiate((GameObject)Resources.Load("Prefabs/choise/choiseStart"), Vector3.zero, Quaternion.identity);
-            choiseStartPn.transform.parent = addRegButton.transform;
+            var choiseStartPn = Instantiate((GameObject)Resources.Load("Prefabs/choise/choiseStart"), Vector3.zero, Quaternion.identity, addRegButton.transform);
             choiseStartPn.transform.localPosition = new Vector3(addRegButton.GetComponent<RectTransform>().rect.width / 2 + choiseStartPn.GetComponent<RectTransform>().rect.width / 2, 0, 0);
             choiseStartPn.GetComponent<Dropdown>().onValueChanged.AddListener((val) =>
             {
@@ -315,8 +289,7 @@ namespace VTS.Examples
 
                         // print("?" + this.danmuRegInputtext == null);
                         // TestB2();
-                        var danmuInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity);
-                        danmuInputBar.transform.parent = choiseStartPn.transform;
+                        var danmuInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
                         danmuInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + danmuInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
                         //提前获取hotkeys
                         GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
@@ -353,7 +326,7 @@ namespace VTS.Examples
 
         public void FixedUpdate()
         {
-            //更新执行的任务情况
+            //更新执行的任务情况,执行新的任务
             if (taskExcuteAvaliable && Tasks.TaskInstances.Count > 0)
             {
                 print("EEEEEXXX");
@@ -375,8 +348,9 @@ namespace VTS.Examples
                     print("TRI HOT " + nt.hotKey);
                 }
                 print("TIMES " + audiotime + " " + hotkeytime + " " + Math.Max(audiotime, hotkeytime));
-                //设置定时
-                setTimerWaitTaskExcute(Math.Max(audiotime, hotkeytime));
+                //设置定时器
+                Invoke("taskExcuteFinish", Math.Max(audiotime, hotkeytime) / 1000 + 0.1f);
+
             }
 
 

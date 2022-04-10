@@ -2388,7 +2388,7 @@ GameObject:
   - component: {fileID: 521713396}
   - component: {fileID: 521713395}
   m_Layer: 5
-  m_Name: tryConnect
+  m_Name: tryConnectPortButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2459,9 +2459,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 863546771}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 863546772}
+        m_TargetAssemblyTypeName: VTS.Examples.ExamplePlugin, Assembly-CSharp
+        m_MethodName: RefeshConnect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3930,7 +3930,6 @@ MonoBehaviour:
   _pluginIcon: {fileID: 2800000, guid: 774c2806a6e98e74e93c0f98f34d9aa4, type: 3}
   info: {fileID: 1652142700}
   show_danmu: {fileID: 908661956}
-  _portConnectButtonPrefab: {fileID: 6482392915167756318, guid: 74945500060e2f0448beb59073d9cb8e, type: 3}
   _portConnectButtonParent: {fileID: 1002706914}
   _connectionLight: {fileID: 1302218137}
   _connectionText: {fileID: 17735967}
@@ -5756,7 +5755,6 @@ MonoBehaviour:
   _pluginIcon: {fileID: 0}
   info: {fileID: 0}
   show_danmu: {fileID: 0}
-  _portConnectButtonPrefab: {fileID: 0}
   _portConnectButtonParent: {fileID: 0}
   _connectionLight: {fileID: 0}
   _connectionText: {fileID: 0}

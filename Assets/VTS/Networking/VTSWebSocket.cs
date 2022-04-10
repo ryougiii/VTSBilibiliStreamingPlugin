@@ -32,7 +32,10 @@ namespace VTS.Networking {
         }
 
         private void OnDestroy(){
-            this._ws.Stop();
+            if (this._ws != null)
+            {
+                this._ws.Stop();
+            }
         }
 
         private void FixedUpdate(){

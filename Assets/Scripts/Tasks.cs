@@ -34,21 +34,6 @@ namespace VTS
         public static List<playTask> LogicRegTasklists = new List<playTask>();
         public static List<playTask> TaskInstances = new List<playTask>();
 
-        // public static bool hasNextTask()
-        // {
-        //     if (tasklists.Count > 0)
-        //         return true;
-        //     else
-        //         return false;
-        // }
-        // public static playTask getNextTask()
-        // {
-        //     var ta = tasklists[0];
-        //     tasklists.RemoveAt(0);
-        //     return ta;
-        // }
-
-
         public static void pushRegTaskIntoList(playTask halfTaskGo)
         {
             string expressTaskInfo = "";
@@ -69,7 +54,7 @@ namespace VTS
 
             }
             //在面板中显示添加的规则
-            var showpn = Instantiate((GameObject)Resources.Load("Prefabs/taskShowPn"), Vector3.zero, Quaternion.identity);
+            var showpn = Instantiate((GameObject)Resources.Load("Prefabs/taskShowPn"), Vector3.zero, Quaternion.identity, GameObject.Find("TaskRegListContent").transform);
             showpn.transform.localPosition = Vector3.zero;
             showpn.transform.GetChild(1).GetComponent<Text>().text = expressTaskInfo;
             showpn.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
@@ -80,8 +65,7 @@ namespace VTS
             });
             var showPnRect = showpn.transform.GetComponent<RectTransform>();
             showPnRect.sizeDelta = new Vector2(showPnRect.rect.width, showpn.transform.GetChild(1).GetComponent<Text>().preferredHeight + 20);
-            print("WH " + showPnRect.sizeDelta.x + showPnRect.sizeDelta.y);
-            showpn.transform.SetParent(GameObject.Find("TaskRegListContent").transform);
+            // print("WH " + showPnRect.sizeDelta.x + showPnRect.sizeDelta.y);
             //后台添加规则
             LogicRegTasklists.Add(halfTaskGo);
         }
@@ -113,18 +97,37 @@ namespace VTS
                     case "danmu":
                         if (meventParas[0].Contains(ltl.taskParameters[0]))
                         {
+                            //添加到执行等待队列中和等待执行gui中
                             prepareExecuteTask(ltl);
+                            addTaskToExcuteGuiPn(ltl);
                             print("TRI DANMU " + meventParas[0]);
                         }
                         break;
 
                 }
             }
+
+        }
+        private static void addTaskToExcuteGuiPn(playTask excTask){
+            //要执行的任务加到gui执行情况列表里
+            var showNowTaskPn = Instantiate((GameObject)Resources.Load("Prefabs/taskShowPn"), Vector3.zero, Quaternion.identity, GameObject.Find("TaskListContent").transform);
+            showNowTaskPn.transform.position = Vector3.zero;
+            showNowTaskPn.transform.GetChild(1).GetComponent<Text>().text = "----------\n" +
+                (excTask.audio == "" ? "" : (" +" + excTask.audio + "\n")) +
+                (excTask.hotKey == "" ? "" : (" +" + excTask.hotKey + "\n"));
+            //取消这个任务
+            showNowTaskPn.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
+            {
+                Destroy(showNowTaskPn);
+                TaskInstances.Remove(excTask);
+            });
+            var showPnRect = showNowTaskPn.transform.GetComponent<RectTransform>();
+            showPnRect.sizeDelta = new Vector2(showPnRect.rect.width, showNowTaskPn.transform.GetChild(1).GetComponent<Text>().preferredHeight + 20);
         }
         public static void prepareExecuteTask(playTask pt)
         {
             TaskInstances.Add(pt);
-            print("EXCU " + pt.hotKey + pt.audio);
+            print("EXCU " + TaskInstances.Count + " " + pt.hotKey + pt.audio);
         }
     }
 }

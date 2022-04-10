@@ -210,7 +210,7 @@ namespace VTS.Examples
             return (float)audioFileReader.TotalTime.TotalMilliseconds;
         }
 
-        public void fillTask(GameObject rootgo, GameObject parentgo, playTask halfpt)
+        public GameObject fillTask(GameObject rootgo, GameObject parentgo, playTask halfpt)
         {
             //添加设定任务面板
             var taskPn = Instantiate((GameObject)Resources.Load("Prefabs/CreateTaskPanel"), Vector3.zero, Quaternion.identity, parentgo.transform);
@@ -248,7 +248,7 @@ namespace VTS.Examples
             //打开audio选择面板
             audioSourcePn.GetComponent<Button>().onClick.AddListener(() =>
             {
-                choiseAudiosourceContent = OpenFileByWin32.OpenFile(); ;
+                choiseAudiosourceContent = OpenFileByWin32.OpenFile();
                 halfpt.audio = choiseAudiosourceContent;
                 audioSourcePn.transform.GetChild(0).GetComponent<Text>().text = choiseAudiosourceContent;
                 print("aud souuuuuiii " + choiseAudiosourceContent);
@@ -267,7 +267,7 @@ namespace VTS.Examples
                     Destroy(rootgo);
                 }
             });
-
+            return taskPn;
 
         }
 
@@ -277,26 +277,32 @@ namespace VTS.Examples
             var addRegButton = GameObject.Find("AddReg");
             var choiseStartPn = Instantiate((GameObject)Resources.Load("Prefabs/choise/choiseStart"), Vector3.zero, Quaternion.identity, addRegButton.transform);
             choiseStartPn.transform.localPosition = new Vector3(addRegButton.GetComponent<RectTransform>().rect.width / 2 + choiseStartPn.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+            //重新选择时取消上次添加的面板
+            GameObject nextStepPn = null;
+            GameObject nextnextStepPn = null;
             choiseStartPn.GetComponent<Dropdown>().onValueChanged.AddListener((val) =>
             {
                 playTask pt = new playTask();
                 pt.taskParameters = new string[0];
+                //提前获取hotkeys
+                if (nextStepPn != null)
+                {
+                    Destroy(nextStepPn);
+                }
+                if(nextnextStepPn!=null){
+                    Destroy(nextnextStepPn);
+                }
+                GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
                 switch (val)
                 {
                     case 0:
                         break;
                     case 1://弹幕
-
-                        // print("?" + this.danmuRegInputtext == null);
-                        // TestB2();
                         var danmuInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
                         danmuInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + danmuInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
-                        //提前获取hotkeys
-                        GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
-
+                        nextStepPn = danmuInputBar;
                         danmuInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
                         {
-                            print(inputval);
                             if (inputval == null || inputval == "")
                             {
                                 Destroy(choiseStartPn);
@@ -306,16 +312,56 @@ namespace VTS.Examples
                             pt.taskType = "danmu";
                             pt.taskParameters = new string[1];
                             pt.taskParameters[0] = inputval;
-                            fillTask(choiseStartPn, danmuInputBar, pt);//组件补全任务
+                            nextnextStepPn = fillTask(choiseStartPn, danmuInputBar, pt);//组件补全任务
                         });
 
                         break;
-                    case 2://礼物
+                    case 2://礼物(银瓜子)
+                        var yinguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        yinguaziInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + yinguaziInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+                        nextStepPn = yinguaziInputBar;
+                        yinguaziInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        {
+                            if (inputval == null || inputval == "")
+                            {
+                                Destroy(choiseStartPn);
+                                return;
+                            }
+                            //添加任务
+                            pt.taskType = "yinguazi";
+                            pt.taskParameters = new string[1];
+                            pt.taskParameters[0] = inputval;
+                            nextnextStepPn = fillTask(choiseStartPn, yinguaziInputBar, pt);//组件补全任务
+                        });
+                        break;
+                    case 3://礼物(金瓜子)
+                        var jingguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        jingguaziInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + jingguaziInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+                        nextStepPn = jingguaziInputBar;
+                        jingguaziInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        {
+                            if (inputval == null || inputval == "")
+                            {
+                                Destroy(choiseStartPn);
+                                return;
+                            }
+                            //添加任务
+                            pt.taskType = "jingguazi";
+                            pt.taskParameters = new string[1];
+                            pt.taskParameters[0] = inputval;
+                            fillTask(choiseStartPn, jingguaziInputBar, pt);//组件补全任务
+                        });
+                        break;
+                    case 4://舰长
+                        //添加任务
+                        pt.taskType = "jianzhang";
+                        fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
 
                         break;
-                    case 3://舰长
-                        break;
-                    case 4://SC
+                    case 5://SC
+                        //添加任务
+                        pt.taskType = "sc";
+                        fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
                         break;
                 }
             });

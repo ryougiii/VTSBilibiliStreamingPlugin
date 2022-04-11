@@ -22,8 +22,7 @@ namespace VTS.Examples
     public class ExamplePlugin : VTSPlugin
     {
         private bool audioPlaying = false;
-        [SerializeField]
-        private Text info = null;
+
         [SerializeField]
         private Text show_danmu = null;
 
@@ -48,7 +47,7 @@ namespace VTS.Examples
 
         private readonly Queue<string> danmumen = new Queue<string>();
 
-        private float maxTrigerTime = 0;
+        private float maxTrigerTime = 1;
         IWavePlayer waveOutDevice;
         AudioFileReader audioFileReader;
 
@@ -122,16 +121,21 @@ namespace VTS.Examples
             taskExcuteAvaliable = true;
         }
 
-        public void TestB()
-        {
-            // setTimerWaitTaskExcute(1000);
-            // Destroy(GameObject.Find("TaskListContent").transform.GetChild(0).gameObject);
-        }
 
         public void changeTrigerMaxtime(string tistr)
         {
             maxTrigerTime = float.Parse(tistr);
             print("change tritime " + maxTrigerTime);
+        }
+        public void TestB()
+        {
+            receiveDanmu("D7387093$#**#$雨天lul$#**#$qwe");
+            receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$silver$#**#$20");
+            receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$gold$#**#$20");
+            receiveDanmu("J7387093$#**#$雨天lul$#**#$qwe");
+            receiveDanmu("S7387093$#**#$雨天lul$#**#$qwe");
+            // setTimerWaitTaskExcute(1000);
+            // Destroy(GameObject.Find("TaskListContent").transform.GetChild(0).gameObject);
         }
         public void TestB2()
         {
@@ -139,17 +143,23 @@ namespace VTS.Examples
         }
 
 
+        // 人气  f'R[{client.room_id}] 当前人气: {message.popularity}'
+        // 弹幕  f'D[{client.room_id}] {message.uname}: {message.msg}'
+        // 礼物  f'G[{client.room_id}] {message.uname} 赠送了 {message.gift_name}x{message.num}'
+        //                         f' ({message.coin_type} 瓜子 x {message.total_coin})'
+        // 舰长  f'J[{client.room_id}] {message.username} 购买了 {message.gift_name}'
+        // SC   f'S[{client.room_id}] 醒目留言 ￥{message.price} {message.uname}：{message.message}'
+        public void receiveDanmu(string message) => danmumen.Enqueue(message);
+
         private HotkeyData TriggerSelectedHotkey(string currentHotkeySelected)
         {
-            // print("TRI START");
             foreach (var hotkey in hotkeys)
             {
-                // print(" - " + hotkey.name);
                 if (hotkey.name == currentHotkeySelected)
                 {
                     TriggerHotkey(hotkey.hotkeyID,
-                        (r) => { print("HOT SUCESS"); },
-                        e => { info.text = $"热键不存在，请刷新"; }
+                        (r) => { print("TRI HOTKEY"); },
+                        e => { }
                         );
                     return hotkey;
                 }
@@ -189,13 +199,6 @@ namespace VTS.Examples
             }
         }
 
-        // 人气  f'R[{client.room_id}] 当前人气: {message.popularity}'
-        // 弹幕  f'D[{client.room_id}] {message.uname}: {message.msg}'
-        // 礼物  f'G[{client.room_id}] {message.uname} 赠送了 {message.gift_name}x{message.num}'
-        //                         f' ({message.coin_type} 瓜子 x {message.total_coin})'
-        // 舰长  f'J[{client.room_id}] {message.username} 购买了 {message.gift_name}'
-        // 艾西  f'S[{client.room_id}] 醒目留言 ￥{message.price} {message.uname}：{message.message}'
-        public void receiveDanmu(string message) => danmumen.Enqueue(message);
 
         private float playaudio(string audiofile)
         {
@@ -212,6 +215,7 @@ namespace VTS.Examples
 
         public GameObject fillTask(GameObject rootgo, GameObject parentgo, playTask halfpt)
         {
+            //通过面板选择音频和快捷键
             //添加设定任务面板
             var taskPn = Instantiate((GameObject)Resources.Load("Prefabs/CreateTaskPanel"), Vector3.zero, Quaternion.identity, parentgo.transform);
             taskPn.transform.localPosition = new Vector3(taskPn.GetComponent<RectTransform>().rect.width / 2 + parentgo.GetComponent<RectTransform>().rect.width / 2, 0, 0);
@@ -242,7 +246,7 @@ namespace VTS.Examples
                 {
                     halfpt.hotKey = choiseHotkeyContent;
                 }
-                print("HKD " + choiseHotkeyContent);
+                // print("HKD " + choiseHotkeyContent);
             });
 
             //打开audio选择面板
@@ -251,7 +255,7 @@ namespace VTS.Examples
                 choiseAudiosourceContent = OpenFileByWin32.OpenFile();
                 halfpt.audio = choiseAudiosourceContent;
                 audioSourcePn.transform.GetChild(0).GetComponent<Text>().text = choiseAudiosourceContent;
-                print("aud souuuuuiii " + choiseAudiosourceContent);
+                // print("aud souuuuuiii " + choiseAudiosourceContent);
             });
 
             //完成选择，推入任务
@@ -289,7 +293,8 @@ namespace VTS.Examples
                 {
                     Destroy(nextStepPn);
                 }
-                if(nextnextStepPn!=null){
+                if (nextnextStepPn != null)
+                {
                     Destroy(nextnextStepPn);
                 }
                 GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
@@ -335,10 +340,10 @@ namespace VTS.Examples
                         });
                         break;
                     case 3://礼物(金瓜子)
-                        var jingguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
-                        jingguaziInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + jingguaziInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
-                        nextStepPn = jingguaziInputBar;
-                        jingguaziInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        var jinguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        jinguaziInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + jinguaziInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+                        nextStepPn = jinguaziInputBar;
+                        jinguaziInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
                         {
                             if (inputval == null || inputval == "")
                             {
@@ -346,10 +351,10 @@ namespace VTS.Examples
                                 return;
                             }
                             //添加任务
-                            pt.taskType = "jingguazi";
+                            pt.taskType = "jinguazi";
                             pt.taskParameters = new string[1];
                             pt.taskParameters[0] = inputval;
-                            fillTask(choiseStartPn, jingguaziInputBar, pt);//组件补全任务
+                            fillTask(choiseStartPn, jinguaziInputBar, pt);//组件补全任务
                         });
                         break;
                     case 4://舰长
@@ -375,11 +380,11 @@ namespace VTS.Examples
             //更新执行的任务情况,执行新的任务
             if (taskExcuteAvaliable && Tasks.TaskInstances.Count > 0)
             {
-                print("EEEEEXXX");
+                // print("EEEEEXXX");
                 taskExcuteAvaliable = false;
                 var nt = Tasks.TaskInstances[0];
                 Tasks.TaskInstances.Remove(nt);
-                print("TESK NUM " + Tasks.TaskInstances.Count);
+                // print("TESK NUM " + Tasks.TaskInstances.Count);
                 // Tasks.executeTask(nt);
                 var audiotime = 0.0f;
                 var hotkeytime = 0.0f;
@@ -391,7 +396,7 @@ namespace VTS.Examples
                 {
                     hotkeytime = maxTrigerTime * 1000;
                     var res = TriggerSelectedHotkey(nt.hotKey);
-                    print("TRI HOT " + nt.hotKey);
+                    // print("TRI HOT " + nt.hotKey);
                 }
                 print("TIMES " + audiotime + " " + hotkeytime + " " + Math.Max(audiotime, hotkeytime));
                 //设置定时器
@@ -403,6 +408,7 @@ namespace VTS.Examples
             while (danmumen.Count > 0)
             {
                 string danmu = danmumen.Dequeue();
+                // print(" -" + danmu + "- ");
                 string[] danmu_msg = danmu.Split("$#**#$");
                 //                Debug.Log(string.Join(",", danmu_msg));
                 // Debug.Log(danmu[0]);
@@ -417,9 +423,16 @@ namespace VTS.Examples
 
                     // 收到礼物
                     case 'G':
-                        // if (!(danmu_msg[4] == "silver"))
-                        // show_danmu.text += $"\nG[{danmu_msg[0]}] {danmu_msg[1]} 赠送了 {danmu_msg[2]}x{danmu_msg[3]}"
-                        //                 + $" ({danmu_msg[4]} 瓜子 x {danmu_msg[5]})";
+                        show_danmu.text += $"\nG[{danmu_msg[0]}] {danmu_msg[1]} 赠送了 {danmu_msg[2]}x{danmu_msg[3]}"
+                                        + $" ({danmu_msg[4]} 瓜子 x {danmu_msg[5]})";
+                        if ((danmu_msg[4] == "silver"))
+                        {
+                            Tasks.testTrigerTask("yinguazi", new string[1] { danmu_msg[5] });
+                        }
+                        else if ((danmu_msg[4] == "gold"))
+                        {
+                            Tasks.testTrigerTask("jinguazi", new string[1] { danmu_msg[5] });
+                        }
                         // if (danmu_msg[4] == "gold" && int.Parse(danmu_msg[5]) >= guazi)
                         // {
                         //     HotkeyData giftTrigger = TriggerSelectedHotkey(liwuDropdown);
@@ -429,14 +442,19 @@ namespace VTS.Examples
 
                     // 有人上舰
                     case 'J':
-                        // show_danmu.text += $"\nJ[{danmu_msg[0]}] {danmu_msg[1]} 购买了 {danmu_msg[2]}";
+                        show_danmu.text += $"\nJ[{danmu_msg[0]}] {danmu_msg[1]} 购买了 {danmu_msg[2]}";
+                        Tasks.testTrigerTask("jianzhang", new string[0]);
+
                         // HotkeyData captainTrigger = TriggerSelectedHotkey(captainList);
                         // info.text += $"\n{danmu_msg[1]} 的礼物触发了 {captainTrigger.name}({captainTrigger.file})";
                         break;
 
                     // SC
                     case 'S':
-                        show_danmu.text += $"\nS[{danmu_msg[0]}] 发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}";
+                        show_danmu.text += $"\nS[{danmu_msg[0]}] 发送了醒目留言";
+                        // show_danmu.text += $"\nS[{danmu_msg[0]}] 发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}";
+                        Tasks.testTrigerTask("sc", new string[0]);
+
                         // if (danmu_msg[3].Contains(superchatKeyword))
                         // {
                         //     HotkeyData SCTrigger = TriggerSelectedHotkey(SCDropdown);

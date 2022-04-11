@@ -13,10 +13,9 @@ using VTS.Examples;
 public class LoadPython : MonoBehaviour
 {
 
-    [SerializeField]
     private Text info = null;
 
-    private int room_id = 14917277; // 夸！
+    private int room_id = 7387093;
 
     private string sArguments;
     private string AppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -33,6 +32,7 @@ public class LoadPython : MonoBehaviour
     {
         temp = "";
         AssetsPath = Application.streamingAssetsPath;
+        info = GameObject.Find("RoomStates").GetComponent<Text>();
         // mainScript = GameObject.Find("ExamplePlugin");
     }
 

@@ -41,17 +41,28 @@ namespace VTS
             {
                 case "danmu":
                     expressTaskInfo += "当弹幕中出现 " + halfTaskGo.taskParameters[0] + " 时，";
-                    if (halfTaskGo.audio != "")
-                    {
-                        expressTaskInfo += "\n   ->播放 " + halfTaskGo.audio;
-                    }
-                    if (halfTaskGo.hotKey != "")
-                    {
-                        expressTaskInfo += "\n   ->触发 " + halfTaskGo.hotKey;
-                        print("HHH " + halfTaskGo.hotKey.Length + halfTaskGo.hotKey);
-                    }
                     break;
-
+                case "yinguazi":
+                    expressTaskInfo += "当银瓜子>= " + halfTaskGo.taskParameters[0] + " 时，";
+                    break;
+                case "jinguazi":
+                    expressTaskInfo += "当金瓜子>= " + halfTaskGo.taskParameters[0] + " 时，";
+                    break;
+                case "jianzhang":
+                    expressTaskInfo += "当有人上舰时, ";
+                    break;
+                case "sc":
+                    expressTaskInfo += "当有sc时, ";
+                    break;
+            }
+            if (halfTaskGo.audio != "")
+            {
+                expressTaskInfo += "\n   ->播放 " + halfTaskGo.audio;
+            }
+            if (halfTaskGo.hotKey != "")
+            {
+                expressTaskInfo += "\n   ->触发 " + halfTaskGo.hotKey;
+                print("HHH " + halfTaskGo.hotKey.Length + halfTaskGo.hotKey);
             }
             //在面板中显示添加的规则
             var showpn = Instantiate((GameObject)Resources.Load("Prefabs/taskShowPn"), Vector3.zero, Quaternion.identity, GameObject.Find("TaskRegListContent").transform);
@@ -85,6 +96,7 @@ namespace VTS
 
         public static void testTrigerTask(string meventType, string[] meventParas)
         {
+            print("testTrigerTask " + meventType);
             foreach (var ltl in LogicRegTasklists)
             {
                 //类型不一样的跳过
@@ -103,12 +115,38 @@ namespace VTS
                             print("TRI DANMU " + meventParas[0]);
                         }
                         break;
-
+                    case "yinguazi":
+                        if (float.Parse(meventParas[0]) >= float.Parse(ltl.taskParameters[0]))
+                        {
+                            prepareExecuteTask(ltl);
+                            addTaskToExcuteGuiPn(ltl);
+                            print("TRI yinguazi" + meventParas[0]);
+                        }
+                        break;
+                    case "jinguazi":
+                        if (float.Parse(meventParas[0]) >= float.Parse(ltl.taskParameters[0]))
+                        {
+                            prepareExecuteTask(ltl);
+                            addTaskToExcuteGuiPn(ltl);
+                            print("TRI jinguazi " + meventParas[0]);
+                        }
+                        break;
+                    case "jianzhang":
+                        prepareExecuteTask(ltl);
+                        addTaskToExcuteGuiPn(ltl);
+                        print("TRI jianzhang ");
+                        break;
+                    case "sc":
+                        prepareExecuteTask(ltl);
+                        addTaskToExcuteGuiPn(ltl);
+                        print("TRI sc ");
+                        break;
                 }
             }
 
         }
-        private static void addTaskToExcuteGuiPn(playTask excTask){
+        private static void addTaskToExcuteGuiPn(playTask excTask)
+        {
             //要执行的任务加到gui执行情况列表里
             var showNowTaskPn = Instantiate((GameObject)Resources.Load("Prefabs/taskShowPn"), Vector3.zero, Quaternion.identity, GameObject.Find("TaskListContent").transform);
             showNowTaskPn.transform.position = Vector3.zero;

@@ -62,6 +62,7 @@ namespace VTS.Examples
                 //添加规则按钮
                 addReg();
             });
+            show_danmu = GameObject.Find("danmuContentPnContent").GetComponent<Text>();
         }
         void OnApplicationQuit()
         {
@@ -263,7 +264,12 @@ namespace VTS.Examples
             {
                 if (halfpt.audio == "" && halfpt.hotKey == "")
                 {
+                    show_danmu.text = "选个任务吧\n" + show_danmu;
                     //选个任务吧
+                }
+                else if (halfpt.audio == "" && maxTrigerTime == 0)
+                {
+                    show_danmu.text = "快捷键最大时间和声音不能同时为空哦\n" + show_danmu;
                 }
                 else
                 {
@@ -418,13 +424,13 @@ namespace VTS.Examples
                     // 收到弹幕
                     case 'D':
                         Tasks.testTrigerTask("danmu", new string[1] { danmu_msg[2] });
-                        show_danmu.text += $"\nD[{danmu_msg[0]}] {danmu_msg[1]}: {danmu_msg[2]}";
+                        show_danmu.text = $"{danmu_msg[1]}: {danmu_msg[2]}\n" + show_danmu.text;
                         break;
 
                     // 收到礼物
                     case 'G':
-                        show_danmu.text += $"\nG[{danmu_msg[0]}] {danmu_msg[1]} 赠送了 {danmu_msg[2]}x{danmu_msg[3]}"
-                                        + $" ({danmu_msg[4]} 瓜子 x {danmu_msg[5]})";
+                        show_danmu.text = $"{danmu_msg[1]} 赠送了 {danmu_msg[2]}x{danmu_msg[3]}"
+                                        + $" ({danmu_msg[4]} 瓜子 x {danmu_msg[5]})\n" + show_danmu.text;
                         if ((danmu_msg[4] == "silver"))
                         {
                             Tasks.testTrigerTask("yinguazi", new string[1] { danmu_msg[5] });
@@ -442,7 +448,7 @@ namespace VTS.Examples
 
                     // 有人上舰
                     case 'J':
-                        show_danmu.text += $"\nJ[{danmu_msg[0]}] {danmu_msg[1]} 购买了 {danmu_msg[2]}";
+                        show_danmu.text = $"{danmu_msg[1]} 购买了 {danmu_msg[2]}\n" + show_danmu.text;
                         Tasks.testTrigerTask("jianzhang", new string[0]);
 
                         // HotkeyData captainTrigger = TriggerSelectedHotkey(captainList);
@@ -451,8 +457,7 @@ namespace VTS.Examples
 
                     // SC
                     case 'S':
-                        show_danmu.text += $"\nS[{danmu_msg[0]}] 发送了醒目留言";
-                        // show_danmu.text += $"\nS[{danmu_msg[0]}] 发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}";
+                        show_danmu.text = $"发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}\n" + show_danmu.text;
                         Tasks.testTrigerTask("sc", new string[0]);
 
                         // if (danmu_msg[3].Contains(superchatKeyword))

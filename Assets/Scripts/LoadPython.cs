@@ -21,7 +21,7 @@ public class LoadPython : MonoBehaviour
     private string AppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
     private string AssetsPath = "";
     public static string temp;
-    Process p;
+    Process p = null;
 
     // public static Thread pythonProcess;
 
@@ -41,6 +41,10 @@ public class LoadPython : MonoBehaviour
 
     public void StartPy()
     {
+        if (p != null)
+        {
+            p.Close();
+        }
         info.text = $"连接直播间{room_id}";
         childRef = new ThreadStart(ThreadTest1);
         childThread = new Thread(childRef);
@@ -51,7 +55,10 @@ public class LoadPython : MonoBehaviour
 
     public void EndPy()
     {
-        p.Close();
+        if (p != null)
+        {
+            p.Close();
+        }
         info.text = $"停止连接房间{room_id}";
         GameObject.Find("RoomStates").GetComponent<Text>().text = "--";
 

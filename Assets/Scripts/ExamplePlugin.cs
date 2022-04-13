@@ -53,6 +53,7 @@ namespace VTS.Examples
 
         private void Awake()
         {
+            Screen.SetResolution(1000,500, false);
             Connect();
             //UnityEngine.Debug.Log(AppData);
             //UnityEngine.Debug.Log(Application.dataPath);
@@ -140,30 +141,12 @@ namespace VTS.Examples
             // receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$gold$#**#$20");
             // receiveDanmu("J7387093$#**#$雨天lul$#**#$qwe");
             // receiveDanmu("S7387093$#**#$雨天lul$#**#$qwe");
-
-            string filepath = Application.dataPath + @"/savedata/savetasks.json";
-            print("path " + filepath);
-            FileInfo file = new FileInfo(filepath);
-            StreamWriter sw = file.CreateText();
-            string json = JsonMapper.ToJson(Tasks.LogicRegTasklists);
-            print("json " + json);
-            sw.WriteLine(json);
-            sw.Close();
-            sw.Dispose();
+            Screen.SetResolution(1920,1080, false);
+print(Screen.currentResolution.height);
         }
         public void TestB2()
         {
-            string filepath = Application.dataPath + @"/savedata/savetasks.json";
-            FileInfo file = new FileInfo(filepath);
 
-            StreamReader sr = file.OpenText();
-            string str = sr.ReadLine();
-            print("read " + str);
-            var readtasks = JsonMapper.ToObject<List<playTask>>(str);
-            foreach (var item in readtasks)
-            {
-                Tasks.pushRegTaskIntoList(item);
-            }
         }
 
 

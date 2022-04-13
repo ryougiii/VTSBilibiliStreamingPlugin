@@ -11,8 +11,9 @@ using UnityEngine.UI;
 using UnityEditor;
 public class playTask
 {
-    public string audio;
-    public string hotKey;
+    public int subtaskNum;
+    public string[] audio;
+    public string[] hotKey;
     public string taskType;
     public string[] taskParameters;
 
@@ -20,8 +21,9 @@ public class playTask
     public playTask()
     {
         taskId = VTS.Tasks.taskIdNum++;
-        audio = "";
-        hotKey = "";
+        subtaskNum = 0;
+        audio = new string[0];
+        hotKey = new string[0];
         taskType = "";
         taskParameters = new string[0];
     }
@@ -56,15 +58,15 @@ namespace VTS
                     expressTaskInfo += "当有sc时, ";
                     break;
             }
-            if (halfTaskGo.audio != "")
-            {
-                expressTaskInfo += "\n   ->播放 " + halfTaskGo.audio;
-            }
-            if (halfTaskGo.hotKey != "")
-            {
-                expressTaskInfo += "\n   ->触发 " + halfTaskGo.hotKey;
-                print("HHH " + halfTaskGo.hotKey.Length + halfTaskGo.hotKey);
-            }
+            // if (halfTaskGo.audio != "")
+            // {
+            //     expressTaskInfo += "\n   ->播放 " + halfTaskGo.audio;
+            // }
+            // if (halfTaskGo.hotKey != "")
+            // {
+            //     expressTaskInfo += "\n   ->触发 " + halfTaskGo.hotKey;
+            //     print("HHH " + halfTaskGo.hotKey.Length + halfTaskGo.hotKey);
+            // }
             //在面板中显示添加的规则
             var showpn = Instantiate((GameObject)Resources.Load("Prefabs/taskShowPn"), Vector3.zero, Quaternion.identity, GameObject.Find("TaskRegListContent").transform);
             showpn.transform.localPosition = Vector3.zero;
@@ -151,19 +153,19 @@ namespace VTS
         private static void addTaskToExcuteGuiPn(playTask excTask)
         {
             //要执行的任务加到gui执行情况列表里
-            var showNowTaskPn = Instantiate((GameObject)Resources.Load("Prefabs/taskShowPn"), Vector3.zero, Quaternion.identity, GameObject.Find("TaskListContent").transform);
-            showNowTaskPn.transform.position = Vector3.zero;
-            showNowTaskPn.transform.GetChild(1).GetComponent<Text>().text = "----------\n" +
-                (excTask.audio == "" ? "" : (" +" + excTask.audio + "\n")) +
-                (excTask.hotKey == "" ? "" : (" +" + excTask.hotKey + "\n"));
-            //取消这个任务
-            showNowTaskPn.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
-            {
-                Destroy(showNowTaskPn);
-                TaskInstances.Remove(excTask);
-            });
-            var showPnRect = showNowTaskPn.transform.GetComponent<RectTransform>();
-            showPnRect.sizeDelta = new Vector2(showPnRect.rect.width, showNowTaskPn.transform.GetChild(1).GetComponent<Text>().preferredHeight + 20);
+            // var showNowTaskPn = Instantiate((GameObject)Resources.Load("Prefabs/taskShowPn"), Vector3.zero, Quaternion.identity, GameObject.Find("TaskListContent").transform);
+            // showNowTaskPn.transform.position = Vector3.zero;
+            // showNowTaskPn.transform.GetChild(1).GetComponent<Text>().text = "----------\n" +
+            //     (excTask.audio == "" ? "" : (" +" + excTask.audio + "\n")) +
+            //     (excTask.hotKey == "" ? "" : (" +" + excTask.hotKey + "\n"));
+            // //取消这个任务
+            // showNowTaskPn.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
+            // {
+            //     Destroy(showNowTaskPn);
+            //     TaskInstances.Remove(excTask);
+            // });
+            // var showPnRect = showNowTaskPn.transform.GetComponent<RectTransform>();
+            // showPnRect.sizeDelta = new Vector2(showPnRect.rect.width, showNowTaskPn.transform.GetChild(1).GetComponent<Text>().preferredHeight + 20);
         }
         public static void prepareExecuteTask(playTask pt)
         {

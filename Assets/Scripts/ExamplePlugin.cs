@@ -242,64 +242,78 @@ namespace VTS.Examples
             //通过面板选择音频和快捷键
             //添加设定任务面板
             var taskPn = Instantiate((GameObject)Resources.Load("Prefabs/CreateTaskPanel"), Vector3.zero, Quaternion.identity, parentgo.transform);
-            taskPn.transform.localPosition = new Vector3(taskPn.GetComponent<RectTransform>().rect.width / 2 + parentgo.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+            taskPn.transform.localPosition = new Vector3(parentgo.GetComponent<RectTransform>().rect.width, parentgo.GetComponent<RectTransform>().rect.height * 3, 0);
             //取消按钮
-            taskPn.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
+            taskPn.transform.Find("exitcreat").GetComponent<Button>().onClick.AddListener(() =>
             {
                 Destroy(rootgo);
                 return;
             }); ;
-            var hotkeyDropdownComp = taskPn.transform.GetChild(3).GetComponent<Dropdown>();
-            var dropdownData = new List<Dropdown.OptionData>();
-            var audioSourcePn = taskPn.transform.GetChild(1);
-            var choiseAudiosourceContent = "";
-            var choiseHotkeyContent = "";
-            //异步处理
-            //获取hotkey和选择结果
-            foreach (var i in hotkeys)
-            {
-                dropdownData.Add(new Dropdown.OptionData() { text = i.name });
-            }
 
-            hotkeyDropdownComp.AddOptions(dropdownData);
-
-            hotkeyDropdownComp.onValueChanged.AddListener((num) =>
+            var subPnNum = 0;
+            var allSubTasksParent = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity, taskPn.transform);
+            allSubTasksParent.name = "allSubTasksParent";
+            allSubTasksParent.transform.localPosition = Vector3.zero;
+            taskPn.transform.Find("addProbTaskPn").GetComponent<Button>().onClick.AddListener(() =>
             {
-                choiseHotkeyContent = hotkeyDropdownComp.options[num].text;
-                if (num != 0)
-                {
-                    halfpt.hotKey = choiseHotkeyContent;
-                }
-                // print("HKD " + choiseHotkeyContent);
+                var subtaskPn = Instantiate((GameObject)Resources.Load("Prefabs/filltask_subtasks"), Vector3.zero, Quaternion.identity, allSubTasksParent.transform);
+                subtaskPn.transform.localPosition = new Vector3(taskPn.GetComponent<RectTransform>().rect.width + subPnNum++ * subtaskPn.transform.Find("hotkey").GetComponent<RectTransform>().rect.width, 0, 0);
+                print(subPnNum * subtaskPn.transform.Find("hotkey").GetComponent<RectTransform>().rect.width);
+
             });
 
-            //打开audio选择面板
-            audioSourcePn.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                choiseAudiosourceContent = OpenFileByWin32.OpenFile();
-                halfpt.audio = choiseAudiosourceContent;
-                audioSourcePn.transform.GetChild(0).GetComponent<Text>().text = choiseAudiosourceContent;
-                // print("aud souuuuuiii " + choiseAudiosourceContent);
-            });
 
-            //完成选择，推入任务
-            taskPn.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                if (halfpt.audio == "" && halfpt.hotKey == "")
-                {
-                    show_danmu.text = "选个任务吧\n" + show_danmu;
-                    //选个任务吧
-                }
-                else if (halfpt.audio == "" && maxTrigerTime == 0)
-                {
-                    show_danmu.text = "快捷键最大时间和声音不能同时为空哦\n" + show_danmu;
-                }
-                else
-                {
-                    Tasks.pushRegTaskIntoList(halfpt);
-                    Destroy(rootgo);
-                }
-            });
+            // var hotkeyDropdownComp = taskPn.transform.GetChild(3).GetComponent<Dropdown>();
+            // var dropdownData = new List<Dropdown.OptionData>();
+            // var audioSourcePn = taskPn.transform.GetChild(1);
+            // var choiseAudiosourceContent = "";
+            // var choiseHotkeyContent = "";
+            // //异步处理
+            // //获取hotkey和选择结果
+            // foreach (var i in hotkeys)
+            // {
+            //     dropdownData.Add(new Dropdown.OptionData() { text = i.name });
+            // }
+
+            // hotkeyDropdownComp.AddOptions(dropdownData);
+
+            // hotkeyDropdownComp.onValueChanged.AddListener((num) =>
+            // {
+            //     choiseHotkeyContent = hotkeyDropdownComp.options[num].text;
+            //     if (num != 0)
+            //     {
+            //         halfpt.hotKey = choiseHotkeyContent;
+            //     }
+            //     // print("HKD " + choiseHotkeyContent);
+            // });
+
+            // //打开audio选择面板
+            // audioSourcePn.GetComponent<Button>().onClick.AddListener(() =>
+            // {
+            //     choiseAudiosourceContent = OpenFileByWin32.OpenFile();
+            //     halfpt.audio = choiseAudiosourceContent;
+            //     audioSourcePn.transform.GetChild(0).GetComponent<Text>().text = choiseAudiosourceContent;
+            //     // print("aud souuuuuiii " + choiseAudiosourceContent);
+            // });
+
+            // //完成选择，推入任务
+            // taskPn.GetComponent<Button>().onClick.AddListener(() =>
+            // {
+            //     if (halfpt.audio == "" && halfpt.hotKey == "")
+            //     {
+            //         show_danmu.text = "选个任务吧\n" + show_danmu;
+            //         //选个任务吧
+            //     }
+            //     else if (halfpt.audio == "" && maxTrigerTime == 0)
+            //     {
+            //         show_danmu.text = "快捷键最大时间和声音不能同时为空哦\n" + show_danmu;
+            //     }
+            //     else
+            //     {
+            //         Tasks.pushRegTaskIntoList(halfpt);
+            //         Destroy(rootgo);
+            //     }
+            // });
             return taskPn;
 
         }
@@ -309,15 +323,16 @@ namespace VTS.Examples
         {
             var addRegButton = GameObject.Find("AddReg");
             var choiseStartPn = Instantiate((GameObject)Resources.Load("Prefabs/choise/choiseStart"), Vector3.zero, Quaternion.identity, addRegButton.transform);
-            choiseStartPn.transform.localPosition = new Vector3(addRegButton.GetComponent<RectTransform>().rect.width / 2 + choiseStartPn.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+            choiseStartPn.transform.localPosition = new Vector3(0, -addRegButton.GetComponent<RectTransform>().rect.height, 0);
             //重新选择时取消上次添加的面板
             GameObject nextStepPn = null;
             GameObject nextnextStepPn = null;
+
+            //任务类型选择
             choiseStartPn.GetComponent<Dropdown>().onValueChanged.AddListener((val) =>
             {
                 playTask pt = new playTask();
                 pt.taskParameters = new string[0];
-                //提前获取hotkeys
                 if (nextStepPn != null)
                 {
                     Destroy(nextStepPn);
@@ -326,14 +341,16 @@ namespace VTS.Examples
                 {
                     Destroy(nextnextStepPn);
                 }
+                //提前获取hotkeys
                 GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
                 switch (val)
                 {
                     case 0:
                         break;
                     case 1://弹幕
+                        //用来输入匹配的弹幕的框
                         var danmuInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
-                        danmuInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + danmuInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+                        danmuInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
                         nextStepPn = danmuInputBar;
                         danmuInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
                         {
@@ -352,7 +369,7 @@ namespace VTS.Examples
                         break;
                     case 2://礼物(银瓜子)
                         var yinguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
-                        yinguaziInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + yinguaziInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+                        yinguaziInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
                         nextStepPn = yinguaziInputBar;
                         yinguaziInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
                         {
@@ -370,7 +387,7 @@ namespace VTS.Examples
                         break;
                     case 3://礼物(金瓜子)
                         var jinguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
-                        jinguaziInputBar.transform.localPosition = new Vector3(choiseStartPn.GetComponent<RectTransform>().rect.width / 2 + jinguaziInputBar.GetComponent<RectTransform>().rect.width / 2, 0, 0);
+                        jinguaziInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
                         nextStepPn = jinguaziInputBar;
                         jinguaziInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
                         {
@@ -402,36 +419,34 @@ namespace VTS.Examples
         }
 
 
-
-
         public void FixedUpdate()
         {
             //更新执行的任务情况,执行新的任务
-            if (taskExcuteAvaliable && Tasks.TaskInstances.Count > 0)
-            {
-                // print("EEEEEXXX");
-                taskExcuteAvaliable = false;
-                var nt = Tasks.TaskInstances[0];
-                Tasks.TaskInstances.Remove(nt);
-                // print("TESK NUM " + Tasks.TaskInstances.Count);
-                // Tasks.executeTask(nt);
-                var audiotime = 0.0f;
-                var hotkeytime = 0.0f;
-                if (nt.audio != "")
-                {
-                    audiotime = playaudio(nt.audio);
-                }
-                if (nt.hotKey != "")
-                {
-                    hotkeytime = maxTrigerTime * 1000;
-                    var res = TriggerSelectedHotkey(nt.hotKey);
-                    // print("TRI HOT " + nt.hotKey);
-                }
-                print("TIMES " + audiotime + " " + hotkeytime + " " + Math.Max(audiotime, hotkeytime));
-                //设置定时器
-                Invoke("taskExcuteFinish", Math.Max(audiotime, hotkeytime) / 1000 + 0.1f);
+            // if (taskExcuteAvaliable && Tasks.TaskInstances.Count > 0)
+            // {
+            //     // print("EEEEEXXX");
+            //     taskExcuteAvaliable = false;
+            //     var nt = Tasks.TaskInstances[0];
+            //     Tasks.TaskInstances.Remove(nt);
+            //     // print("TESK NUM " + Tasks.TaskInstances.Count);
+            //     // Tasks.executeTask(nt);
+            //     var audiotime = 0.0f;
+            //     var hotkeytime = 0.0f;
+            //     if (nt.audio != "")
+            //     {
+            //         audiotime = playaudio(nt.audio);
+            //     }
+            //     if (nt.hotKey != "")
+            //     {
+            //         hotkeytime = maxTrigerTime * 1000;
+            //         var res = TriggerSelectedHotkey(nt.hotKey);
+            //         // print("TRI HOT " + nt.hotKey);
+            //     }
+            //     print("TIMES " + audiotime + " " + hotkeytime + " " + Math.Max(audiotime, hotkeytime));
+            //     //设置定时器
+            //     Invoke("taskExcuteFinish", Math.Max(audiotime, hotkeytime) / 1000 + 0.1f);
 
-            }
+            // }
 
 
             while (danmumen.Count > 0)

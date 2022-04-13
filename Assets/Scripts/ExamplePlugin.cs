@@ -4,10 +4,10 @@ using System.Timers;
 using VTS.Networking.Impl;
 using VTS.Models.Impl;
 using VTS.Models;
-
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-
+using LitJson;
 // using UnityEditor;
 
 
@@ -57,6 +57,7 @@ namespace VTS.Examples
             //UnityEngine.Debug.Log(AppData);
             //UnityEngine.Debug.Log(Application.dataPath);
             Application.targetFrameRate = 30;
+            Tasks.loadTasksData();
             GameObject.Find("AddReg").GetComponent<Button>().onClick.AddListener(() =>
             {
                 //添加规则按钮
@@ -80,7 +81,6 @@ namespace VTS.Examples
         }
         private void Connect()
         {
-            print("PRE conn");
             this._connectionLight.color = Color.yellow;
             this._connectionText.text = "Connecting...";
             Initialize(new WebSocketSharpImpl(), new JsonUtilityImpl(), new TokenStorageImpl(),
@@ -89,6 +89,8 @@ namespace VTS.Examples
                 UnityEngine.Debug.Log("Connected!");
                 this._connectionLight.color = Color.green;
                 this._connectionText.text = "Connected!";
+                GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
+
             },
             () =>
             {
@@ -106,6 +108,8 @@ namespace VTS.Examples
         public void RefeshConnect()
         {
             Connect();
+            GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
+
         }
 
         public void taskExcuteFinish()
@@ -128,19 +132,38 @@ namespace VTS.Examples
             maxTrigerTime = float.Parse(tistr);
             print("change tritime " + maxTrigerTime);
         }
+
         public void TestB()
         {
-            receiveDanmu("D7387093$#**#$雨天lul$#**#$qwe");
-            receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$silver$#**#$20");
-            receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$gold$#**#$20");
-            receiveDanmu("J7387093$#**#$雨天lul$#**#$qwe");
-            receiveDanmu("S7387093$#**#$雨天lul$#**#$qwe");
-            // setTimerWaitTaskExcute(1000);
-            // Destroy(GameObject.Find("TaskListContent").transform.GetChild(0).gameObject);
+            // receiveDanmu("D7387093$#**#$雨天lul$#**#$qwe");
+            // receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$silver$#**#$20");
+            // receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$gold$#**#$20");
+            // receiveDanmu("J7387093$#**#$雨天lul$#**#$qwe");
+            // receiveDanmu("S7387093$#**#$雨天lul$#**#$qwe");
+
+            string filepath = Application.dataPath + @"/savedata/savetasks.json";
+            print("path " + filepath);
+            FileInfo file = new FileInfo(filepath);
+            StreamWriter sw = file.CreateText();
+            string json = JsonMapper.ToJson(Tasks.LogicRegTasklists);
+            print("json " + json);
+            sw.WriteLine(json);
+            sw.Close();
+            sw.Dispose();
         }
         public void TestB2()
         {
+            string filepath = Application.dataPath + @"/savedata/savetasks.json";
+            FileInfo file = new FileInfo(filepath);
 
+            StreamReader sr = file.OpenText();
+            string str = sr.ReadLine();
+            print("read " + str);
+            var readtasks = JsonMapper.ToObject<List<playTask>>(str);
+            foreach (var item in readtasks)
+            {
+                Tasks.pushRegTaskIntoList(item);
+            }
         }
 
 
@@ -414,7 +437,7 @@ namespace VTS.Examples
             while (danmumen.Count > 0)
             {
                 string danmu = danmumen.Dequeue();
-                // print(" -" + danmu + "- ");
+                print(" -" + danmu + "- ");
                 string[] danmu_msg = danmu.Split("$#**#$");
                 //                Debug.Log(string.Join(",", danmu_msg));
                 // Debug.Log(danmu[0]);

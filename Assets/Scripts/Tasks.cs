@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using VTS.Networking.Impl;
 using VTS.Models.Impl;
 using VTS.Models;
-
+using System.IO;
+using LitJson;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,12 +74,14 @@ namespace VTS
                 // 取消Regtask
                 removeTask(halfTaskGo.taskId);
                 Destroy(showpn);
+                saveTasksData();
             });
             var showPnRect = showpn.transform.GetComponent<RectTransform>();
             showPnRect.sizeDelta = new Vector2(showPnRect.rect.width, showpn.transform.GetChild(1).GetComponent<Text>().preferredHeight + 20);
             // print("WH " + showPnRect.sizeDelta.x + showPnRect.sizeDelta.y);
             //后台添加规则
             LogicRegTasklists.Add(halfTaskGo);
+            saveTasksData();
         }
 
 
@@ -167,5 +170,94 @@ namespace VTS
             TaskInstances.Add(pt);
             print("EXCU " + TaskInstances.Count + " " + pt.hotKey + pt.audio);
         }
+
+        public static void saveTasksData()
+        {
+            string floderpath = Application.dataPath + @"/savedata";
+            string filepath = Application.dataPath + @"/savedata/savetasks.json";
+            if (!System.IO.File.Exists(floderpath))
+            {
+                System.IO.Directory.CreateDirectory(floderpath);
+            }
+            if (!System.IO.File.Exists(filepath))
+            {
+                System.IO.File.Create(filepath).Dispose();
+            }
+            FileInfo file = new FileInfo(filepath);
+            StreamWriter sw = file.CreateText();
+            string json = JsonMapper.ToJson(Tasks.LogicRegTasklists);
+            sw.WriteLine(json);
+            sw.Close();
+            sw.Dispose();
+        }
+        public static void loadTasksData()
+        {
+            string floderpath = Application.dataPath + @"/savedata";
+            string filepath = Application.dataPath + @"/savedata/savetasks.json";
+            if (!System.IO.File.Exists(floderpath))
+            {
+                System.IO.Directory.CreateDirectory(floderpath);
+            }
+            if (!System.IO.File.Exists(filepath))
+            {
+                System.IO.File.Create(filepath).Dispose();
+            }
+            FileInfo file = new FileInfo(filepath);
+            StreamReader sr = file.OpenText();
+            string str = sr.ReadLine();
+            sr.Close();
+            sr.Dispose();
+            if (str != null && str != "")
+            {
+                var readtasks = JsonMapper.ToObject<List<playTask>>(str);
+                foreach (var item in readtasks)
+                {
+                    Tasks.pushRegTaskIntoList(item);
+                }
+            }
+        }
+        public static void saveRoomData()
+        {
+            string floderpath = Application.dataPath + @"/savedata";
+            string filepath = Application.dataPath + @"/savedata/saveroom.json";
+            if (!System.IO.File.Exists(floderpath))
+            {
+                System.IO.Directory.CreateDirectory(floderpath);
+            }
+            if (!System.IO.File.Exists(filepath))
+            {
+                System.IO.File.Create(filepath).Dispose();
+            }
+            FileInfo file = new FileInfo(filepath);
+            StreamWriter sw = file.CreateText();
+            sw.WriteLine(LoadPython.room_id.ToString());
+            sw.Close();
+            sw.Dispose();
+        }
+
+        public static void loadRoomData()
+        {
+            string floderpath = Application.dataPath + @"/savedata";
+            string filepath = Application.dataPath + @"/savedata/saveroom.json";
+            if (!System.IO.File.Exists(floderpath))
+            {
+                System.IO.Directory.CreateDirectory(floderpath);
+            }
+            if (!System.IO.File.Exists(filepath))
+            {
+                System.IO.File.Create(filepath).Dispose();
+            }
+            FileInfo file = new FileInfo(filepath);
+            StreamReader sr = file.OpenText();
+            string str = sr.ReadLine();
+            sr.Close();
+            sr.Dispose();
+            if (str != null && str != "")
+            {
+                var readroomid = int.Parse(str);
+                LoadPython.room_id = readroomid;
+            }
+        }
+
     }
 }

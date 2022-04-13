@@ -9,13 +9,13 @@ using System.Text;
 using UnityEngine.UI;
 
 using VTS.Examples;
-
+using VTS;
 public class LoadPython : MonoBehaviour
 {
 
     private Text info = null;
 
-    private int room_id = 7387093;
+    public static int room_id = 0;
 
     private string sArguments;
     private string AppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -33,6 +33,8 @@ public class LoadPython : MonoBehaviour
         temp = "";
         AssetsPath = Application.streamingAssetsPath;
         info = GameObject.Find("RoomStates").GetComponent<Text>();
+        Tasks.loadRoomData();
+        StartPy();
         // mainScript = GameObject.Find("ExamplePlugin");
     }
 
@@ -41,15 +43,20 @@ public class LoadPython : MonoBehaviour
 
     public void StartPy()
     {
-        if (p != null)
+        if (childThread != null && childThread.IsAlive)
         {
-            p.Close();
+            childThread.Abort();
+        }
+        if (room_id == 0)
+        {
+            return;
         }
         info.text = $"连接直播间{room_id}";
         childRef = new ThreadStart(ThreadTest1);
         childThread = new Thread(childRef);
         childThread.Start();
         GameObject.Find("RoomStates").GetComponent<Text>().text = room_id.ToString();
+        Tasks.saveRoomData();
 
     }
 
@@ -122,7 +129,7 @@ public class LoadPython : MonoBehaviour
     }
     void OnApplicationQuit()
     {
-        p.Close();
+
         if (childThread.IsAlive)
         {
             childThread.Abort();

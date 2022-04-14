@@ -46,6 +46,8 @@ public class TransparentWindow : MonoBehaviour
 
     void Start()
     {
+        GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = new Color(1, 1, 1);
+
     }
 
     // Pass the output of the camera to the custom material
@@ -77,7 +79,7 @@ public class TransparentWindow : MonoBehaviour
         }
         else
         {
-            GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = new Color(0.985988f, 1, 0.05345905f);
+            GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = new Color(1, 1, 1);
             // var margins = new MARGINS() { cxLeftWidth = -1 };
 
             // Get a handle to the window

@@ -53,7 +53,7 @@ namespace VTS.Examples
 
         private void Awake()
         {
-            Screen.SetResolution(1000,500, false);
+            Screen.SetResolution(1000, 500, false);
             Connect();
             //UnityEngine.Debug.Log(AppData);
             //UnityEngine.Debug.Log(Application.dataPath);
@@ -141,8 +141,8 @@ namespace VTS.Examples
             // receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$gold$#**#$20");
             // receiveDanmu("J7387093$#**#$雨天lul$#**#$qwe");
             // receiveDanmu("S7387093$#**#$雨天lul$#**#$qwe");
-            Screen.SetResolution(1920,1080, false);
-print(Screen.currentResolution.height);
+            Screen.SetResolution(1920, 1080, false);
+            print(Screen.currentResolution.height);
         }
         public void TestB2()
         {
@@ -233,17 +233,50 @@ print(Screen.currentResolution.height);
                 return;
             }); ;
 
+            //添加子任务面板
             var subPnNum = 0;
-            var allSubTasksParent = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity, taskPn.transform);
-            allSubTasksParent.name = "allSubTasksParent";
-            allSubTasksParent.transform.localPosition = Vector3.zero;
+            var allSubTasksParent = taskPn.transform.Find("addProbTaskPn/subTasksPn/Viewport/subTasksParent");
             taskPn.transform.Find("addProbTaskPn").GetComponent<Button>().onClick.AddListener(() =>
             {
                 var subtaskPn = Instantiate((GameObject)Resources.Load("Prefabs/filltask_subtasks"), Vector3.zero, Quaternion.identity, allSubTasksParent.transform);
-                subtaskPn.transform.localPosition = new Vector3(taskPn.GetComponent<RectTransform>().rect.width + subPnNum++ * subtaskPn.transform.Find("hotkey").GetComponent<RectTransform>().rect.width, 0, 0);
-                print(subPnNum * subtaskPn.transform.Find("hotkey").GetComponent<RectTransform>().rect.width);
+                subtaskPn.transform.localPosition = Vector3.zero;
+                subPnNum++;
+                var hotkeyDropdownComp = subtaskPn.transform.Find("hotkey").GetComponent<Dropdown>();
+                var dropdownData = new List<Dropdown.OptionData>();
+                var audioSourcePn = subtaskPn.transform.Find("audio");
+                var exitPn = subtaskPn.transform.Find("exit");
 
+                if (hotkeys == null)
+                {
+                    show_danmu.text = "请先连接VTS\n" + show_danmu.text;
+                    Destroy(subtaskPn);
+                    subPnNum--;
+                    return;
+                }
+                //在hotkey dropdown里加入请求到的hotkey
+                foreach (var i in hotkeys)
+                {
+                    dropdownData.Add(new Dropdown.OptionData() { text = i.name });
+                }
+
+                hotkeyDropdownComp.AddOptions(dropdownData);
+
+                //通过按钮选择audio以后把text改成选择的结果
+                audioSourcePn.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    var choiseAudiosourceContent = OpenFileByWin32.OpenFile();
+                    audioSourcePn.transform.Find("Text").GetComponent<Text>().text = choiseAudiosourceContent;
+                });
+
+                //删除按钮
+                exitPn.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    subPnNum--;
+                    Destroy(subtaskPn);
+                    return;
+                });
             });
+
 
 
             // var hotkeyDropdownComp = taskPn.transform.GetChild(3).GetComponent<Dropdown>();
@@ -279,9 +312,10 @@ print(Screen.currentResolution.height);
             //     // print("aud souuuuuiii " + choiseAudiosourceContent);
             // });
 
-            // //完成选择，推入任务
+            //完成选择，推入任务
             // taskPn.GetComponent<Button>().onClick.AddListener(() =>
             // {
+
             //     if (halfpt.audio == "" && halfpt.hotKey == "")
             //     {
             //         show_danmu.text = "选个任务吧\n" + show_danmu;
@@ -331,7 +365,7 @@ print(Screen.currentResolution.height);
                     case 0:
                         break;
                     case 1://弹幕
-                        //用来输入匹配的弹幕的框
+                           //用来输入匹配的弹幕的框
                         var danmuInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
                         danmuInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
                         nextStepPn = danmuInputBar;
@@ -387,13 +421,13 @@ print(Screen.currentResolution.height);
                         });
                         break;
                     case 4://舰长
-                        //添加任务
+                           //添加任务
                         pt.taskType = "jianzhang";
                         fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
 
                         break;
                     case 5://SC
-                        //添加任务
+                           //添加任务
                         pt.taskType = "sc";
                         fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
                         break;

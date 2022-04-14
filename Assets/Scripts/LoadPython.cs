@@ -21,6 +21,8 @@ public class LoadPython : MonoBehaviour
     private string AppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
     private string AssetsPath = "";
     public static string temp;
+
+    public int processid = 0;
     Process p = null;
 
     // public static Thread pythonProcess;
@@ -51,7 +53,7 @@ public class LoadPython : MonoBehaviour
         {
             return;
         }
-        info.text = $"连接直播间{room_id}";
+        // info.text = $"连接直播间{room_id}";
         childRef = new ThreadStart(ThreadTest1);
         childThread = new Thread(childRef);
         childThread.Start();
@@ -65,6 +67,8 @@ public class LoadPython : MonoBehaviour
         if (p != null)
         {
             p.Close();
+            p.Dispose();
+            p = null;
         }
         info.text = $"停止连接房间{room_id}";
         GameObject.Find("RoomStates").GetComponent<Text>().text = "--";
@@ -85,9 +89,13 @@ public class LoadPython : MonoBehaviour
     }
     public void RunPythonScript(string sArgName, string args = "")
     {
+        if (p != null)
+        {
+            p.Close();
+            p.Dispose();
+            p = null;
+        }
         p = new Process();
-        // string path = AssetsPath + sArgName;
-        // string sArguments = path;
 
         // p.StartInfo.FileName = AppData + @"\Programs\Python\Python39\python.exe";
         p.StartInfo.FileName = AssetsPath + @"\blivedm\blivedm.exe";
@@ -101,6 +109,7 @@ public class LoadPython : MonoBehaviour
         p.StartInfo.RedirectStandardError = true;
         p.StartInfo.CreateNoWindow = true;
         p.Start();
+        processid = p.Id;
         p.BeginOutputReadLine();
         p.OutputDataReceived += new DataReceivedEventHandler(Out_RecvData);
         Console.ReadLine();
@@ -133,6 +142,11 @@ public class LoadPython : MonoBehaviour
         if (childThread.IsAlive)
         {
             childThread.Abort();
+        }
+        if(p!=null){
+            p.Close();
+            p.Dispose();
+            p = null;
         }
 
     }

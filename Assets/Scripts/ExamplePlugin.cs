@@ -43,7 +43,7 @@ namespace VTS.Examples
 
         public static bool taskExcuteAvaliable = true;
 
-        private List<HotkeyData> hotkeys = null;
+        private List<HotkeyData> modelhotkeys = null;
 
         private readonly Queue<string> danmumen = new Queue<string>();
 
@@ -90,7 +90,7 @@ namespace VTS.Examples
                 UnityEngine.Debug.Log("Connected!");
                 this._connectionLight.color = Color.green;
                 this._connectionText.text = "Connected!";
-                GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
+                GetHotkeysInCurrentModel(null, (r) => { modelhotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
 
             },
             () =>
@@ -109,7 +109,7 @@ namespace VTS.Examples
         public void RefeshConnect()
         {
             Connect();
-            GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
+            GetHotkeysInCurrentModel(null, (r) => { modelhotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
 
         }
 
@@ -160,7 +160,7 @@ namespace VTS.Examples
 
         private HotkeyData TriggerSelectedHotkey(string currentHotkeySelected)
         {
-            foreach (var hotkey in hotkeys)
+            foreach (var hotkey in modelhotkeys)
             {
                 if (hotkey.name == currentHotkeySelected)
                 {
@@ -246,7 +246,7 @@ namespace VTS.Examples
                 var audioSourcePn = subtaskPn.transform.Find("audio");
                 var exitPn = subtaskPn.transform.Find("exit");
 
-                if (hotkeys == null)
+                if (modelhotkeys == null)
                 {
                     show_danmu.text = "请先连接VTS\n" + show_danmu.text;
                     Destroy(subtaskPn);
@@ -254,7 +254,7 @@ namespace VTS.Examples
                     return;
                 }
                 //在hotkey dropdown里加入请求到的hotkey
-                foreach (var i in hotkeys)
+                foreach (var i in modelhotkeys)
                 {
                     dropdownData.Add(new Dropdown.OptionData() { text = i.name });
                 }
@@ -278,59 +278,56 @@ namespace VTS.Examples
             });
 
 
+            //完成选择，获取每个subtask，推入任务
+            taskPn.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                halfpt.subtaskNum = subPnNum;
+                //检查非法的输入
+                halfpt.hotKeys = new string[subPnNum];
+                halfpt.audios = new string[subPnNum];
+                halfpt.probabilitys = new int[subPnNum];
+                var childcount = allSubTasksParent.transform.childCount;
+                var prosum = 0;
+                for (var i = 0; i < childcount; i++)
+                {
+                    var childi = allSubTasksParent.transform.GetChild(i);
+                    if (childi.transform.Find("audio/Text").GetComponent<Text>().text == "添加音频")
+                    {
+                        childi.transform.Find("audio/Text").GetComponent<Text>().text = "";
+                    }
+                    var childiAudiotext = childi.transform.Find("audio/Text").GetComponent<Text>().text;
+                    var childiHotkeyval = childi.transform.Find("hotkey").GetComponent<Dropdown>().value;
+                    var childiHotkeytext = childiHotkeyval == 0 ? "" : childi.transform.Find("hotkey").GetComponent<Dropdown>().options[childi.transform.Find("hotkey").GetComponent<Dropdown>().value].text;
+                    var childiProbtext = childi.transform.Find("probInputBar/probtext").GetComponent<Text>().text;
+                    // print("--- " + childiAudiotext + "  " + childiHotkeytext + "  " + childiProbtext);
 
-            // var hotkeyDropdownComp = taskPn.transform.GetChild(3).GetComponent<Dropdown>();
-            // var dropdownData = new List<Dropdown.OptionData>();
-            // var audioSourcePn = taskPn.transform.GetChild(1);
-            // var choiseAudiosourceContent = "";
-            // var choiseHotkeyContent = "";
-            // //异步处理
-            // //获取hotkey和选择结果
-            // foreach (var i in hotkeys)
-            // {
-            //     dropdownData.Add(new Dropdown.OptionData() { text = i.name });
-            // }
-
-            // hotkeyDropdownComp.AddOptions(dropdownData);
-
-            // hotkeyDropdownComp.onValueChanged.AddListener((num) =>
-            // {
-            //     choiseHotkeyContent = hotkeyDropdownComp.options[num].text;
-            //     if (num != 0)
-            //     {
-            //         halfpt.hotKey = choiseHotkeyContent;
-            //     }
-            //     // print("HKD " + choiseHotkeyContent);
-            // });
-
-            // //打开audio选择面板
-            // audioSourcePn.GetComponent<Button>().onClick.AddListener(() =>
-            // {
-            //     choiseAudiosourceContent = OpenFileByWin32.OpenFile();
-            //     halfpt.audio = choiseAudiosourceContent;
-            //     audioSourcePn.transform.GetChild(0).GetComponent<Text>().text = choiseAudiosourceContent;
-            //     // print("aud souuuuuiii " + choiseAudiosourceContent);
-            // });
-
-            //完成选择，推入任务
-            // taskPn.GetComponent<Button>().onClick.AddListener(() =>
-            // {
-
-            //     if (halfpt.audio == "" && halfpt.hotKey == "")
-            //     {
-            //         show_danmu.text = "选个任务吧\n" + show_danmu;
-            //         //选个任务吧
-            //     }
-            //     else if (halfpt.audio == "" && maxTrigerTime == 0)
-            //     {
-            //         show_danmu.text = "快捷键最大时间和声音不能同时为空哦\n" + show_danmu;
-            //     }
-            //     else
-            //     {
-            //         Tasks.pushRegTaskIntoList(halfpt);
-            //         Destroy(rootgo);
-            //     }
-            // });
+                    if (childiAudiotext == "" && childiHotkeytext == "")
+                    {
+                        show_danmu.text = "不能有任务为空\n" + show_danmu;
+                        return;
+                    }
+                    else if (childiAudiotext == "" && maxTrigerTime == 0)
+                    {
+                        show_danmu.text = "快捷键最大时间和声音不能同时为空哦\n" + show_danmu;
+                        return;
+                    }
+                    halfpt.audios[i] = childiAudiotext;
+                    halfpt.hotKeys[i] = childiHotkeytext;
+                    halfpt.probabilitys[i] = childiProbtext == "" ? 0 : int.Parse(childiProbtext);
+                    prosum += halfpt.probabilitys[i];
+                }
+                //检查概率和为100
+                if (prosum != 100)
+                {
+                    show_danmu.text = "概率和需要为100~\n" + show_danmu;
+                    return;
+                }
+                else
+                {
+                    Tasks.pushRegTaskIntoList(halfpt);
+                    Destroy(rootgo);
+                }
+            });
             return taskPn;
 
         }
@@ -359,7 +356,7 @@ namespace VTS.Examples
                     Destroy(nextnextStepPn);
                 }
                 //提前获取hotkeys
-                GetHotkeysInCurrentModel(null, (r) => { hotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
+                GetHotkeysInCurrentModel(null, (r) => { modelhotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
                 switch (val)
                 {
                     case 0:
@@ -439,31 +436,47 @@ namespace VTS.Examples
         public void FixedUpdate()
         {
             //更新执行的任务情况,执行新的任务
-            // if (taskExcuteAvaliable && Tasks.TaskInstances.Count > 0)
-            // {
-            //     // print("EEEEEXXX");
-            //     taskExcuteAvaliable = false;
-            //     var nt = Tasks.TaskInstances[0];
-            //     Tasks.TaskInstances.Remove(nt);
-            //     // print("TESK NUM " + Tasks.TaskInstances.Count);
-            //     // Tasks.executeTask(nt);
-            //     var audiotime = 0.0f;
-            //     var hotkeytime = 0.0f;
-            //     if (nt.audio != "")
-            //     {
-            //         audiotime = playaudio(nt.audio);
-            //     }
-            //     if (nt.hotKey != "")
-            //     {
-            //         hotkeytime = maxTrigerTime * 1000;
-            //         var res = TriggerSelectedHotkey(nt.hotKey);
-            //         // print("TRI HOT " + nt.hotKey);
-            //     }
-            //     print("TIMES " + audiotime + " " + hotkeytime + " " + Math.Max(audiotime, hotkeytime));
-            //     //设置定时器
-            //     Invoke("taskExcuteFinish", Math.Max(audiotime, hotkeytime) / 1000 + 0.1f);
+            if (taskExcuteAvaliable && Tasks.TaskInstances.Count > 0)
+            {
+                // print("EEEEEXXX");
+                taskExcuteAvaliable = false;
+                var nt = Tasks.TaskInstances[0];
+                Tasks.TaskInstances.Remove(nt);
+                // print("TESK NUM " + Tasks.TaskInstances.Count);
+                // Tasks.executeTask(nt);
+                //随机触发
+                var audiotime = 0.0f;
+                var hotkeytime = 0.0f;
+                var ran = new System.Random().Next(0, 101);
+                var ransum = 0;
+                for (var i = 0; i < nt.subtaskNum; i++)
+                {
+                    if (ran <= ransum + nt.probabilitys[i])
+                    {
+                        if (nt.audios[i] != "")
+                        {
+                            audiotime = playaudio(nt.audios[i]);
+                        }
+                        if (nt.hotKeys[i] != "")
+                        {
+                            hotkeytime = maxTrigerTime * 1000;
+                            var res = TriggerSelectedHotkey(nt.hotKeys[i]);
+                            // print("TRI HOT " + nt.hotKey);
+                        }
+                        show_danmu.text = "触发 %" + nt.probabilitys[i].ToString() + " 的 " + nt.audios[i] + " " + nt.hotKeys[i] + "\n" + show_danmu.text;
+                        break;
+                    }
+                    else
+                    {
+                        ransum += nt.probabilitys[i];
+                    }
 
-            // }
+                }
+                print("TIMES " + audiotime + " " + hotkeytime + " " + Math.Max(audiotime, hotkeytime));
+                //设置定时器
+                Invoke("taskExcuteFinish", Math.Max(audiotime, hotkeytime) / 1000 + 0.1f);
+
+            }
 
 
             while (danmumen.Count > 0)

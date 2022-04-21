@@ -11,8 +11,7 @@ using UnityEngine.UI;
 using VTS.Examples;
 using VTS;
 public class LoadPython : MonoBehaviour
-{
-
+{ 
     private Text info = null;
 
     public static int room_id = 0;

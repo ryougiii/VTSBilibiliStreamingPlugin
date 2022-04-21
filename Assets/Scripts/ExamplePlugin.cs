@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Globalization;
 using System.Timers;
 using VTS.Networking.Impl;
 using VTS.Models.Impl;
@@ -13,8 +14,6 @@ using LitJson;
 
 using NAudio;
 using NAudio.Wave;
-
-
 
 namespace VTS.Examples
 {
@@ -51,6 +50,9 @@ namespace VTS.Examples
         IWavePlayer waveOutDevice;
         AudioFileReader audioFileReader;
 
+        public InputField roomInput;
+        public BliveDanmuManager danmuManager;
+
         private void Awake()
         {
             Screen.SetResolution(1000, 500, false);
@@ -65,7 +67,59 @@ namespace VTS.Examples
                 addReg();
             });
             show_danmu = GameObject.Find("danmuContentPnContent").GetComponent<Text>();
+
+            // 注册弹幕事件回调
+            danmuManager.DanmuEvent += d => {
+                Tasks.testTrigerTask("danmu", new string[] { d.Content });
+                show_danmu.text = $"{d.Username}: {d.Content}\n" + show_danmu.text;
+            };
+
+            danmuManager.GiftEvent += g => {
+                show_danmu.text = $"{g.Username} 赠送了 {g.Name}x{g.Combo}"
+                                  + $" ({g.Unit} 瓜子 x {g.Currency})\n" + show_danmu.text;
+                if (g.Unit == "silver")
+                {
+                    Tasks.testTrigerTask("yinguazi", new string[1] { g.Currency.ToString(CultureInfo.InvariantCulture) });
+                }
+                else if (g.Unit == "gold")
+                {
+                    Tasks.testTrigerTask("jinguazi", new string[1] { g.Currency.ToString(CultureInfo.InvariantCulture) });
+                }
+            };
+
+            danmuManager.GuardBuyEvent += g => {
+                show_danmu.text = $"{g.Username} 购买了 {g.Name}\n" + show_danmu.text;
+                Tasks.testTrigerTask("jianzhang", Array.Empty<string>()); 
+            };
+            
+            danmuManager.SuperchatEvent += s => {
+                show_danmu.text = $"发送了醒目留言 ￥{s.Price} {s.Username}：{s.Content}\n" + show_danmu.text;
+                Tasks.testTrigerTask("sc", Array.Empty<string>()); 
+            };
+
+            danmuManager.JoinRoomEvent += j => {
+                Debug.Log($"{j.Username} 进入直播间");
+            };
+            
+            danmuManager.HeatEvent += h => {
+                Debug.Log($"当前人气 {h}");
+            };
+
+            danmuManager.WatchedChangeEvent += h => {
+                Debug.Log($"当前 {h} 人看过");
+            }; 
         }
+
+        public void ConnectDanmu() {
+            if (int.TryParse(roomInput.text, out var id)) {
+                danmuManager.Connect(id);
+            }
+        }
+        
+        public void DisconnectDanmu() {
+            danmuManager.Disconnect();
+        }
+        
         void OnApplicationQuit()
         {
             if (waveOutDevice != null)
@@ -91,7 +145,6 @@ namespace VTS.Examples
                 this._connectionLight.color = Color.green;
                 this._connectionText.text = "Connected!";
                 GetHotkeysInCurrentModel(null, (r) => { modelhotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
-
             },
             () =>
             {
@@ -147,8 +200,7 @@ namespace VTS.Examples
         public void TestB2()
         {
 
-        }
-
+        } 
 
         // 人气  f'R[{client.room_id}] 当前人气: {message.popularity}'
         // 弹幕  f'D[{client.room_id}] {message.uname}: {message.msg}'
@@ -478,64 +530,64 @@ namespace VTS.Examples
 
             }
 
-
-            while (danmumen.Count > 0)
-            {
-                string danmu = danmumen.Dequeue();
-                print(" -" + danmu + "- ");
-                string[] danmu_msg = danmu.Split("$#**#$");
-                //                Debug.Log(string.Join(",", danmu_msg));
-                // Debug.Log(danmu[0]);
-                // print("md type " + danmu[0] + " - " + danmu);
-                switch (danmu[0])
-                {
-                    // 收到弹幕
-                    case 'D':
-                        Tasks.testTrigerTask("danmu", new string[1] { danmu_msg[2] });
-                        show_danmu.text = $"{danmu_msg[1]}: {danmu_msg[2]}\n" + show_danmu.text;
-                        break;
-
-                    // 收到礼物
-                    case 'G':
-                        show_danmu.text = $"{danmu_msg[1]} 赠送了 {danmu_msg[2]}x{danmu_msg[3]}"
-                                        + $" ({danmu_msg[4]} 瓜子 x {danmu_msg[5]})\n" + show_danmu.text;
-                        if ((danmu_msg[4] == "silver"))
-                        {
-                            Tasks.testTrigerTask("yinguazi", new string[1] { danmu_msg[5] });
-                        }
-                        else if ((danmu_msg[4] == "gold"))
-                        {
-                            Tasks.testTrigerTask("jinguazi", new string[1] { danmu_msg[5] });
-                        }
-                        // if (danmu_msg[4] == "gold" && int.Parse(danmu_msg[5]) >= guazi)
-                        // {
-                        //     HotkeyData giftTrigger = TriggerSelectedHotkey(liwuDropdown);
-                        //     info.text += $"\n{danmu_msg[1]} 的礼物触发了 {giftTrigger.name}({giftTrigger.file})";
-                        // }
-                        break;
-
-                    // 有人上舰
-                    case 'J':
-                        show_danmu.text = $"{danmu_msg[1]} 购买了 {danmu_msg[2]}\n" + show_danmu.text;
-                        Tasks.testTrigerTask("jianzhang", new string[0]);
-
-                        // HotkeyData captainTrigger = TriggerSelectedHotkey(captainList);
-                        // info.text += $"\n{danmu_msg[1]} 的礼物触发了 {captainTrigger.name}({captainTrigger.file})";
-                        break;
-
-                    // SC
-                    case 'S':
-                        show_danmu.text = $"发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}\n" + show_danmu.text;
-                        Tasks.testTrigerTask("sc", new string[0]);
-
-                        // if (danmu_msg[3].Contains(superchatKeyword))
-                        // {
-                        //     HotkeyData SCTrigger = TriggerSelectedHotkey(SCDropdown);
-                        //     info.text += $"\n{danmu_msg[1]} 的礼物触发了 {SCTrigger.name}({SCTrigger.file})";
-                        // }
-                        break;
-                }
-            }
+            // Obsolete python
+            // while (danmumen.Count > 0)
+            // {
+            //     string danmu = danmumen.Dequeue();
+            //     print(" -" + danmu + "- ");
+            //     string[] danmu_msg = danmu.Split("$#**#$");
+            //     //                Debug.Log(string.Join(",", danmu_msg));
+            //     // Debug.Log(danmu[0]);
+            //     // print("md type " + danmu[0] + " - " + danmu);
+            //     switch (danmu[0])
+            //     {
+            //         // 收到弹幕
+            //         case 'D':
+            //             Tasks.testTrigerTask("danmu", new string[1] { danmu_msg[2] });
+            //             show_danmu.text = $"{danmu_msg[1]}: {danmu_msg[2]}\n" + show_danmu.text;
+            //             break;
+            //
+            //         // 收到礼物
+            //         case 'G':
+            //             show_danmu.text = $"{danmu_msg[1]} 赠送了 {danmu_msg[2]}x{danmu_msg[3]}"
+            //                             + $" ({danmu_msg[4]} 瓜子 x {danmu_msg[5]})\n" + show_danmu.text;
+            //             if ((danmu_msg[4] == "silver"))
+            //             {
+            //                 Tasks.testTrigerTask("yinguazi", new string[1] { danmu_msg[5] });
+            //             }
+            //             else if ((danmu_msg[4] == "gold"))
+            //             {
+            //                 Tasks.testTrigerTask("jinguazi", new string[1] { danmu_msg[5] });
+            //             }
+            //             // if (danmu_msg[4] == "gold" && int.Parse(danmu_msg[5]) >= guazi)
+            //             // {
+            //             //     HotkeyData giftTrigger = TriggerSelectedHotkey(liwuDropdown);
+            //             //     info.text += $"\n{danmu_msg[1]} 的礼物触发了 {giftTrigger.name}({giftTrigger.file})";
+            //             // }
+            //             break;
+            //
+            //         // 有人上舰
+            //         case 'J':
+            //             show_danmu.text = $"{danmu_msg[1]} 购买了 {danmu_msg[2]}\n" + show_danmu.text;
+            //             Tasks.testTrigerTask("jianzhang", new string[0]);
+            //
+            //             // HotkeyData captainTrigger = TriggerSelectedHotkey(captainList);
+            //             // info.text += $"\n{danmu_msg[1]} 的礼物触发了 {captainTrigger.name}({captainTrigger.file})";
+            //             break;
+            //
+            //         // SC
+            //         case 'S':
+            //             show_danmu.text = $"发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}\n" + show_danmu.text;
+            //             Tasks.testTrigerTask("sc", new string[0]);
+            //
+            //             // if (danmu_msg[3].Contains(superchatKeyword))
+            //             // {
+            //             //     HotkeyData SCTrigger = TriggerSelectedHotkey(SCDropdown);
+            //             //     info.text += $"\n{danmu_msg[1]} 的礼物触发了 {SCTrigger.name}({SCTrigger.file})";
+            //             // }
+            //             break;
+            //     }
+            // }
         }
     }
 

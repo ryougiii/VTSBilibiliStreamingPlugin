@@ -30,13 +30,25 @@ public class Superchat {
     public bool Thanked { get; set; } = false;
 }
 
-public class JoinRoom {
+public class InteractWord {
     public DateTime Time { get; set; }
     public int UserId { get; set; }
     public string Username { get; set; }
     public string MedalName { get; set; }
     public int MedalLevel { get; set; }
     public int GuardLevel { get; set; }
+    public InteractWordType Type { get; set; }
+}
+
+public class GainMedal {
+    [JsonProperty("uid")]
+    public int UserId { get; set; }
+    [JsonProperty("guard_level")]
+    public int GuardLevel { get; set; }
+    [JsonProperty("fan_name")]
+    public string FanName { get; set; }
+    [JsonProperty("medal_name")]
+    public string MedalName { get; set; }
 }
 
 public class GuardBuy { 

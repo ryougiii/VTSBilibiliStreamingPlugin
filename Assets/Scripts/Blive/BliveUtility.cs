@@ -11,13 +11,15 @@ using Zoltu.IO;
 using CompressionMode = Ionic.Zlib.CompressionMode;
  
     public class BliveUtility {
-        public static byte[] EncodeUserAuthentication(int roomId, string token) {
-            var j = new JObject();
-            j["roomid"] = roomId;
-            j["key"] = token;
-            j["protover"] = 3;
-            j["platform"] = "web";
-            j["type"] = 2;
+        public static byte[] EncodeUserAuthentication(int roomId, string token, int uid) {
+            var j = new JObject {
+                // 直播姬
+                ["roomid"] = roomId,
+                ["uid"] = uid,
+                ["key"] = token,
+                ["protover"] = 3,
+                ["platform"] = "pc_link"
+            };
             return Encode(j.ToString(), BliveOp.UserAuthentication);
         }
         

@@ -73,8 +73,9 @@ public class BliveDanmuManager : MonoBehaviour {
     public BliveEvent<Superchat> SuperchatEvent = new();
     public BliveEvent<Gift> GiftEvent = new();
     public BliveEvent<SuperchatDelete> SuperchatDeleteEvent = new();
-    public BliveEvent<JoinRoom> JoinRoomEvent = new();
+    public BliveEvent<InteractWord> InteractWordEvent = new();
     public BliveEvent<GuardBuy> GuardBuyEvent = new();
+    public BliveEvent<GainMedal> GainMedalEvent = new();
     
     public BliveEvent<long> HeatEvent = new();
     public BliveEvent<long> WatchedChangeEvent = new();
@@ -88,8 +89,9 @@ public class BliveDanmuManager : MonoBehaviour {
             SuperchatEvent,
             GiftEvent,
             SuperchatDeleteEvent,
-            JoinRoomEvent,
+            InteractWordEvent,
             GuardBuyEvent,
+            GainMedalEvent,
             HeatEvent,
             WatchedChangeEvent
         });
@@ -281,7 +283,7 @@ public class BliveDanmuManager : MonoBehaviour {
                                     }
                                     case "INTERACT_WORD": {
                                         var data = m["data"];
-                                        var join = new JoinRoom() {
+                                        var join = new InteractWord() {
                                             Time = DateTime.Now,
                                             UserId = data["uid"].Value<int>(),
                                             Username = data["uname"].Value<string>(),
@@ -294,8 +296,9 @@ public class BliveDanmuManager : MonoBehaviour {
                                             GuardLevel = data["fans_medal"].HasValues
                                                 ? data["fans_medal"]["guard_level"].Value<int>()
                                                 : 0,
+                                            Type = (InteractWordType) data["msg_type"].Value<int>()
                                         };
-                                        JoinRoomEvent.Enqueue(join);
+                                        InteractWordEvent.Enqueue(join);
                                         break;
                                     }
                                     case "SUPER_CHAT_MESSAGE_DELETE": {
@@ -307,6 +310,18 @@ public class BliveDanmuManager : MonoBehaviour {
                                     case "WATCHED_CHANGE": {
                                         var data = m["data"];
                                         WatchedChangeEvent.Enqueue(data["num"].Value<long>());
+                                        break;
+                                    }
+                                    case "ROOM_REAL_TIME_MESSAGE_UPDATE": {
+                                        var data = m["data"];
+                                        var fans = data["fans"].Value<int>();
+                                        var fansClub = data["fans_club"].Value<int>();
+                                        break;
+                                    }
+                                    case "MESSAGEBOX_USER_GAIN_MEDAL": {
+                                        var data = m["data"];
+                                        var gain = data.ToObject<GainMedal>();
+                                        GainMedalEvent.Enqueue(gain);
                                         break;
                                     }
                                 }
@@ -457,7 +472,7 @@ public class BliveDanmuManager : MonoBehaviour {
             _connecting = false;
             yield break;
         }
-        task = _ws.SendAsync(BliveUtility.EncodeUserAuthentication(realRoomId, token)).AsCoroutine();
+        task = _ws.SendAsync(BliveUtility.EncodeUserAuthentication(realRoomId, token, _uid)).AsCoroutine();
         yield return task;
         if (task.Error) {
             Debug.LogWarning($"连接WS异常：{task.Task.Exception}");

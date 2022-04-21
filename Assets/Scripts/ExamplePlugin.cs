@@ -97,8 +97,8 @@ namespace VTS.Examples
                 Tasks.testTrigerTask("sc", Array.Empty<string>()); 
             };
 
-            danmuManager.JoinRoomEvent += j => {
-                Debug.Log($"{j.Username} 进入直播间");
+            danmuManager.InteractWordEvent += j => {
+                Debug.Log($"{j.Username} {j.Type}");
             };
             
             danmuManager.HeatEvent += h => {
@@ -107,6 +107,10 @@ namespace VTS.Examples
 
             danmuManager.WatchedChangeEvent += h => {
                 Debug.Log($"当前 {h} 人看过");
+            }; 
+            
+            danmuManager.GainMedalEvent += h => {
+                Debug.Log($"{h.FanName} 加入粉丝团 {h.MedalName}");
             }; 
         }
 

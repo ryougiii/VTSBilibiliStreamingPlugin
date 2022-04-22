@@ -223,7 +223,7 @@ namespace VTS
                 }
             }
         }
-        public static void saveRoomData()
+        public static void saveRoomData(string roomid)
         {
             string floderpath = Application.dataPath + @"/savedata";
             string filepath = Application.dataPath + @"/savedata/saveroom.json";
@@ -237,7 +237,7 @@ namespace VTS
             }
             FileInfo file = new FileInfo(filepath);
             StreamWriter sw = file.CreateText();
-            sw.WriteLine(LoadPython.room_id.ToString());
+            sw.WriteLine(roomid);
             sw.Close();
             sw.Dispose();
         }
@@ -262,7 +262,7 @@ namespace VTS
             if (str != null && str != "")
             {
                 var readroomid = int.Parse(str);
-                LoadPython.room_id = readroomid;
+                GameObject.Find("Room_ID").GetComponent<InputField>().text = readroomid.ToString();;
             }
         }
 

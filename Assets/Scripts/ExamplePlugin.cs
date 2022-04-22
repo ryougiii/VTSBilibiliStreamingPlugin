@@ -59,7 +59,7 @@ namespace VTS.Examples
             Connect();
             //UnityEngine.Debug.Log(AppData);
             //UnityEngine.Debug.Log(Application.dataPath);
-            Application.targetFrameRate = 30;
+            Application.targetFrameRate = 60;
             Tasks.loadTasksData();
             GameObject.Find("AddReg").GetComponent<Button>().onClick.AddListener(() =>
             {

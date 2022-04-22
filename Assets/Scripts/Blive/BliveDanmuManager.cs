@@ -464,6 +464,7 @@ public class BliveDanmuManager : MonoBehaviour {
         _ws.OnException += WsErrorHandler;
         _ws.OnClose += WsCloseHandler;
         _ws.OnConnectionLost += WsReconnect;
+        Debug.Log($"连接弹幕服务器中");
         var task = _ws.ConnectAsync(wssUrl).AsCoroutine();
         yield return task;
         if (task.Error) {
@@ -480,7 +481,6 @@ public class BliveDanmuManager : MonoBehaviour {
             _connecting = false;
             yield break;
         }
-        Debug.Log($"连接弹幕服务器中");
         _connecting = false;
     }
 

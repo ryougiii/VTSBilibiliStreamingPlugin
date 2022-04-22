@@ -57,6 +57,7 @@ namespace VTS.Examples
         {
             Screen.SetResolution(1000, 500, false);
             Connect();
+            Tasks.loadRoomData();
             //UnityEngine.Debug.Log(AppData);
             //UnityEngine.Debug.Log(Application.dataPath);
             Application.targetFrameRate = 60;
@@ -117,6 +118,7 @@ namespace VTS.Examples
         public void ConnectDanmu() {
             if (int.TryParse(roomInput.text, out var id)) {
                 danmuManager.Connect(id);
+                Tasks.saveRoomData(roomInput.text);
             }
         }
         

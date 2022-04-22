@@ -49,6 +49,7 @@ ExportedObj
 *.opendb
 *.VC.db
 .vscode
+.idea
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -78,3 +79,4 @@ Logs
 obj
 UserSettings
 buildexe
+Assets/savedata

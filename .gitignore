@@ -12,10 +12,7 @@
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
-[Mm]emoryCaptures
-
-# Asset meta data should only be ignored when the corresponding asset is also ignored
-![Aa]ssets.meta
+[Mm]emoryCaptures 
 
 !ICSharpCode.SharpZipLib.dll
 
@@ -49,13 +46,7 @@ ExportedObj
 *.opendb
 *.VC.db
 .vscode
-.idea
-*.meta
-
-# Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
+.idea 
 
 # Unity3D generated file on crash reports
 sysinfo.txt
@@ -66,14 +57,7 @@ sysinfo.txt
 *.unitypackage
 
 # Crashlytics generated file
-crashlytics-build.properties
-
-# Packed Addressables
-[Aa]ssets[Aa]ddressable[Aa]ssets[Dd]ata.bin
-
-# Temporary auto-generated Android Assets
-[Aa]ssets[Ss]treamingAssetsaa.meta
-[Aa]ssets[Ss]treamingAssetsaa
+crashlytics-build.properties 
 
 Library
 Logs

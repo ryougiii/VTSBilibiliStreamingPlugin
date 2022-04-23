@@ -70,62 +70,91 @@ namespace VTS.Examples
             show_danmu = GameObject.Find("danmuContentPnContent").GetComponent<Text>();
 
             // 注册弹幕事件回调
-            danmuManager.DanmuEvent += d => {
+            danmuManager.DanmuEvent += d =>
+            {
                 Tasks.testTrigerTask("danmu", new string[] { d.Content });
-                show_danmu.text = $"{d.Username}: {d.Content}\n" + show_danmu.text;
+                // show_danmu.text = $"{d.Username}: {d.Content}\n" + show_danmu.text;
             };
 
-            danmuManager.GiftEvent += g => {
-                show_danmu.text = $"{g.Username} 赠送了 {g.Name}x{g.Combo}"
-                                  + $" ({g.Unit} 瓜子 x {g.Currency})\n" + show_danmu.text;
+            danmuManager.GiftEvent += g =>
+            {
+                // show_danmu.text = $"{g.Username} 赠送了 {g.Name}x{g.Combo}"
+                //                   + $" ({g.Unit} 瓜子 x {g.Currency})\n" + show_danmu.text;
                 if (g.Unit == "silver")
                 {
                     Tasks.testTrigerTask("yinguazi", new string[1] { g.Currency.ToString(CultureInfo.InvariantCulture) });
+                    // show_danmu.text = $"yinguazi {g.Currency.ToString(CultureInfo.InvariantCulture)}\n" + show_danmu.text;
+
                 }
                 else if (g.Unit == "gold")
                 {
                     Tasks.testTrigerTask("jinguazi", new string[1] { g.Currency.ToString(CultureInfo.InvariantCulture) });
+                    show_danmu.text = $"jinguazi {g.Currency.ToString(CultureInfo.InvariantCulture)}\n" + show_danmu.text;
                 }
             };
 
-            danmuManager.GuardBuyEvent += g => {
+            danmuManager.GuardBuyEvent += g =>
+            {
                 show_danmu.text = $"{g.Username} 购买了 {g.Name}\n" + show_danmu.text;
-                Tasks.testTrigerTask("jianzhang", Array.Empty<string>()); 
-            };
-            
-            danmuManager.SuperchatEvent += s => {
-                show_danmu.text = $"发送了醒目留言 ￥{s.Price} {s.Username}：{s.Content}\n" + show_danmu.text;
-                Tasks.testTrigerTask("sc", Array.Empty<string>()); 
+                Tasks.testTrigerTask("jianzhang", Array.Empty<string>());
             };
 
-            danmuManager.InteractWordEvent += j => {
-                Debug.Log($"{j.Username} {j.Type}");
+            danmuManager.SuperchatEvent += s =>
+            {
+                show_danmu.text = $"发送了醒目留言 ￥{s.Price} {s.Username}：{s.Content}\n" + show_danmu.text;
+                Tasks.testTrigerTask("sc", Array.Empty<string>());
             };
-            
-            danmuManager.HeatEvent += h => {
+
+            danmuManager.InteractWordEvent += j =>
+            {
+                // Debug.Log($"{j.Username} {j.Type}");
+                switch (j.Type)
+                {
+                    case InteractWordType.Entry:
+                        // show_danmu.text = $"进场 {j.Username} {j.Type}\n" + show_danmu.text;
+                        break;
+                    case InteractWordType.Attention:
+                        show_danmu.text = $"关注 {j.Username} {j.Type}\n" + show_danmu.text;
+                        Tasks.testTrigerTask("guanzhu", Array.Empty<string>());
+                        break;
+                        // case InteractWordType.SpecialAttention:
+                        //     show_danmu.text = $"特别关注 {j.Username} {j.Type}\n" + show_danmu.text;
+                        //     break;
+                }
+                // show_danmu.text = $"进场 {j.Username} {j.Type}\n" + show_danmu.text;
+
+            };
+
+            danmuManager.HeatEvent += h =>
+            {
                 Debug.Log($"当前人气 {h}");
             };
 
-            danmuManager.WatchedChangeEvent += h => {
+            danmuManager.WatchedChangeEvent += h =>
+            {
                 Debug.Log($"当前 {h} 人看过");
-            }; 
-            
-            danmuManager.GainMedalEvent += h => {
+            };
+
+            danmuManager.GainMedalEvent += h =>
+            {
                 Debug.Log($"{h.FanName} 加入粉丝团 {h.MedalName}");
-            }; 
+            };
         }
 
-        public void ConnectDanmu() {
-            if (int.TryParse(roomInput.text, out var id)) {
+        public void ConnectDanmu()
+        {
+            if (int.TryParse(roomInput.text, out var id))
+            {
                 danmuManager.Connect(id);
                 Tasks.saveRoomData(roomInput.text);
             }
         }
-        
-        public void DisconnectDanmu() {
+
+        public void DisconnectDanmu()
+        {
             danmuManager.Disconnect();
         }
-        
+
         void OnApplicationQuit()
         {
             if (waveOutDevice != null)
@@ -184,6 +213,7 @@ namespace VTS.Examples
                 print("ERROR not find todestory task excute pn");
             }
             taskExcuteAvaliable = true;
+            Tasks.lastIdleTime = (System.DateTime.Now.Hour * 60 + System.DateTime.Now.Minute) * 60 + System.DateTime.Now.Second;
         }
 
 
@@ -195,25 +225,14 @@ namespace VTS.Examples
 
         public void TestB()
         {
-            // receiveDanmu("D7387093$#**#$雨天lul$#**#$qwe");
-            // receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$silver$#**#$20");
-            // receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$gold$#**#$20");
-            // receiveDanmu("J7387093$#**#$雨天lul$#**#$qwe");
-            // receiveDanmu("S7387093$#**#$雨天lul$#**#$qwe");
-            Screen.SetResolution(1920, 1080, false);
-            print(Screen.currentResolution.height);
+
         }
         public void TestB2()
         {
 
-        } 
+        }
 
-        // 人气  f'R[{client.room_id}] 当前人气: {message.popularity}'
-        // 弹幕  f'D[{client.room_id}] {message.uname}: {message.msg}'
-        // 礼物  f'G[{client.room_id}] {message.uname} 赠送了 {message.gift_name}x{message.num}'
-        //                         f' ({message.coin_type} 瓜子 x {message.total_coin})'
-        // 舰长  f'J[{client.room_id}] {message.username} 购买了 {message.gift_name}'
-        // SC   f'S[{client.room_id}] 醒目留言 ￥{message.price} {message.uname}：{message.message}'
+
         public void receiveDanmu(string message) => danmumen.Enqueue(message);
 
         private HotkeyData TriggerSelectedHotkey(string currentHotkeySelected)
@@ -594,6 +613,11 @@ namespace VTS.Examples
             //             break;
             //     }
             // }
+            //检查时间触发
+            // var nowtime = ((System.DateTime.Now.Hour * 60 + System.DateTime.Now.Minute) * 60 + System.DateTime.Now.Second).ToString();
+            // Tasks.testTrigerTask("fixedTime", new string[1] { nowtime });
+            // Tasks.testTrigerTask("intervalTIme", new string[1] { nowtime });
+            // Tasks.testTrigerTask("idleTime", new string[1] { nowtime });
         }
     }
 

@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Examples/Scenes/uiScence.unity
+    guid: 3b2589d3215ea704dbe5c8aafb0a7534
+  - enabled: 1
+    path: Assets/Examples/Scenes/taskScence.unity
+    guid: aa70079d21b685b4585536b2817515c5
   m_configObjects: {}

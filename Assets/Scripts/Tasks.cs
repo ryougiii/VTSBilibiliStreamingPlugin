@@ -9,6 +9,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEditor;
+
+/*
+tasktype:
+
+danmu 
+yinguazi
+jinguazi
+jianzhang
+sc
+
+TODO:
+fixedTime //固定的时间
+intervalTIme //间隔一段时间（0时开始计算）
+idleTime //无动作一段时间
+guanzhu
+*/
 public class playTask
 {
     public int subtaskNum;
@@ -39,6 +55,10 @@ namespace VTS
 
         public static List<playTask> LogicRegTasklists = new List<playTask>();
         public static List<playTask> TaskInstances = new List<playTask>();
+        //time是以秒为单位的，同一秒内需要避免重复触发
+        public static List<playTask> TrigeringTimeTask = new List<playTask>();
+
+        public static int lastIdleTime = 0;
 
         public static void pushRegTaskIntoList(playTask halfTaskGo)
         {
@@ -96,7 +116,10 @@ namespace VTS
             saveTasksData();
         }
 
-
+        public static void removeTrigeringTimeTask(playTask pt)
+        {
+            TrigeringTimeTask.Remove(pt);
+        }
         public static void removeTask(int taskId)
         {
             foreach (var ltl in LogicRegTasklists)
@@ -128,7 +151,7 @@ namespace VTS
                             //添加到执行等待队列中和等待执行gui中
                             TaskInstances.Add(ltl);
                             addTaskToExcuteGuiPn(ltl, i);
-                            print("TRI DANMU " + meventParas[0]);
+                            // print("TRI DANMU " + meventParas[0]);
                         }
                         break;
                     case "yinguazi":
@@ -136,7 +159,7 @@ namespace VTS
                         {
                             TaskInstances.Add(ltl);
                             addTaskToExcuteGuiPn(ltl, i);
-                            print("TRI yinguazi" + meventParas[0]);
+                            // print("TRI yinguazi" + meventParas[0]);
                         }
                         break;
                     case "jinguazi":
@@ -144,18 +167,39 @@ namespace VTS
                         {
                             TaskInstances.Add(ltl);
                             addTaskToExcuteGuiPn(ltl, i);
-                            print("TRI jinguazi " + meventParas[0]);
+                            // print("TRI jinguazi " + meventParas[0]);
                         }
                         break;
                     case "jianzhang":
                         TaskInstances.Add(ltl);
                         addTaskToExcuteGuiPn(ltl, i);
-                        print("TRI jianzhang ");
+                        // print("TRI jianzhang ");
                         break;
                     case "sc":
                         TaskInstances.Add(ltl);
                         addTaskToExcuteGuiPn(ltl, i);
-                        print("TRI sc ");
+                        // print("TRI sc ");
+                        break;
+                    case "fixedTime":
+                        if (meventParas[0] == ltl.taskParameters[0])
+                        {
+                            TaskInstances.Add(ltl);
+                            addTaskToExcuteGuiPn(ltl, i);
+                        }
+                        break;
+                    case "intervalTIme":
+                        if (int.Parse(meventParas[0]) % int.Parse(ltl.taskParameters[0]) == 0)
+                        {
+                            TaskInstances.Add(ltl);
+                            addTaskToExcuteGuiPn(ltl, i);
+                        }
+                        break;
+                    case "idleTime":
+                        if (int.Parse(meventParas[0]) >= lastIdleTime)
+                        {
+                            TaskInstances.Add(ltl);
+                            addTaskToExcuteGuiPn(ltl, i);
+                        }
                         break;
                 }
             }

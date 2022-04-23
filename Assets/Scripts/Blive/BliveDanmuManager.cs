@@ -146,8 +146,8 @@ public class BliveDanmuManager : MonoBehaviour {
         try {
             foreach ((string str, BliveOp op) in BliveUtility.Decode(msg)) {
                 try { 
-                    Debug.Log(op);
-                    Debug.Log(str);
+                    // Debug.Log(op);
+                    // Debug.Log(str);
                     switch (op) {
                         case BliveOp.ConnectSucceed:
                             Debug.Log("连接成功");

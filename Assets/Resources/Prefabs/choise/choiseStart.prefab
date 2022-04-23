@@ -1095,6 +1095,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: "\u6536\u5230SC"
       m_Image: {fileID: 0}
+    - m_Text: "\u5230\u8FBE\u65F6\u95F4"
+      m_Image: {fileID: 0}
+    - m_Text: "\u95F4\u9694\u65F6\u95F4\u4E3A"
+      m_Image: {fileID: 0}
+    - m_Text: "\u95F2\u7F6E\u65F6\u95F4\u4E3A"
+      m_Image: {fileID: 0}
+    - m_Text: "\u65B0\u589E\u5173\u6CE8"
+      m_Image: {fileID: 0}
+    - m_Text: "\u65B0\u589E\u7279\u522B\u5173\u6CE8"
+      m_Image: {fileID: 0}
+    - m_Text: "\u6709\u4EBA\u8FDB\u573A"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

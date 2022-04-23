@@ -9,6 +9,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEditor;
+
+/*
+tasktype:
+
+danmu 
+yinguazi
+jinguazi
+jianzhang
+sc
+
+TODO:
+fixedTime //固定的时间
+intervalTime //间隔一段时间（0时开始计算）
+idleTime //无动作一段时间
+guanzhu
+tebieguanzhu
+jinchang
+*/
+
 public class playTask
 {
     public int subtaskNum;
@@ -40,6 +59,32 @@ namespace VTS
         public static List<playTask> LogicRegTasklists = new List<playTask>();
         public static List<playTask> TaskInstances = new List<playTask>();
 
+        //time是以秒为单位的，同一秒内需要避免重复触发
+        private static int lasttimeTaskTri0;
+        private static int lasttimeTaskTri1;
+        private static int lasttimeTaskTri2;
+        public static int lastIdleTime = 0;
+        public static bool VTSWebsocketConnectState = false;
+
+        private void Awake()
+        {
+            var nowtime = (System.DateTime.Now.Hour * 60 + System.DateTime.Now.Minute) * 60 + System.DateTime.Now.Second;
+            lasttimeTaskTri0 = nowtime;
+            lasttimeTaskTri1 = nowtime;
+            lasttimeTaskTri2 = nowtime;
+        }
+        private static string getTimeString(string tstring)
+        {
+            int i = int.Parse(tstring);
+            print("i" + i);
+            int t1, t2, t3;
+            t1 = i % 60;
+            i /= 60;
+            t2 = i % 60;
+            i /= 60;
+            t3 = i;
+            return t3 + "时" + t2 + "分" + t1 + "秒";
+        }
         public static void pushRegTaskIntoList(playTask halfTaskGo)
         {
             string expressTaskInfo = "-------------------------------------------------------\n";
@@ -59,6 +104,24 @@ namespace VTS
                     break;
                 case "sc":
                     expressTaskInfo += "当有sc时, ";
+                    break;
+                case "fixedTime":
+                    expressTaskInfo += "当到达" + getTimeString(halfTaskGo.taskParameters[0]) + "时, ";
+                    break;
+                case "intervalTime":
+                    expressTaskInfo += "每隔" + getTimeString(halfTaskGo.taskParameters[0]) + "秒, ";
+                    break;
+                case "idleTime":
+                    expressTaskInfo += getTimeString(halfTaskGo.taskParameters[0]) + "秒没有动作, ";
+                    break;
+                case "guanzhu":
+                    expressTaskInfo += "新增关注时, ";
+                    break;
+                case "tebieguanzhu":
+                    expressTaskInfo += "新增特别关注时, ";
+                    break;
+                case "jinchang":
+                    expressTaskInfo += "有人进场时, ";
                     break;
             }
             for (var i = 0; i < halfTaskGo.subtaskNum; i++)
@@ -96,7 +159,6 @@ namespace VTS
             saveTasksData();
         }
 
-
         public static void removeTask(int taskId)
         {
             foreach (var ltl in LogicRegTasklists)
@@ -111,7 +173,15 @@ namespace VTS
 
         public static void testTrigerTask(string meventType, string[] meventParas)
         {
-            print("testTrigerTask " + meventType);
+            if (!VTSWebsocketConnectState)
+            {
+                return;
+            }
+            var nowtime = (System.DateTime.Now.Hour * 60 + System.DateTime.Now.Minute) * 60 + System.DateTime.Now.Second;
+            if (meventType != "fixedTime" && meventType != "intervalTime" && meventType != "idleTime")
+            {
+                print("testTrigerTask " + meventType);
+            }
             for (var i = 0; i < LogicRegTasklists.Count; i++)
             {
                 var ltl = LogicRegTasklists[i];
@@ -156,6 +226,51 @@ namespace VTS
                         TaskInstances.Add(ltl);
                         addTaskToExcuteGuiPn(ltl, i);
                         print("TRI sc ");
+                        break;
+                    case "fixedTime":
+                        // print("fff " + meventParas[0] + " " + ltl.taskParameters[0] + " " + timeTaskAvaliable[0]);
+                        if (meventParas[0] == ltl.taskParameters[0] && nowtime - lasttimeTaskTri0 > 1)
+                        {
+                            print("TRI fixedTime ");
+                            lasttimeTaskTri0 = nowtime;
+                            TaskInstances.Add(ltl);
+                            addTaskToExcuteGuiPn(ltl, i);
+                        }
+                        break;
+                    case "intervalTime":
+                        if (int.Parse(meventParas[0]) % int.Parse(ltl.taskParameters[0]) == 0 && nowtime - lasttimeTaskTri1 > 1)
+                        {
+                            lasttimeTaskTri1 = nowtime;
+                            TaskInstances.Add(ltl);
+                            addTaskToExcuteGuiPn(ltl, i);
+
+                            print("TRI intervalTime ");
+                        }
+                        break;
+                    case "idleTime":
+                        if (int.Parse(meventParas[0]) >= lastIdleTime && nowtime - lasttimeTaskTri2 > 1)
+                        {
+                            lasttimeTaskTri2 = nowtime;
+                            TaskInstances.Add(ltl);
+                            addTaskToExcuteGuiPn(ltl, i);
+                            lastIdleTime = int.Parse(meventParas[0]);
+                            print("TRI idleTime ");
+                        }
+                        break;
+                    case "guanzhu":
+                        TaskInstances.Add(ltl);
+                        addTaskToExcuteGuiPn(ltl, i);
+                        print("TRI guanzhu ");
+                        break;
+                    case "tebieguanzhu":
+                        TaskInstances.Add(ltl);
+                        addTaskToExcuteGuiPn(ltl, i);
+                        print("TRI tebieguanzhu ");
+                        break;
+                    case "jinchang":
+                        TaskInstances.Add(ltl);
+                        addTaskToExcuteGuiPn(ltl, i);
+                        print("TRI jinchang ");
                         break;
                 }
             }
@@ -262,7 +377,7 @@ namespace VTS
             if (str != null && str != "")
             {
                 var readroomid = int.Parse(str);
-                GameObject.Find("Room_ID").GetComponent<InputField>().text = readroomid.ToString();;
+                GameObject.Find("Room_ID").GetComponent<InputField>().text = readroomid.ToString(); ;
             }
         }
 

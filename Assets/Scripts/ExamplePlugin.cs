@@ -25,12 +25,6 @@ namespace VTS.Examples
         [SerializeField]
         private Text show_danmu = null;
 
-        // [SerializeField]
-        // private Button _portConnectButtonPrefab = null;
-
-        // [SerializeField]
-        // private Button _tryConnectButton = null;
-
         [SerializeField]
         private RectTransform _portConnectButtonParent = null;
 
@@ -58,8 +52,6 @@ namespace VTS.Examples
             Screen.SetResolution(1000, 500, false);
             Connect();
             Tasks.loadRoomData();
-            //UnityEngine.Debug.Log(AppData);
-            //UnityEngine.Debug.Log(Application.dataPath);
             Application.targetFrameRate = 60;
             Tasks.loadTasksData();
             GameObject.Find("AddReg").GetComponent<Button>().onClick.AddListener(() =>
@@ -70,12 +62,14 @@ namespace VTS.Examples
             show_danmu = GameObject.Find("danmuContentPnContent").GetComponent<Text>();
 
             // 注册弹幕事件回调
-            danmuManager.DanmuEvent += d => {
+            danmuManager.DanmuEvent += d =>
+            {
                 Tasks.testTrigerTask("danmu", new string[] { d.Content });
                 show_danmu.text = $"{d.Username}: {d.Content}\n" + show_danmu.text;
             };
 
-            danmuManager.GiftEvent += g => {
+            danmuManager.GiftEvent += g =>
+            {
                 show_danmu.text = $"{g.Username} 赠送了 {g.Name}x{g.Combo}"
                                   + $" ({g.Unit} 瓜子 x {g.Currency})\n" + show_danmu.text;
                 if (g.Unit == "silver")
@@ -88,44 +82,68 @@ namespace VTS.Examples
                 }
             };
 
-            danmuManager.GuardBuyEvent += g => {
+            danmuManager.GuardBuyEvent += g =>
+            {
                 show_danmu.text = $"{g.Username} 购买了 {g.Name}\n" + show_danmu.text;
-                Tasks.testTrigerTask("jianzhang", Array.Empty<string>()); 
-            };
-            
-            danmuManager.SuperchatEvent += s => {
-                show_danmu.text = $"发送了醒目留言 ￥{s.Price} {s.Username}：{s.Content}\n" + show_danmu.text;
-                Tasks.testTrigerTask("sc", Array.Empty<string>()); 
+                Tasks.testTrigerTask("jianzhang", Array.Empty<string>());
             };
 
-            danmuManager.InteractWordEvent += j => {
-                Debug.Log($"{j.Username} {j.Type}");
+            danmuManager.SuperchatEvent += s =>
+            {
+                show_danmu.text = $"发送了醒目留言 ￥{s.Price} {s.Username}：{s.Content}\n" + show_danmu.text;
+                Tasks.testTrigerTask("sc", Array.Empty<string>());
             };
-            
-            danmuManager.HeatEvent += h => {
+
+            danmuManager.InteractWordEvent += j =>
+            {
+                Debug.Log($"{j.Username} {j.Type}");
+                switch (j.Type)
+                {
+                    case InteractWordType.Entry:
+                        show_danmu.text = $"进场 {j.Username} {j.Type}\n" + show_danmu.text;
+                        Tasks.testTrigerTask("jinchang", Array.Empty<string>());
+                        break;
+                    case InteractWordType.Attention:
+                        show_danmu.text = $"关注 {j.Username} {j.Type}\n" + show_danmu.text;
+                        Tasks.testTrigerTask("guanzhu", Array.Empty<string>());
+                        break;
+                    case InteractWordType.SpecialAttention:
+                        show_danmu.text = $"特别关注 {j.Username} {j.Type}\n" + show_danmu.text;
+                        Tasks.testTrigerTask("tebieguanzhu", Array.Empty<string>());
+                        break;
+                }
+            };
+
+            danmuManager.HeatEvent += h =>
+            {
                 Debug.Log($"当前人气 {h}");
             };
 
-            danmuManager.WatchedChangeEvent += h => {
+            danmuManager.WatchedChangeEvent += h =>
+            {
                 Debug.Log($"当前 {h} 人看过");
-            }; 
-            
-            danmuManager.GainMedalEvent += h => {
+            };
+
+            danmuManager.GainMedalEvent += h =>
+            {
                 Debug.Log($"{h.FanName} 加入粉丝团 {h.MedalName}");
-            }; 
+            };
         }
 
-        public void ConnectDanmu() {
-            if (int.TryParse(roomInput.text, out var id)) {
+        public void ConnectDanmu()
+        {
+            if (int.TryParse(roomInput.text, out var id))
+            {
                 danmuManager.Connect(id);
                 Tasks.saveRoomData(roomInput.text);
             }
         }
-        
-        public void DisconnectDanmu() {
+
+        public void DisconnectDanmu()
+        {
             danmuManager.Disconnect();
         }
-        
+
         void OnApplicationQuit()
         {
             if (waveOutDevice != null)
@@ -148,18 +166,21 @@ namespace VTS.Examples
             () =>
             {
                 UnityEngine.Debug.Log("Connected!");
+                Tasks.VTSWebsocketConnectState = true;
                 this._connectionLight.color = Color.green;
                 this._connectionText.text = "Connected!";
                 GetHotkeysInCurrentModel(null, (r) => { modelhotkeys = new List<HotkeyData>(r.data.availableHotkeys); }, (e) => { });
             },
             () =>
             {
+                Tasks.VTSWebsocketConnectState = false;
                 UnityEngine.Debug.LogWarning("Disconnected!");
                 this._connectionLight.color = Color.gray;
                 this._connectionText.text = "Disconnected.";
             },
             () =>
             {
+                Tasks.VTSWebsocketConnectState = false;
                 UnityEngine.Debug.LogError("Error!");
                 this._connectionLight.color = Color.red;
                 this._connectionText.text = "Error!";
@@ -195,25 +216,14 @@ namespace VTS.Examples
 
         public void TestB()
         {
-            // receiveDanmu("D7387093$#**#$雨天lul$#**#$qwe");
-            // receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$silver$#**#$20");
-            // receiveDanmu("G7387093$#**#$雨天lul$#**#$qwe$#**#$11$#**#$gold$#**#$20");
-            // receiveDanmu("J7387093$#**#$雨天lul$#**#$qwe");
-            // receiveDanmu("S7387093$#**#$雨天lul$#**#$qwe");
-            Screen.SetResolution(1920, 1080, false);
-            print(Screen.currentResolution.height);
+            // Screen.SetResolution(1920, 1080, false);
+            // print(Screen.currentResolution.height);
         }
         public void TestB2()
         {
 
-        } 
+        }
 
-        // 人气  f'R[{client.room_id}] 当前人气: {message.popularity}'
-        // 弹幕  f'D[{client.room_id}] {message.uname}: {message.msg}'
-        // 礼物  f'G[{client.room_id}] {message.uname} 赠送了 {message.gift_name}x{message.num}'
-        //                         f' ({message.coin_type} 瓜子 x {message.total_coin})'
-        // 舰长  f'J[{client.room_id}] {message.username} 购买了 {message.gift_name}'
-        // SC   f'S[{client.room_id}] 醒目留言 ￥{message.price} {message.uname}：{message.message}'
         public void receiveDanmu(string message) => danmumen.Enqueue(message);
 
         private HotkeyData TriggerSelectedHotkey(string currentHotkeySelected)
@@ -390,7 +400,6 @@ namespace VTS.Examples
 
         }
 
-
         public void addReg()
         {
             var addRegButton = GameObject.Find("AddReg");
@@ -431,7 +440,6 @@ namespace VTS.Examples
                                 Destroy(choiseStartPn);
                                 return;
                             }
-                            //添加任务
                             pt.taskType = "danmu";
                             pt.taskParameters = new string[1];
                             pt.taskParameters[0] = inputval;
@@ -450,7 +458,6 @@ namespace VTS.Examples
                                 Destroy(choiseStartPn);
                                 return;
                             }
-                            //添加任务
                             pt.taskType = "yinguazi";
                             pt.taskParameters = new string[1];
                             pt.taskParameters[0] = inputval;
@@ -468,22 +475,116 @@ namespace VTS.Examples
                                 Destroy(choiseStartPn);
                                 return;
                             }
-                            //添加任务
-                            pt.taskType = "jinguazi";
+                            pt.taskType = "yinguazi";
                             pt.taskParameters = new string[1];
                             pt.taskParameters[0] = inputval;
-                            fillTask(choiseStartPn, jinguaziInputBar, pt);//组件补全任务
+                            nextnextStepPn = fillTask(choiseStartPn, jinguaziInputBar, pt);//组件补全任务
                         });
+
                         break;
                     case 4://舰长
-                           //添加任务
                         pt.taskType = "jianzhang";
                         fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
 
                         break;
                     case 5://SC
-                           //添加任务
                         pt.taskType = "sc";
+                        fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
+                        break;
+                    case 6://fixedTime 固定时间
+                        var fixedTimeInputBar = Instantiate((GameObject)Resources.Load("Prefabs/TimeRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        fixedTimeInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
+                        nextStepPn = fixedTimeInputBar;
+                        fixedTimeInputBar.transform.Find("secRegInputBar").GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        {
+                            var hourval = fixedTimeInputBar.transform.Find("hourRegInputBar").GetComponent<InputField>().text;
+                            var minval = fixedTimeInputBar.transform.Find("minRegInputBar").GetComponent<InputField>().text;
+                            var secval = inputval;
+                            if (hourval == "" || hourval == "24")
+                            {
+                                hourval = "0";
+                            }
+                            if (minval == "" || hourval == "60")
+                            {
+                                minval = "0";
+                            }
+                            if (secval == "")
+                            {
+                                Destroy(choiseStartPn);
+                                return;
+                            }
+                            pt.taskType = "fixedTime";
+                            pt.taskParameters = new string[1];
+                            pt.taskParameters[0] = ((int.Parse(hourval) * 60 + int.Parse(minval)) * 60 + int.Parse(secval)).ToString();
+                            nextnextStepPn = fillTask(choiseStartPn, fixedTimeInputBar, pt);//组件补全任务
+                        });
+                        break;
+                    case 7://intervalTime 间隔时间
+                        var intervalTimeInputBar = Instantiate((GameObject)Resources.Load("Prefabs/TimeRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        intervalTimeInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
+                        nextStepPn = intervalTimeInputBar;
+                        intervalTimeInputBar.transform.Find("secRegInputBar").GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        {
+                            var hourval = intervalTimeInputBar.transform.Find("hourRegInputBar").GetComponent<InputField>().text;
+                            var minval = intervalTimeInputBar.transform.Find("minRegInputBar").GetComponent<InputField>().text;
+                            var secval = inputval;
+                            if (hourval == "" || hourval == "24")
+                            {
+                                hourval = "0";
+                            }
+                            if (minval == "" || hourval == "60")
+                            {
+                                minval = "0";
+                            }
+                            if (secval == "")
+                            {
+                                Destroy(choiseStartPn);
+                                return;
+                            }
+                            pt.taskType = "intervalTime";
+                            pt.taskParameters = new string[1];
+                            pt.taskParameters[0] = ((int.Parse(hourval) * 60 + int.Parse(minval)) * 60 + int.Parse(secval)).ToString();
+                            nextnextStepPn = fillTask(choiseStartPn, intervalTimeInputBar, pt);//组件补全任务
+                        });
+                        break;
+                    case 8://idleTime 闲置
+                        var idleTimeInputBar = Instantiate((GameObject)Resources.Load("Prefabs/TimeRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        idleTimeInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
+                        nextStepPn = idleTimeInputBar;
+                        idleTimeInputBar.transform.Find("secRegInputBar").GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        {
+                            var hourval = idleTimeInputBar.transform.Find("hourRegInputBar").GetComponent<InputField>().text;
+                            var minval = idleTimeInputBar.transform.Find("minRegInputBar").GetComponent<InputField>().text;
+                            var secval = inputval;
+                            if (hourval == "" || hourval == "24")
+                            {
+                                hourval = "0";
+                            }
+                            if (minval == "" || hourval == "60")
+                            {
+                                minval = "0";
+                            }
+                            if (secval == "")
+                            {
+                                Destroy(choiseStartPn);
+                                return;
+                            }
+                            pt.taskType = "idleTime";
+                            pt.taskParameters = new string[1];
+                            pt.taskParameters[0] = ((int.Parse(hourval) * 60 + int.Parse(minval)) * 60 + int.Parse(secval)).ToString();
+                            nextnextStepPn = fillTask(choiseStartPn, idleTimeInputBar, pt);//组件补全任务
+                        });
+                        break;
+                    case 9://guanzhu 关注
+                        pt.taskType = "guanzhu";
+                        fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
+                        break;
+                    case 10://tebieguanzhu 特别关注
+                        pt.taskType = "tebieguanzhu";
+                        fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
+                        break;
+                    case 11://jinchang 进场
+                        pt.taskType = "jinchang";
                         fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
                         break;
                 }
@@ -536,64 +637,12 @@ namespace VTS.Examples
 
             }
 
-            // Obsolete python
-            // while (danmumen.Count > 0)
-            // {
-            //     string danmu = danmumen.Dequeue();
-            //     print(" -" + danmu + "- ");
-            //     string[] danmu_msg = danmu.Split("$#**#$");
-            //     //                Debug.Log(string.Join(",", danmu_msg));
-            //     // Debug.Log(danmu[0]);
-            //     // print("md type " + danmu[0] + " - " + danmu);
-            //     switch (danmu[0])
-            //     {
-            //         // 收到弹幕
-            //         case 'D':
-            //             Tasks.testTrigerTask("danmu", new string[1] { danmu_msg[2] });
-            //             show_danmu.text = $"{danmu_msg[1]}: {danmu_msg[2]}\n" + show_danmu.text;
-            //             break;
-            //
-            //         // 收到礼物
-            //         case 'G':
-            //             show_danmu.text = $"{danmu_msg[1]} 赠送了 {danmu_msg[2]}x{danmu_msg[3]}"
-            //                             + $" ({danmu_msg[4]} 瓜子 x {danmu_msg[5]})\n" + show_danmu.text;
-            //             if ((danmu_msg[4] == "silver"))
-            //             {
-            //                 Tasks.testTrigerTask("yinguazi", new string[1] { danmu_msg[5] });
-            //             }
-            //             else if ((danmu_msg[4] == "gold"))
-            //             {
-            //                 Tasks.testTrigerTask("jinguazi", new string[1] { danmu_msg[5] });
-            //             }
-            //             // if (danmu_msg[4] == "gold" && int.Parse(danmu_msg[5]) >= guazi)
-            //             // {
-            //             //     HotkeyData giftTrigger = TriggerSelectedHotkey(liwuDropdown);
-            //             //     info.text += $"\n{danmu_msg[1]} 的礼物触发了 {giftTrigger.name}({giftTrigger.file})";
-            //             // }
-            //             break;
-            //
-            //         // 有人上舰
-            //         case 'J':
-            //             show_danmu.text = $"{danmu_msg[1]} 购买了 {danmu_msg[2]}\n" + show_danmu.text;
-            //             Tasks.testTrigerTask("jianzhang", new string[0]);
-            //
-            //             // HotkeyData captainTrigger = TriggerSelectedHotkey(captainList);
-            //             // info.text += $"\n{danmu_msg[1]} 的礼物触发了 {captainTrigger.name}({captainTrigger.file})";
-            //             break;
-            //
-            //         // SC
-            //         case 'S':
-            //             show_danmu.text = $"发送了醒目留言 ￥{danmu_msg[1]} {danmu_msg[2]}：{danmu_msg[3]}\n" + show_danmu.text;
-            //             Tasks.testTrigerTask("sc", new string[0]);
-            //
-            //             // if (danmu_msg[3].Contains(superchatKeyword))
-            //             // {
-            //             //     HotkeyData SCTrigger = TriggerSelectedHotkey(SCDropdown);
-            //             //     info.text += $"\n{danmu_msg[1]} 的礼物触发了 {SCTrigger.name}({SCTrigger.file})";
-            //             // }
-            //             break;
-            //     }
-            // }
+
+            //检查时间触发
+            var nowtime = ((System.DateTime.Now.Hour * 60 + System.DateTime.Now.Minute) * 60 + System.DateTime.Now.Second).ToString();
+            Tasks.testTrigerTask("fixedTime", new string[1] { nowtime });
+            Tasks.testTrigerTask("intervalTime", new string[1] { nowtime });
+            Tasks.testTrigerTask("idleTime", new string[1] { nowtime });
         }
     }
 

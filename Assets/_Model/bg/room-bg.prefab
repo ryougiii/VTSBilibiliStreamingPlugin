@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1629293506975511618}
   - component: {fileID: 4509099547138300099}
   - component: {fileID: 2966254346662568927}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: cat_day4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2059752307037549015}
   - component: {fileID: 2957814273202049479}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeBallX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576571115583231073}
   - component: {fileID: 2750662385552787310}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamAngleZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 136342416546517318}
   - component: {fileID: 7077518044111985361}
   - component: {fileID: 929285722902430794}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_7_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 3620252135776470711}
   - component: {fileID: 3159599299252043985}
   - component: {fileID: 6331644723347921638}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: face_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2069940411326255745}
   - component: {fileID: 2802658086739797111}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 9178739479707341537}
   - component: {fileID: 7372053260991400116}
   - component: {fileID: 4198772684724243569}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: horn_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 4035949713501062695}
   - component: {fileID: 7438860532312473493}
   - component: {fileID: 7354775851691341936}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fish_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 7882750436605687414}
   - component: {fileID: 7239267920571850565}
   - component: {fileID: 4832286919721658632}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: reflectlight_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -856,7 +856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2246858777990768508}
   - component: {fileID: 5083671620991474354}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBodyAngleZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 1491706163284513944}
   - component: {fileID: 1531993656680839131}
   - component: {fileID: 2373921851564883082}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: refrigerator_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 1539929734132858081}
   - component: {fileID: 5694973871420574330}
   - component: {fileID: 8211236831704264015}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: cat_day6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,7 +1141,7 @@ GameObject:
   - component: {fileID: 7335460691295632464}
   - component: {fileID: 2488038103036734188}
   - component: {fileID: 8412292479440384843}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1259,7 +1259,7 @@ GameObject:
   - component: {fileID: 3796198677707537056}
   - component: {fileID: 1317479886761480930}
   - component: {fileID: 5457077648522647896}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: handle_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1374,7 +1374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8269985889045425}
   - component: {fileID: 4590612266992480394}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowLY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 831106176171501618}
   - component: {fileID: 3724031802579394805}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowRY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1469,7 @@ GameObject:
   - component: {fileID: 1822933567433483358}
   - component: {fileID: 3897328485504801306}
   - component: {fileID: 3770331498100230789}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: handle_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1587,7 +1587,7 @@ GameObject:
   - component: {fileID: 2810747720940145386}
   - component: {fileID: 6553774886471826939}
   - component: {fileID: 535568343023228303}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: rainfall_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1701,7 +1701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3926252145193973598}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1742,7 +1742,7 @@ GameObject:
   - component: {fileID: 2877176475976135186}
   - component: {fileID: 7065394937203004114}
   - component: {fileID: 3185871715889918084}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: brow_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1860,7 +1860,7 @@ GameObject:
   - component: {fileID: 5249780384853626035}
   - component: {fileID: 6973291609356475436}
   - component: {fileID: 6132076838621543265}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_4_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1978,7 +1978,7 @@ GameObject:
   - component: {fileID: 2398414501660105280}
   - component: {fileID: 6555448404551090917}
   - component: {fileID: 2166141370092907778}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: drinks_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2096,7 +2096,7 @@ GameObject:
   - component: {fileID: 991947727652508215}
   - component: {fileID: 7081854644104843580}
   - component: {fileID: 2441318329830591095}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: board_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2214,7 +2214,7 @@ GameObject:
   - component: {fileID: 3080410707609765565}
   - component: {fileID: 108827340061886266}
   - component: {fileID: 8565578363653225067}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_6_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2332,7 +2332,7 @@ GameObject:
   - component: {fileID: 4841375258036599158}
   - component: {fileID: 2776703163783268196}
   - component: {fileID: 2295543799907765032}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_3_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2450,7 +2450,7 @@ GameObject:
   - component: {fileID: 1993862954529445551}
   - component: {fileID: 2398466975330677822}
   - component: {fileID: 6991190743116692689}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_5_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2568,7 +2568,7 @@ GameObject:
   - component: {fileID: 4123170527771929266}
   - component: {fileID: 7554941065123103221}
   - component: {fileID: 1108909663858452754}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: lamp_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2686,7 +2686,7 @@ GameObject:
   - component: {fileID: 5655459197408218430}
   - component: {fileID: 4122191235259910625}
   - component: {fileID: 4532772569782062141}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: light_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2804,7 +2804,7 @@ GameObject:
   - component: {fileID: 4890200594358819600}
   - component: {fileID: 2204290719908642846}
   - component: {fileID: 3850860672572275972}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: menu_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2922,7 +2922,7 @@ GameObject:
   - component: {fileID: 7346313520381189719}
   - component: {fileID: 7214964481112760756}
   - component: {fileID: 7821846992176949573}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_3_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3040,7 +3040,7 @@ GameObject:
   - component: {fileID: 8413200020359960370}
   - component: {fileID: 8820930486699188543}
   - component: {fileID: 2422995849249526306}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_3_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3158,7 +3158,7 @@ GameObject:
   - component: {fileID: 5009183050288138086}
   - component: {fileID: 8119452043445754305}
   - component: {fileID: 39656661128686277}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: face_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3276,7 +3276,7 @@ GameObject:
   - component: {fileID: 7968149993049105348}
   - component: {fileID: 4047538381225510728}
   - component: {fileID: 5267843890155198975}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: rainfall_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3394,7 +3394,7 @@ GameObject:
   - component: {fileID: 6361833088425468367}
   - component: {fileID: 1033060658383301823}
   - component: {fileID: 1164861297639805886}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3508,7 +3508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1287162196948718522}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Drawables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3720,7 +3720,7 @@ GameObject:
   - component: {fileID: 675381476333313140}
   - component: {fileID: 1482544793978158135}
   - component: {fileID: 5980673011575136829}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: chair_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3838,7 +3838,7 @@ GameObject:
   - component: {fileID: 485541728029118448}
   - component: {fileID: 4546850684143828533}
   - component: {fileID: 185445855872809000}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: drinks_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3956,7 +3956,7 @@ GameObject:
   - component: {fileID: 4851417370786488646}
   - component: {fileID: 7303196183248018094}
   - component: {fileID: 5612261658341831573}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: horn_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4071,7 +4071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5983851580300830838}
   - component: {fileID: 1108185442431252793}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4120,7 +4120,7 @@ GameObject:
   - component: {fileID: 5377435373822098662}
   - component: {fileID: 6187687071324678930}
   - component: {fileID: 4763499159078040470}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_lightline_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4235,7 +4235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5762480221632563055}
   - component: {fileID: 4186867737885567625}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4284,7 +4284,7 @@ GameObject:
   - component: {fileID: 2249432226528571080}
   - component: {fileID: 2159898185338249504}
   - component: {fileID: 1961716263743126605}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_3_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4402,7 +4402,7 @@ GameObject:
   - component: {fileID: 3422053383828207856}
   - component: {fileID: 8052809041521038007}
   - component: {fileID: 1787775577423763707}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: horn_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4520,7 +4520,7 @@ GameObject:
   - component: {fileID: 1648444364958098536}
   - component: {fileID: 7468985448840247644}
   - component: {fileID: 7764609005584266996}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_4_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4638,7 +4638,7 @@ GameObject:
   - component: {fileID: 4831429446871599648}
   - component: {fileID: 3701808612455308120}
   - component: {fileID: 5598051474585280628}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4756,7 +4756,7 @@ GameObject:
   - component: {fileID: 5424777269539798208}
   - component: {fileID: 4743362471259621274}
   - component: {fileID: 5399429925073300233}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: light_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4874,7 +4874,7 @@ GameObject:
   - component: {fileID: 4478160077959336613}
   - component: {fileID: 5684172730426198354}
   - component: {fileID: 7333445800322407230}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4989,7 +4989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083339068045421803}
   - component: {fileID: 7991811823117261282}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBodyAngleX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5038,7 +5038,7 @@ GameObject:
   - component: {fileID: 2867900304942931906}
   - component: {fileID: 5756232053216795921}
   - component: {fileID: 4150335314005511812}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: wall_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5156,7 +5156,7 @@ GameObject:
   - component: {fileID: 7543367882842130426}
   - component: {fileID: 5095037659004582711}
   - component: {fileID: 387586075094857402}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: cat_day7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5274,7 +5274,7 @@ GameObject:
   - component: {fileID: 1730974510000143853}
   - component: {fileID: 4475432395788851268}
   - component: {fileID: 7076516251581280439}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_7_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5392,7 +5392,7 @@ GameObject:
   - component: {fileID: 8611849262437576434}
   - component: {fileID: 8249277767181429212}
   - component: {fileID: 6554365876990428699}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5510,7 +5510,7 @@ GameObject:
   - component: {fileID: 4537007277205307537}
   - component: {fileID: 6803461775825499877}
   - component: {fileID: 6664089405859787479}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_3_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5625,7 +5625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 304892025476670377}
   - component: {fileID: 3394509517859799091}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamHairFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5674,7 +5674,7 @@ GameObject:
   - component: {fileID: 4427991353176929732}
   - component: {fileID: 1558530684426546955}
   - component: {fileID: 5659343288172783676}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_4_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5792,7 +5792,7 @@ GameObject:
   - component: {fileID: 5126142708370374836}
   - component: {fileID: 2324202606812725528}
   - component: {fileID: 4024007769190168145}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_5_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5910,7 +5910,7 @@ GameObject:
   - component: {fileID: 1354494218564420418}
   - component: {fileID: 7160723386356179757}
   - component: {fileID: 7035403883376232875}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: mouth_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6028,7 +6028,7 @@ GameObject:
   - component: {fileID: 1930740901775499587}
   - component: {fileID: 6871340364569808421}
   - component: {fileID: 1766259921212719392}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_6_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6146,7 +6146,7 @@ GameObject:
   - component: {fileID: 4801155149634709031}
   - component: {fileID: 3816335527068021255}
   - component: {fileID: 7058378697213892224}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fish_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6264,7 +6264,7 @@ GameObject:
   - component: {fileID: 2752478280662098501}
   - component: {fileID: 6012923479145350422}
   - component: {fileID: 6066635059978522936}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: horn_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6382,7 +6382,7 @@ GameObject:
   - component: {fileID: 5636509167855054117}
   - component: {fileID: 4442003513849300448}
   - component: {fileID: 3967227302705806711}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: wall_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6497,7 +6497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8660248106374363630}
   - component: {fileID: 4535933642113145986}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6546,7 +6546,7 @@ GameObject:
   - component: {fileID: 5962298874973979988}
   - component: {fileID: 731051989966664379}
   - component: {fileID: 9108963426041168069}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fish_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6664,7 +6664,7 @@ GameObject:
   - component: {fileID: 6034333196320720944}
   - component: {fileID: 3514239491603009344}
   - component: {fileID: 7614156042148341081}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6863,7 +6863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Opacity: 1
-  _lastOpacity: 1
+  _lastOpacity: 0
   _sortingLayerId: 0
   _sortingMode: 0
   _sortingOrder: 0
@@ -6954,7 +6954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd9e6647bfff7542acb0200ab74bdd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CubismFadeMotionList: {fileID: 11400000, guid: 9c9ece5f2b8a33849a1b030a3727676a, type: 2}
+  CubismFadeMotionList: {fileID: 0}
 --- !u!1 &2831801504682405165
 GameObject:
   m_ObjectHideFlags: 0
@@ -6968,7 +6968,7 @@ GameObject:
   - component: {fileID: 8941337579690125315}
   - component: {fileID: 6469256962322687459}
   - component: {fileID: 3689677354231316372}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_2_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7086,7 +7086,7 @@ GameObject:
   - component: {fileID: 2000058944882322792}
   - component: {fileID: 6689165745829176567}
   - component: {fileID: 978553480038096643}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_3_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7204,7 +7204,7 @@ GameObject:
   - component: {fileID: 1931912868183514520}
   - component: {fileID: 6650159187685271747}
   - component: {fileID: 8586897566114407415}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ArtMesh1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7322,7 +7322,7 @@ GameObject:
   - component: {fileID: 2418781294480409395}
   - component: {fileID: 2271669268947204151}
   - component: {fileID: 2781986787689726213}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_5_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7440,7 +7440,7 @@ GameObject:
   - component: {fileID: 6282306905469804461}
   - component: {fileID: 1828741488240030653}
   - component: {fileID: 7383615904848808799}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: wall_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7558,7 +7558,7 @@ GameObject:
   - component: {fileID: 4444295877485747767}
   - component: {fileID: 6307665698051192494}
   - component: {fileID: 4127282754094581813}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: nose_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7676,7 +7676,7 @@ GameObject:
   - component: {fileID: 6224303537162355985}
   - component: {fileID: 5792726602013142974}
   - component: {fileID: 2203462043796448835}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: board_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7794,7 +7794,7 @@ GameObject:
   - component: {fileID: 4571208819471578393}
   - component: {fileID: 2403663181585370859}
   - component: {fileID: 921992386744822541}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: catear_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7912,7 +7912,7 @@ GameObject:
   - component: {fileID: 8086197472403074406}
   - component: {fileID: 1439630735414642228}
   - component: {fileID: 1146595001681239698}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8030,7 +8030,7 @@ GameObject:
   - component: {fileID: 6898532003755469004}
   - component: {fileID: 195101488292829752}
   - component: {fileID: 2543765915903446386}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: handle_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8148,7 +8148,7 @@ GameObject:
   - component: {fileID: 7572565577164402431}
   - component: {fileID: 704843725457612371}
   - component: {fileID: 1627211049538063407}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: drinks_2_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8266,7 +8266,7 @@ GameObject:
   - component: {fileID: 8400693265537561241}
   - component: {fileID: 4083332220963102730}
   - component: {fileID: 2031773388085629700}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: chair_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8384,7 +8384,7 @@ GameObject:
   - component: {fileID: 1303774322515619206}
   - component: {fileID: 7403601167474918145}
   - component: {fileID: 272098653978918955}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: drinks_1_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8502,7 +8502,7 @@ GameObject:
   - component: {fileID: 1257870996942966409}
   - component: {fileID: 1974649463558589814}
   - component: {fileID: 2362173524203883480}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: refrigerator_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8620,7 +8620,7 @@ GameObject:
   - component: {fileID: 1096894150494329032}
   - component: {fileID: 7328397353540075202}
   - component: {fileID: 1026872219258702479}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: face_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8738,7 +8738,7 @@ GameObject:
   - component: {fileID: 7056465026684448675}
   - component: {fileID: 3636080371236429587}
   - component: {fileID: 4322771464137273877}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8856,7 +8856,7 @@ GameObject:
   - component: {fileID: 5658151073179336466}
   - component: {fileID: 4967024053086470285}
   - component: {fileID: 3727914148702748320}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: lamp_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8971,7 +8971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3233774194810589076}
   - component: {fileID: 3032943891025976568}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamMouthOpenY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9020,7 +9020,7 @@ GameObject:
   - component: {fileID: 4175182910026942195}
   - component: {fileID: 901254164090181859}
   - component: {fileID: 3349311809896901114}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: handle_1_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9138,7 +9138,7 @@ GameObject:
   - component: {fileID: 816165278908448865}
   - component: {fileID: 1558122971117712397}
   - component: {fileID: 6220317334179666059}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_4_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9256,7 +9256,7 @@ GameObject:
   - component: {fileID: 1454327047565619564}
   - component: {fileID: 8860206382506165904}
   - component: {fileID: 1392946188470911354}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: cat_day5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9371,7 +9371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6888068023936426054}
   - component: {fileID: 6714664562934108910}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamHairSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9420,7 +9420,7 @@ GameObject:
   - component: {fileID: 4931032356724079085}
   - component: {fileID: 8126597271794168525}
   - component: {fileID: 3599486459642103711}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: mouth_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9535,7 +9535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7160563503234511709}
   - component: {fileID: 163446398477802938}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamMouthForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9584,7 +9584,7 @@ GameObject:
   - component: {fileID: 3032568402460472391}
   - component: {fileID: 5094459830789206011}
   - component: {fileID: 8969414519309146623}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9699,7 +9699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7631894808238815362}
   - component: {fileID: 2583725663159644191}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9745,7 +9745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4492301422582329476}
   - component: {fileID: 8682220804680398161}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeLOpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9791,7 +9791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 332650305598353677}
   - component: {fileID: 7082010763310146050}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeBallY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9840,7 +9840,7 @@ GameObject:
   - component: {fileID: 2983457678851113239}
   - component: {fileID: 7941288122083158680}
   - component: {fileID: 8415222557045885539}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_7_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9958,7 +9958,7 @@ GameObject:
   - component: {fileID: 8285232408772165023}
   - component: {fileID: 3936938698787472755}
   - component: {fileID: 7570866678372847705}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: menu_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10076,7 +10076,7 @@ GameObject:
   - component: {fileID: 1210825445651897109}
   - component: {fileID: 2428304724945376187}
   - component: {fileID: 7300274383626529296}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: face_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10194,7 +10194,7 @@ GameObject:
   - component: {fileID: 7559574679707178911}
   - component: {fileID: 7949948401111318041}
   - component: {fileID: 2174580200138392158}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: blush_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10312,7 +10312,7 @@ GameObject:
   - component: {fileID: 908910339477510147}
   - component: {fileID: 3557905744787197034}
   - component: {fileID: 8821578066484128077}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_7_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10430,7 +10430,7 @@ GameObject:
   - component: {fileID: 2264194367814291128}
   - component: {fileID: 6082867340684568006}
   - component: {fileID: 5620845743597433114}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_lightline_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10548,7 +10548,7 @@ GameObject:
   - component: {fileID: 1009727428327766917}
   - component: {fileID: 9073820079317101208}
   - component: {fileID: 7150088288438932827}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10666,7 +10666,7 @@ GameObject:
   - component: {fileID: 8079904570328577807}
   - component: {fileID: 8020419508576326906}
   - component: {fileID: 8259647796702608828}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: horn_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10784,7 +10784,7 @@ GameObject:
   - component: {fileID: 2234694539301616957}
   - component: {fileID: 8891883398378189114}
   - component: {fileID: 8562812385126275469}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10902,7 +10902,7 @@ GameObject:
   - component: {fileID: 4110848297531032599}
   - component: {fileID: 5096208301319404546}
   - component: {fileID: 2382167115990641556}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_3_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11020,7 +11020,7 @@ GameObject:
   - component: {fileID: 1814666851350784355}
   - component: {fileID: 1465679436676625419}
   - component: {fileID: 5700224774880483082}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: counter_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11138,7 +11138,7 @@ GameObject:
   - component: {fileID: 2705487089501455700}
   - component: {fileID: 3104838875907271836}
   - component: {fileID: 1163926975988000607}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: refrigerator_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11256,7 +11256,7 @@ GameObject:
   - component: {fileID: 5141746224504937822}
   - component: {fileID: 3684329876265160844}
   - component: {fileID: 1753617747911007285}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: wall_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11374,7 +11374,7 @@ GameObject:
   - component: {fileID: 7809683719599269936}
   - component: {fileID: 8586993123623288952}
   - component: {fileID: 7405896288268238767}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11492,7 +11492,7 @@ GameObject:
   - component: {fileID: 1482752965287850405}
   - component: {fileID: 933616930672429309}
   - component: {fileID: 8053539879058489629}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: drinks_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11610,7 +11610,7 @@ GameObject:
   - component: {fileID: 2117634405472956673}
   - component: {fileID: 3608568835126628998}
   - component: {fileID: 786541255637854015}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: horn_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11728,7 +11728,7 @@ GameObject:
   - component: {fileID: 5293464016951331254}
   - component: {fileID: 8459161483051439618}
   - component: {fileID: 2789779166783036358}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_5_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11846,7 +11846,7 @@ GameObject:
   - component: {fileID: 5415584973981336856}
   - component: {fileID: 662120521211583123}
   - component: {fileID: 3052778450866902149}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: chair_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11964,7 +11964,7 @@ GameObject:
   - component: {fileID: 7282257982011384659}
   - component: {fileID: 6862746647452984994}
   - component: {fileID: 3737067529712768525}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_6_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12082,7 +12082,7 @@ GameObject:
   - component: {fileID: 8396148854366119549}
   - component: {fileID: 8679301656093243484}
   - component: {fileID: 5862542335648678697}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12200,7 +12200,7 @@ GameObject:
   - component: {fileID: 6795461368493574969}
   - component: {fileID: 1651286577912242090}
   - component: {fileID: 7356098206301514080}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: reflectlight_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12315,7 +12315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6493515767202632135}
   - component: {fileID: 4037621899929486580}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12364,7 +12364,7 @@ GameObject:
   - component: {fileID: 2497093899310906629}
   - component: {fileID: 4954999557958734866}
   - component: {fileID: 8883983443722532134}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fish_2_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12482,7 +12482,7 @@ GameObject:
   - component: {fileID: 5091298389336199049}
   - component: {fileID: 5901097917801940081}
   - component: {fileID: 1033768325877752789}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fish_1_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12600,7 +12600,7 @@ GameObject:
   - component: {fileID: 2824783609034477462}
   - component: {fileID: 6389537515308841496}
   - component: {fileID: 7901428300375393585}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: brow_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12718,7 +12718,7 @@ GameObject:
   - component: {fileID: 7029204204551732056}
   - component: {fileID: 2268823845222761967}
   - component: {fileID: 4361549859171818638}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12836,7 +12836,7 @@ GameObject:
   - component: {fileID: 2192154133061579690}
   - component: {fileID: 3210181462725843242}
   - component: {fileID: 5190231313026353704}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_light_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12954,7 +12954,7 @@ GameObject:
   - component: {fileID: 2679065091214535379}
   - component: {fileID: 7330449299916977868}
   - component: {fileID: 1113695361926655048}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_4_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13072,7 +13072,7 @@ GameObject:
   - component: {fileID: 1576425422526966125}
   - component: {fileID: 5044973124593486844}
   - component: {fileID: 4687362562226717735}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: blush_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13190,7 +13190,7 @@ GameObject:
   - component: {fileID: 4918239229181136072}
   - component: {fileID: 1996340428172460617}
   - component: {fileID: 1959396804200968033}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: catear_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13308,7 +13308,7 @@ GameObject:
   - component: {fileID: 1487554477181304154}
   - component: {fileID: 1484385300962670440}
   - component: {fileID: 4607481203239854391}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_3_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13423,7 +13423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8734529225785215315}
   - component: {fileID: 4729955894913050368}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowRForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13469,7 +13469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7643025688726840207}
   - component: {fileID: 5367983355225557619}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamHairBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13518,7 +13518,7 @@ GameObject:
   - component: {fileID: 1970090290931260014}
   - component: {fileID: 117608477615983386}
   - component: {fileID: 2936420293279795694}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13636,7 +13636,7 @@ GameObject:
   - component: {fileID: 898414110932536867}
   - component: {fileID: 445429441033435069}
   - component: {fileID: 5187952147924542519}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: lamp_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13754,7 +13754,7 @@ GameObject:
   - component: {fileID: 8552595666585289652}
   - component: {fileID: 2786688642860648787}
   - component: {fileID: 1220953150964552421}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13872,7 +13872,7 @@ GameObject:
   - component: {fileID: 832008672142525941}
   - component: {fileID: 5181834196988173151}
   - component: {fileID: 3510332263439280470}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13987,7 +13987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7610025420973956115}
   - component: {fileID: 5134921478115964440}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeLSmile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14036,7 +14036,7 @@ GameObject:
   - component: {fileID: 3638464230998569006}
   - component: {fileID: 545472664928054580}
   - component: {fileID: 7662930122356825149}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_5_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14154,7 +14154,7 @@ GameObject:
   - component: {fileID: 9022662553656579311}
   - component: {fileID: 7194461215860334400}
   - component: {fileID: 7758827064402942381}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: drinks_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14272,7 +14272,7 @@ GameObject:
   - component: {fileID: 5607848204589585049}
   - component: {fileID: 8042921770232576000}
   - component: {fileID: 5462968743403001305}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: brow_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14390,7 +14390,7 @@ GameObject:
   - component: {fileID: 462529184941049781}
   - component: {fileID: 5222770158098241313}
   - component: {fileID: 5737290619786641666}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: counter_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14508,7 +14508,7 @@ GameObject:
   - component: {fileID: 823438483750005764}
   - component: {fileID: 1126110500255455335}
   - component: {fileID: 8762405451169758318}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: menu_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14623,7 +14623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5203218818576380812}
   - component: {fileID: 4259749655114848406}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBreath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14672,7 +14672,7 @@ GameObject:
   - component: {fileID: 5094301881354465360}
   - component: {fileID: 1996977538532078035}
   - component: {fileID: 8793025786880465789}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_7_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14790,7 +14790,7 @@ GameObject:
   - component: {fileID: 7224325124900832365}
   - component: {fileID: 6301784606047345402}
   - component: {fileID: 1583994712565564338}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: drinks_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14905,7 +14905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1368959012170181507}
   - component: {fileID: 1970045706712503848}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBodyAngleY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14954,7 +14954,7 @@ GameObject:
   - component: {fileID: 5990870669997966358}
   - component: {fileID: 3904403417634013762}
   - component: {fileID: 198924010615449007}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_3_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15069,7 +15069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4211256037941740205}
   - component: {fileID: 7165858873843200126}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeROpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15118,7 +15118,7 @@ GameObject:
   - component: {fileID: 6595414044596822076}
   - component: {fileID: 5281659192154615214}
   - component: {fileID: 2457986524363378887}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_1_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15236,7 +15236,7 @@ GameObject:
   - component: {fileID: 6387827325913918994}
   - component: {fileID: 9046924543335832417}
   - component: {fileID: 7781396435927609543}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15354,7 +15354,7 @@ GameObject:
   - component: {fileID: 4981665715986256698}
   - component: {fileID: 9123716617115261969}
   - component: {fileID: 3241311055702746653}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15469,7 +15469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 949770989096695399}
   - component: {fileID: 4736182915284681103}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowRAngle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15515,7 +15515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 614853215290132621}
   - component: {fileID: 4300792713841984475}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15564,7 +15564,7 @@ GameObject:
   - component: {fileID: 285019759359268045}
   - component: {fileID: 6536707067169810002}
   - component: {fileID: 8402961462576977743}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: brow_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15679,7 +15679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5030197853056261391}
   - component: {fileID: 1433347306046337395}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowLX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15728,7 +15728,7 @@ GameObject:
   - component: {fileID: 8841898077997619469}
   - component: {fileID: 4679846918903346653}
   - component: {fileID: 810871394074686184}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: catear_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15846,7 +15846,7 @@ GameObject:
   - component: {fileID: 4865965509581106007}
   - component: {fileID: 6938617813758496165}
   - component: {fileID: 6716267263223699807}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_7_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15964,7 +15964,7 @@ GameObject:
   - component: {fileID: 55788177890129277}
   - component: {fileID: 1707872187154893895}
   - component: {fileID: 3227984397684778764}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: nose_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16082,7 +16082,7 @@ GameObject:
   - component: {fileID: 4592327559581195253}
   - component: {fileID: 446097708745173090}
   - component: {fileID: 5642688714292620338}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16200,7 +16200,7 @@ GameObject:
   - component: {fileID: 541872975915123181}
   - component: {fileID: 4104280888153228267}
   - component: {fileID: 4869228189439838667}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_light_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16315,7 +16315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5715314902447558205}
   - component: {fileID: 7863590438197501693}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16364,7 +16364,7 @@ GameObject:
   - component: {fileID: 3511038348721905525}
   - component: {fileID: 9092577943535345542}
   - component: {fileID: 7857467269951623802}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_5_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16482,7 +16482,7 @@ GameObject:
   - component: {fileID: 2517607581082937207}
   - component: {fileID: 8889508306999672497}
   - component: {fileID: 4827712004651925898}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: face_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16600,7 +16600,7 @@ GameObject:
   - component: {fileID: 4766509960278611510}
   - component: {fileID: 7931815020580641109}
   - component: {fileID: 7446994566877566433}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16718,7 +16718,7 @@ GameObject:
   - component: {fileID: 764957235288646641}
   - component: {fileID: 3804763174324672557}
   - component: {fileID: 3711599305143067469}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: reflectlight_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16836,7 +16836,7 @@ GameObject:
   - component: {fileID: 6558950466781702801}
   - component: {fileID: 4065905334982995093}
   - component: {fileID: 5007712948981674297}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: lamp_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16954,7 +16954,7 @@ GameObject:
   - component: {fileID: 2935353583016146629}
   - component: {fileID: 8663024750642861273}
   - component: {fileID: 7336154502308035844}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fish_2_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17072,7 +17072,7 @@ GameObject:
   - component: {fileID: 7744870816505231692}
   - component: {fileID: 1027325534736635772}
   - component: {fileID: 5699255671591669089}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_4_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17190,7 +17190,7 @@ GameObject:
   - component: {fileID: 6670280883002308676}
   - component: {fileID: 4335403439340805686}
   - component: {fileID: 1685312412253390917}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_6_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17305,7 +17305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6407781826019654709}
   - component: {fileID: 5123480555449810413}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowLForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17351,7 +17351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3316581654237252111}
   - component: {fileID: 6652564403849650109}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeRSmile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17400,7 +17400,7 @@ GameObject:
   - component: {fileID: 4258056723253465566}
   - component: {fileID: 7473695780667361666}
   - component: {fileID: 1212115731233262960}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_6_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17518,7 +17518,7 @@ GameObject:
   - component: {fileID: 3154347298327375516}
   - component: {fileID: 4511563432639520530}
   - component: {fileID: 8120468899262563124}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: brow_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17636,7 +17636,7 @@ GameObject:
   - component: {fileID: 3564791984453220051}
   - component: {fileID: 9008120982230966341}
   - component: {fileID: 1434783603294291029}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_4_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17751,7 +17751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1005986463076598454}
   - component: {fileID: 1353087115783568105}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17800,7 +17800,7 @@ GameObject:
   - component: {fileID: 6042278748885353408}
   - component: {fileID: 1311759585727251333}
   - component: {fileID: 2973154572110260415}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fish_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17915,7 +17915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8336236349393868261}
   - component: {fileID: 8046080235665515592}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowLAngle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17964,7 +17964,7 @@ GameObject:
   - component: {fileID: 2817456279776750668}
   - component: {fileID: 608982168618631194}
   - component: {fileID: 2346825181242571331}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_4_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18082,7 +18082,7 @@ GameObject:
   - component: {fileID: 8815536312746314713}
   - component: {fileID: 2220565969783031829}
   - component: {fileID: 5130823424760221764}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_5_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18200,7 +18200,7 @@ GameObject:
   - component: {fileID: 7903497532419400181}
   - component: {fileID: 7897479630191725482}
   - component: {fileID: 1272979450232685721}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: handle_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18318,7 +18318,7 @@ GameObject:
   - component: {fileID: 657325441114465024}
   - component: {fileID: 686294553010330804}
   - component: {fileID: 8127662079391776995}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: brow_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18436,7 +18436,7 @@ GameObject:
   - component: {fileID: 6012991887645947637}
   - component: {fileID: 8747343914941684366}
   - component: {fileID: 4248756941041816280}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18554,7 +18554,7 @@ GameObject:
   - component: {fileID: 8825818958814940096}
   - component: {fileID: 8764449270199838958}
   - component: {fileID: 8984944072575432666}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_3_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18672,7 +18672,7 @@ GameObject:
   - component: {fileID: 6425844271611663494}
   - component: {fileID: 2205576192707479296}
   - component: {fileID: 2559352572429272328}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: cat_day3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18790,7 +18790,7 @@ GameObject:
   - component: {fileID: 6637970736086734869}
   - component: {fileID: 8682731822251630719}
   - component: {fileID: 8288007697751877267}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_4_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18905,7 +18905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8779065876834826505}
   - component: {fileID: 3333684804803978229}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamAngleY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18954,7 +18954,7 @@ GameObject:
   - component: {fileID: 3927089634290114327}
   - component: {fileID: 7245311740214118697}
   - component: {fileID: 4197524421753649600}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_3_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19072,7 +19072,7 @@ GameObject:
   - component: {fileID: 513566242965597528}
   - component: {fileID: 5511987535831142740}
   - component: {fileID: 4960005653839674739}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: rainfall_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19187,7 +19187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5841079002957643512}
   - component: {fileID: 5087010433682912902}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19236,7 +19236,7 @@ GameObject:
   - component: {fileID: 2642972835561731164}
   - component: {fileID: 4409478116295810914}
   - component: {fileID: 3963460778072412988}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: menu_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19354,7 +19354,7 @@ GameObject:
   - component: {fileID: 2291465572699486061}
   - component: {fileID: 3517283798118659929}
   - component: {fileID: 6481658694279909169}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: board_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19472,7 +19472,7 @@ GameObject:
   - component: {fileID: 4631152263685594971}
   - component: {fileID: 6164251212621102105}
   - component: {fileID: 1396834424804793266}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_7_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19590,7 +19590,7 @@ GameObject:
   - component: {fileID: 419245098388863564}
   - component: {fileID: 7871660778891281511}
   - component: {fileID: 5207851627675933416}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: handle_2_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19705,7 +19705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7338429940837481011}
   - component: {fileID: 4233565778796965240}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamAngleX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19754,7 +19754,7 @@ GameObject:
   - component: {fileID: 6836364660554474235}
   - component: {fileID: 7218408974078095655}
   - component: {fileID: 3764290891019385625}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_5_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19872,7 +19872,7 @@ GameObject:
   - component: {fileID: 8862794784910544134}
   - component: {fileID: 923938339763927924}
   - component: {fileID: 6542253224501074375}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_4_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19990,7 +19990,7 @@ GameObject:
   - component: {fileID: 5606411353995201394}
   - component: {fileID: 732901037783050847}
   - component: {fileID: 9130624075999865031}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: face_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20108,7 +20108,7 @@ GameObject:
   - component: {fileID: 6025897549659118290}
   - component: {fileID: 401802801608289307}
   - component: {fileID: 4224657841943146720}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: light_3_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20223,7 +20223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4708958487752776122}
   - component: {fileID: 1015531766884055520}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowRX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20272,7 +20272,7 @@ GameObject:
   - component: {fileID: 8979432535617533171}
   - component: {fileID: 2924747393205576335}
   - component: {fileID: 224394646108405697}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_5_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20390,7 +20390,7 @@ GameObject:
   - component: {fileID: 9664198410176178}
   - component: {fileID: 6924126004595332053}
   - component: {fileID: 8209934849007187494}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_light_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20508,7 +20508,7 @@ GameObject:
   - component: {fileID: 1990038053827516749}
   - component: {fileID: 8696225042852328507}
   - component: {fileID: 9055869552386620393}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: mouth_1_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20626,7 +20626,7 @@ GameObject:
   - component: {fileID: 92187776026908662}
   - component: {fileID: 508201017051304697}
   - component: {fileID: 6488974119349211908}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: rainfall_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20744,7 +20744,7 @@ GameObject:
   - component: {fileID: 6653931856552933412}
   - component: {fileID: 5366314387499458778}
   - component: {fileID: 274955708387254660}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: blush_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20859,7 +20859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3416624631192142853}
   - component: {fileID: 2630401517414069905}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20905,7 +20905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8211626017250536174}
   - component: {fileID: 6557459676420868393}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20950,7 +20950,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6769383148867008145}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Parameters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21021,7 +21021,7 @@ GameObject:
   - component: {fileID: 8623295016052077926}
   - component: {fileID: 7880295855544303806}
   - component: {fileID: 3261155717951022611}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_2_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21139,7 +21139,7 @@ GameObject:
   - component: {fileID: 814944957840348065}
   - component: {fileID: 2941475578544531763}
   - component: {fileID: 5745745696643687369}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: nose_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21257,7 +21257,7 @@ GameObject:
   - component: {fileID: 1363649007901699536}
   - component: {fileID: 2729967174477362625}
   - component: {fileID: 1446832975555654739}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_lightline_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21375,7 +21375,7 @@ GameObject:
   - component: {fileID: 1273205008732871640}
   - component: {fileID: 9120641072487259038}
   - component: {fileID: 4231460020835302764}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: counter_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21493,7 +21493,7 @@ GameObject:
   - component: {fileID: 6331383177723983150}
   - component: {fileID: 3762672359075976217}
   - component: {fileID: 232711936784474442}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_5_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21611,7 +21611,7 @@ GameObject:
   - component: {fileID: 7658853549087313978}
   - component: {fileID: 9041068091436743184}
   - component: {fileID: 3165812086906465046}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fish_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21726,7 +21726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1863210421738187380}
   - component: {fileID: 692298654473638441}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21775,7 +21775,7 @@ GameObject:
   - component: {fileID: 8301259337860874906}
   - component: {fileID: 8005746929072624328}
   - component: {fileID: 119478312791877913}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_3_midnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21893,7 +21893,7 @@ GameObject:
   - component: {fileID: 6874745832642656978}
   - component: {fileID: 1416790956913270668}
   - component: {fileID: 8375909520196146347}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: cat_day8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22011,7 +22011,7 @@ GameObject:
   - component: {fileID: 9092293069687817933}
   - component: {fileID: 2670195556477838285}
   - component: {fileID: 1445695252991509261}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: flower_6_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22126,7 +22126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5460946749972481855}
   - component: {fileID: 3815993200785212525}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamCheek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22175,7 +22175,7 @@ GameObject:
   - component: {fileID: 9196979071427547456}
   - component: {fileID: 3822792093495202756}
   - component: {fileID: 4640293652037637408}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hair_3_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22293,7 +22293,7 @@ GameObject:
   - component: {fileID: 4129121027313730190}
   - component: {fileID: 3376361161235348577}
   - component: {fileID: 3850109073531081756}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: drinks_1_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22411,7 +22411,7 @@ GameObject:
   - component: {fileID: 823496414898603048}
   - component: {fileID: 4226680984330999716}
   - component: {fileID: 9211112068189916617}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: board_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22529,7 +22529,7 @@ GameObject:
   - component: {fileID: 5592260803301815581}
   - component: {fileID: 3390209135608866430}
   - component: {fileID: 4239865853868458013}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: reflectlight_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22647,7 +22647,7 @@ GameObject:
   - component: {fileID: 2747685798286333603}
   - component: {fileID: 5127876034442820212}
   - component: {fileID: 456269438570101700}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: refrigerator_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22765,7 +22765,7 @@ GameObject:
   - component: {fileID: 5903300775483037883}
   - component: {fileID: 1589855516552696606}
   - component: {fileID: 643762782830902001}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: eye_6_afternoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22880,7 +22880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3534233370321463671}
   - component: {fileID: 6245714414450840767}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22929,7 +22929,7 @@ GameObject:
   - component: {fileID: 2026420761622202047}
   - component: {fileID: 2725550855371571561}
   - component: {fileID: 1225486749052973845}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: light_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23047,7 +23047,7 @@ GameObject:
   - component: {fileID: 4742759057701274780}
   - component: {fileID: 8151615563907199182}
   - component: {fileID: 6662838975288274505}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: handle_2_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23162,7 +23162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8911555134195833236}
   - component: {fileID: 6541890819968014355}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23211,7 +23211,7 @@ GameObject:
   - component: {fileID: 1117700297669273238}
   - component: {fileID: 4050992747873903021}
   - component: {fileID: 8457033746696497929}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: body_1_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}

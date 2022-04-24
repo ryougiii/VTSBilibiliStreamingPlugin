@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8641453479018952680}
   - component: {fileID: 4865052585612434957}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamMouthForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4413274780024556870}
   - component: {fileID: 3022505324850310027}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamHairBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2632335696443916326}
   - component: {fileID: 177787584347606260}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeLOpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7700245554678266527}
   - component: {fileID: 4444620779519839876}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2677975728301154466}
   - component: {fileID: 4350761822260482666}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamAngleZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 523937384904225933}
   - component: {fileID: 5989342905071060163}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeROpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4507866644007715226}
   - component: {fileID: 5444633031614877838}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeRSmile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9179411678392285717}
   - component: {fileID: 6883818267684874882}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6125325258647998880}
   - component: {fileID: 5108878957727486085}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowRY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7006223188862169619}
   - component: {fileID: 6323555877973598084}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamAngleY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 644306903159096336}
   - component: {fileID: 4383188759813863553}
   - component: {fileID: 3750578233934768221}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: chair_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6263616235178102384}
   - component: {fileID: 5851845472285075576}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4592110778444426677}
   - component: {fileID: 8325519648822979824}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBodyAngleX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4502226320020535313}
   - component: {fileID: 1945436634959967551}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowRForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7225639584582628539}
   - component: {fileID: 5200548503145411759}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeLSmile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ GameObject:
   - component: {fileID: 1630033399717477150}
   - component: {fileID: 6018816535739970592}
   - component: {fileID: 7179615077602077950}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: cat_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994049960259158094}
   - component: {fileID: 1274125947467008479}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamCheek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -935,7 +935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7726841856820074053}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Drawables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -972,7 +972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4346277004859648867}
   - component: {fileID: 2823798493960255013}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowRAngle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1018,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1997706799008986410}
   - component: {fileID: 5844266041549576687}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamHairSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4090509688662623174}
   - component: {fileID: 1413946778226760935}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowLX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2110882889754207947}
   - component: {fileID: 6395188496026398585}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowLY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1155,7 +1155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5007126333552449120}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Parts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1189,7 +1189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2350269689219004028}
   - component: {fileID: 4651974720381796170}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowLForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1319,10 +1319,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Opacity: 1
-  _lastOpacity: 1
+  _lastOpacity: 0
   _sortingLayerId: 0
   _sortingMode: 0
-  _sortingOrder: 2
+  _sortingOrder: 0
   CameraToFace: {fileID: 0}
   _drawOrderHandler: {fileID: 0}
   _opacityHandler: {fileID: 0}
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd9e6647bfff7542acb0200ab74bdd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CubismFadeMotionList: {fileID: 11400000, guid: 9c9ece5f2b8a33849a1b030a3727676a, type: 2}
+  CubismFadeMotionList: {fileID: 0}
 --- !u!1 &6172867624408286635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,7 +1421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6986309702301477319}
   - component: {fileID: 5103975782001562434}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowLAngle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1467,7 +1467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7811179501139510199}
   - component: {fileID: 2485876608653270622}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1513,7 +1513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6576793480399404381}
   - component: {fileID: 7371021796077065010}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBodyAngleZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1559,7 +1559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2326245191108813013}
   - component: {fileID: 5215180958771752160}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBreath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1608,7 +1608,7 @@ GameObject:
   - component: {fileID: 2941301875599499622}
   - component: {fileID: 8299691205666639254}
   - component: {fileID: 3429426050379274007}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: catear_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1722,7 +1722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1483718695210714797}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Parameters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 3640297908247589675}
   - component: {fileID: 4174150958939612801}
   - component: {fileID: 8007391072695708066}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: cat_day2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1911,7 +1911,7 @@ GameObject:
   - component: {fileID: 2950309614754819596}
   - component: {fileID: 7409477676752541820}
   - component: {fileID: 4217488425219596082}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: counter_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2026,7 +2026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6849463388430312958}
   - component: {fileID: 2172651124784456926}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1764927487483005190}
   - component: {fileID: 5125373719777902233}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeBallY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2118,7 +2118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2396119203846785161}
   - component: {fileID: 6045084552698250401}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2164,7 +2164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7516437696035331681}
   - component: {fileID: 5120642657528546089}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamHairFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2210,7 +2210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1634532972199728517}
   - component: {fileID: 5332434531596329360}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBrowRX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2256,7 +2256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2771483807185047584}
   - component: {fileID: 4924080361408451482}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2302,7 +2302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2458793853520804342}
   - component: {fileID: 6541784646343460894}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2348,7 +2348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3937541930535916796}
   - component: {fileID: 225363500805945865}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamEyeBallX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2394,7 +2394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7086918112829113865}
   - component: {fileID: 289994074879978288}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamMouthOpenY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2440,7 +2440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4030424849251896117}
   - component: {fileID: 8906884507538452682}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamAngleX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2486,7 +2486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9213056051250589133}
   - component: {fileID: 4293967099013091663}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamBodyAngleY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2532,7 +2532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3523967088100347156}
   - component: {fileID: 6618964732826925451}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Param3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2578,7 +2578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1073735166171758485}
   - component: {fileID: 2093422033021943690}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ParamTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2624,7 +2624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5427560052813695804}
   - component: {fileID: 5601984751360287836}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: day
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -45,6 +45,7 @@ public class BlendModeGUI : ShaderGUI
     private MaterialProperty DstTextureProps;
     private MaterialProperty SrcColorProps;
     private MaterialProperty SrcTextureProps;
+    private MaterialProperty rangpro;
 
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
@@ -67,12 +68,17 @@ public class BlendModeGUI : ShaderGUI
         materialEditor.ColorProperty(DstColorProps, "DstColor");
         DstTextureProps = FindProperty("_MainTex1", properties);
         materialEditor.TextureProperty(DstTextureProps, "DstTexture");
-        EditorGUILayout.Space(20);
-        SrcColorProps = FindProperty("_Color2", properties);
-        materialEditor.ColorProperty(SrcColorProps, "SrcColor");
-        SrcTextureProps = FindProperty("_MainTex2", properties);
-        materialEditor.TextureProperty(SrcTextureProps, "SrcTexture");
         EditorGUILayout.Space(10);
+        materialEditor.RenderQueueField();
+        // rangpro = FindProperty("RenderQueue", properties);
+        // materialEditor.RangeProperty(rangpro, "Render Queue");
+
+        // EditorGUILayout.Space(20);
+        // SrcColorProps = FindProperty("_Color2", properties);
+        // materialEditor.ColorProperty(SrcColorProps, "SrcColor");
+        // SrcTextureProps = FindProperty("_MainTex2", properties);
+        // materialEditor.TextureProperty(SrcTextureProps, "SrcTexture");
+        // EditorGUILayout.Space(10);
         EditorGUILayout.EndVertical();
     }
 }

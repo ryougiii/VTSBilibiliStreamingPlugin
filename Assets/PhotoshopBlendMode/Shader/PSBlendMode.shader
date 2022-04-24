@@ -6,7 +6,7 @@ Shader "Blend/PSBlendMode"
         // [Header(A is Dst Texture)]
         // [Space(10)]
         _Color1 ("TextureColor_A", Color) = (1.0, 1.0, 1.0, 1.0)
-        _MainTex1 ("Texture_1", 2D) = "white" { }
+        _MainTex ("Texture", 2D) = "white" { }
 
         [HideInInspector]_IDChoose ("", float) = 0.0
     }
@@ -45,8 +45,8 @@ Shader "Blend/PSBlendMode"
                 float2 bguv : TEXCOORD1;
             };
 
-            uniform sampler2D _MainTex1;//, _MainTex2, _MainTex3, _MainTex4, _MainTex5, _MainTex6;
-            uniform float4 _MainTex1_ST;//,_MainTex2_ST;
+            uniform sampler2D _MainTex;//, _MainTex2, _MainTex3, _MainTex4, _MainTex5, _MainTex6;
+            uniform float4 _MainTex_ST;//,_MainTex2_ST;
             uniform float4 _Color1;//,_Color2,_Color3,_Color4,_Color5,_Color6;
             uniform float _ModeID;
             sampler2D _GrabTexture;
@@ -55,7 +55,7 @@ Shader "Blend/PSBlendMode"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex1);
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.color = v.color;
                 o.bguv = ComputeGrabScreenPos(o.vertex);
                 return o;
@@ -66,9 +66,8 @@ Shader "Blend/PSBlendMode"
             float4 frag(v2f i) : SV_Target
             {
                 float4 D = tex2D(_GrabTexture, i.bguv) ;
-                float4 S = tex2D(_MainTex1, i.uv) * _Color1;
-
-
+                float4 S = tex2D(_MainTex, i.uv) * _Color1;
+ 
                 float4 ans1 = mixAlpha(S,D,_ModeID);
 
                 return ans1;

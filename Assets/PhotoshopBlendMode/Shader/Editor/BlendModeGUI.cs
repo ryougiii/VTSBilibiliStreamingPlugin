@@ -66,7 +66,7 @@ public class BlendModeGUI : ShaderGUI
         EditorGUILayout.Space(10);
         DstColorProps = FindProperty("_Color1", properties);
         materialEditor.ColorProperty(DstColorProps, "DstColor");
-        DstTextureProps = FindProperty("_MainTex1", properties);
+        DstTextureProps = FindProperty("_MainTex", properties);
         materialEditor.TextureProperty(DstTextureProps, "DstTexture");
         EditorGUILayout.Space(10);
         materialEditor.RenderQueueField();

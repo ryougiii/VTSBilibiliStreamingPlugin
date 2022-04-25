@@ -46,8 +46,7 @@ public class TransparentWindow : MonoBehaviour
 
     void Start()
     {
-        GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = new Color(1, 1, 1);
-
+        Camera.main!.GetComponent<Camera>().backgroundColor = new Color(1, 1, 1); 
     }
 
     // Pass the output of the camera to the custom material

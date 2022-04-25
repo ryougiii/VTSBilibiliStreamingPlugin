@@ -47,6 +47,7 @@ ExportedObj
 *.VC.db
 .vscode
 .idea 
+.plastic
 
 # Unity3D generated file on crash reports
 sysinfo.txt

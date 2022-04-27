@@ -1087,9 +1087,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: "\u6536\u5230\u5F39\u5E55\u4E2D\u5305\u542B\uFF1A"
       m_Image: {fileID: 0}
-    - m_Text: "\u6536\u5230\u793C\u7269\uFF08\u94F6\u74DC\u5B50\uFF09>="
+    - m_Text: "\u6536\u5230\u793C\u7269\uFF08\u94F6\u74DC\u5B50\uFF09"
       m_Image: {fileID: 0}
-    - m_Text: "\u6536\u5230\u793C\u7269\uFF08\u91D1\u74DC\u5B50\uFF09>="
+    - m_Text: "\u6536\u5230\u793C\u7269\uFF08\u91D1\u74DC\u5B50\uFF09"
       m_Image: {fileID: 0}
     - m_Text: "\u6536\u5230\u8230\u957F"
       m_Image: {fileID: 0}
@@ -1106,6 +1106,8 @@ MonoBehaviour:
     - m_Text: "\u65B0\u589E\u7279\u522B\u5173\u6CE8"
       m_Image: {fileID: 0}
     - m_Text: "\u6709\u4EBA\u8FDB\u573A"
+      m_Image: {fileID: 0}
+    - m_Text: "\u6536\u5230\u793C\u7269"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

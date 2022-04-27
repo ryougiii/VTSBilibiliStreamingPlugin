@@ -80,6 +80,8 @@ namespace VTS.Examples
                 {
                     Tasks.testTrigerTask("jinguazi", new string[1] { g.Currency.ToString(CultureInfo.InvariantCulture) });
                 }
+                Tasks.testTrigerTask("giftname", new string[1] { g.Name });
+
             };
 
             danmuManager.GuardBuyEvent += g =>
@@ -448,39 +450,44 @@ namespace VTS.Examples
 
                         break;
                     case 2://礼物(银瓜子)
-                        var yinguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        var yinguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/rangeRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
                         yinguaziInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
                         nextStepPn = yinguaziInputBar;
-                        yinguaziInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        yinguaziInputBar.transform.Find("secondVal").GetComponent<InputField>().onEndEdit.AddListener((secVal) =>
                         {
-                            if (inputval == null || inputval == "")
+                            var firVal = yinguaziInputBar.transform.Find("firstVal").GetComponent<InputField>().text;
+                            if (firVal == "" && secVal == "")
                             {
                                 Destroy(choiseStartPn);
                                 return;
                             }
+                            firVal = firVal == "" ? "0" : firVal;
+                            secVal = secVal == "" ? "9999" : secVal;
+
                             pt.taskType = "yinguazi";
-                            pt.taskParameters = new string[1];
-                            pt.taskParameters[0] = inputval;
+                            pt.taskParameters = new string[2]{ firVal, secVal };
                             nextnextStepPn = fillTask(choiseStartPn, yinguaziInputBar, pt);//组件补全任务
                         });
                         break;
                     case 3://礼物(金瓜子)
-                        var jinguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        var jinguaziInputBar = Instantiate((GameObject)Resources.Load("Prefabs/rangeRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
                         jinguaziInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
                         nextStepPn = jinguaziInputBar;
-                        jinguaziInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        jinguaziInputBar.transform.Find("secondVal").GetComponent<InputField>().onEndEdit.AddListener((secVal) =>
                         {
-                            if (inputval == null || inputval == "")
+                            var firVal = jinguaziInputBar.transform.Find("firstVal").GetComponent<InputField>().text;
+                            if (firVal == "" && secVal == "")
                             {
                                 Destroy(choiseStartPn);
                                 return;
                             }
+                            firVal = firVal == "" ? "0" : firVal;
+                            secVal = secVal == "" ? "9999" : secVal;
+
                             pt.taskType = "yinguazi";
-                            pt.taskParameters = new string[1];
-                            pt.taskParameters[0] = inputval;
+                            pt.taskParameters = new string[2] { firVal, secVal };
                             nextnextStepPn = fillTask(choiseStartPn, jinguaziInputBar, pt);//组件补全任务
                         });
-
                         break;
                     case 4://舰长
                         pt.taskType = "jianzhang";
@@ -586,6 +593,23 @@ namespace VTS.Examples
                     case 11://jinchang 进场
                         pt.taskType = "jinchang";
                         fillTask(choiseStartPn, choiseStartPn, pt);//组件补全任务
+                        break;
+                    case 12://礼物(名字)
+                        var nameInputBar = Instantiate((GameObject)Resources.Load("Prefabs/danmuRegInputBar"), Vector3.zero, Quaternion.identity, choiseStartPn.transform);
+                        nameInputBar.transform.localPosition = new Vector3(0, -choiseStartPn.GetComponent<RectTransform>().rect.height, 0);
+                        nextStepPn = nameInputBar;
+                        nameInputBar.GetComponent<InputField>().onEndEdit.AddListener((inputval) =>
+                        {
+                            if (inputval == null || inputval == "")
+                            {
+                                Destroy(choiseStartPn);
+                                return;
+                            }
+                            pt.taskType = "giftname";
+                            pt.taskParameters = new string[1];
+                            pt.taskParameters[0] = inputval;
+                            nextnextStepPn = fillTask(choiseStartPn, nameInputBar, pt);//组件补全任务
+                        });
                         break;
                 }
             });

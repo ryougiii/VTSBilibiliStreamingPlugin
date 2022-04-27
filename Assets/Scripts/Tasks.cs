@@ -18,14 +18,13 @@ yinguazi
 jinguazi
 jianzhang
 sc
-
-TODO:
 fixedTime //固定的时间
 intervalTime //间隔一段时间（0时开始计算）
 idleTime //无动作一段时间
 guanzhu
 tebieguanzhu
 jinchang
+giftname
 */
 
 public class playTask
@@ -94,10 +93,10 @@ namespace VTS
                     expressTaskInfo += "当弹幕中出现 " + halfTaskGo.taskParameters[0] + " 时，";
                     break;
                 case "yinguazi":
-                    expressTaskInfo += "当银瓜子>= " + halfTaskGo.taskParameters[0] + " 时，";
+                    expressTaskInfo += "当银瓜子数量 " + halfTaskGo.taskParameters[0] + "~" + halfTaskGo.taskParameters[1] + " 时，";
                     break;
                 case "jinguazi":
-                    expressTaskInfo += "当金瓜子>= " + halfTaskGo.taskParameters[0] + " 时，";
+                    expressTaskInfo += "当金瓜子数量 " + halfTaskGo.taskParameters[0] + "~" + halfTaskGo.taskParameters[1] + " 时，";
                     break;
                 case "jianzhang":
                     expressTaskInfo += "当有人上舰时, ";
@@ -122,6 +121,9 @@ namespace VTS
                     break;
                 case "jinchang":
                     expressTaskInfo += "有人进场时, ";
+                    break;
+                case "giftname":
+                    expressTaskInfo += "有人送 " + halfTaskGo.taskParameters[0] + " 时, ";
                     break;
             }
             for (var i = 0; i < halfTaskGo.subtaskNum; i++)
@@ -202,7 +204,7 @@ namespace VTS
                         }
                         break;
                     case "yinguazi":
-                        if (float.Parse(meventParas[0]) >= float.Parse(ltl.taskParameters[0]))
+                        if (float.Parse(meventParas[0]) >= float.Parse(ltl.taskParameters[0]) && float.Parse(meventParas[0]) <= float.Parse(ltl.taskParameters[1]))
                         {
                             TaskInstances.Add(ltl);
                             addTaskToExcuteGuiPn(ltl, i);
@@ -210,7 +212,7 @@ namespace VTS
                         }
                         break;
                     case "jinguazi":
-                        if (float.Parse(meventParas[0]) >= float.Parse(ltl.taskParameters[0]))
+                        if (float.Parse(meventParas[0]) >= float.Parse(ltl.taskParameters[0]) && float.Parse(meventParas[0]) <= float.Parse(ltl.taskParameters[1]))
                         {
                             TaskInstances.Add(ltl);
                             addTaskToExcuteGuiPn(ltl, i);
@@ -271,6 +273,14 @@ namespace VTS
                         TaskInstances.Add(ltl);
                         addTaskToExcuteGuiPn(ltl, i);
                         print("TRI jinchang ");
+                        break;
+                    case "giftname":
+                        if (meventParas[0] == ltl.taskParameters[0])
+                        {
+                            print("TRI giftname");
+                            TaskInstances.Add(ltl);
+                            addTaskToExcuteGuiPn(ltl, i);
+                        }
                         break;
                 }
             }

@@ -6,6 +6,7 @@ using VTS.Networking.Impl;
 using VTS.Models.Impl;
 using VTS.Models;
 using System.IO;
+using Blive;
 using UnityEngine;
 using UnityEngine.UI;
 using LitJson;
@@ -14,6 +15,7 @@ using LitJson;
 
 using NAudio;
 using NAudio.Wave;
+using Newtonsoft.Json;
 
 namespace VTS.Examples
 {
@@ -45,7 +47,7 @@ namespace VTS.Examples
         AudioFileReader audioFileReader;
 
         public InputField roomInput;
-        public BliveDanmuManager danmuManager;
+        public BliveWebsocket blive = new BliveWebsocket(true);
 
         private void Awake()
         {
@@ -62,13 +64,15 @@ namespace VTS.Examples
             show_danmu = GameObject.Find("danmuContentPnContent").GetComponent<Text>();
 
             // 注册弹幕事件回调
-            danmuManager.DanmuEvent += d =>
+            blive.OnLog += s => Debug.Log(s);
+            blive.OnException += e => Debug.LogError(e);
+            blive.DanmuEvent += d =>
             {
                 Tasks.testTrigerTask("danmu", new string[] { d.Content });
                 show_danmu.text = $"{d.Username}: {d.Content}\n" + show_danmu.text;
             };
 
-            danmuManager.SendGiftEvent += g =>
+            blive.SendGiftEvent += g =>
             {
                 show_danmu.text = $"{g.Username} 赠送了 {g.Name}x{g.Count}"
                                   + $" ({(g.Unit == "gold" ? $"{g.Currency}元" : $"{g.TotalCoin}银瓜子")})\n" + show_danmu.text;
@@ -84,24 +88,24 @@ namespace VTS.Examples
 
             };
             
-            danmuManager.ComboSendEvent += g =>
+            blive.ComboSendEvent += g =>
             {
                 show_danmu.text = $"{g.Username} 总共赠送了 {g.Name}x{g.Combo}\n" + show_danmu.text;   
             };
 
-            danmuManager.GuardBuyEvent += g =>
+            blive.GuardBuyEvent += g =>
             {
                 show_danmu.text = $"{g.Username} 购买了 {g.Name}\n" + show_danmu.text;
                 Tasks.testTrigerTask("jianzhang", Array.Empty<string>());
             };
 
-            danmuManager.SuperchatEvent += s =>
+            blive.SuperchatEvent += s =>
             {
                 show_danmu.text = $"发送了醒目留言 ￥{s.Price} {s.Username}：{s.Content}\n" + show_danmu.text;
                 Tasks.testTrigerTask("sc", Array.Empty<string>());
             };
 
-            danmuManager.InteractWordEvent += j =>
+            blive.InteractWordEvent += j =>
             {
                 Debug.Log($"{j.Username} {j.Type}");
                 switch (j.Type)
@@ -121,34 +125,38 @@ namespace VTS.Examples
                 }
             };
 
-            danmuManager.HeatEvent += h =>
+            blive.HeatEvent += h =>
             {
                 Debug.Log($"当前人气 {h}");
             };
 
-            danmuManager.WatchedChangeEvent += h =>
+            blive.WatchedChangeEvent += h =>
             {
                 Debug.Log($"当前 {h} 人看过");
             };
 
-            danmuManager.GainMedalEvent += h =>
+            blive.GainMedalEvent += h =>
             {
                 Debug.Log($"{h.FanName} 加入粉丝团 {h.MedalName}");
             };
+        }
+
+        private void Update() {
+            blive.ManualDispatch();
         }
 
         public void ConnectDanmu()
         {
             if (int.TryParse(roomInput.text, out var id))
             {
-                danmuManager.Connect(id);
+                blive.ConnectAsync(id);
                 Tasks.saveRoomData(roomInput.text);
             }
         }
 
         public void DisconnectDanmu()
         {
-            danmuManager.Disconnect();
+            blive.Disconnect();
         }
 
         void OnApplicationQuit()

@@ -62,7 +62,8 @@ public class BliveDanmuManager : MonoBehaviour {
 
     public BliveEvent<Danmu> DanmuEvent = new();
     public BliveEvent<Superchat> SuperchatEvent = new();
-    public BliveEvent<Gift> GiftEvent = new();
+    public BliveEvent<Gift> SendGiftEvent = new();
+    public BliveEvent<Gift> ComboSendEvent = new();
     public BliveEvent<SuperchatDelete> SuperchatDeleteEvent = new();
     public BliveEvent<InteractWord> InteractWordEvent = new();
     public BliveEvent<GuardBuy> GuardBuyEvent = new();
@@ -78,7 +79,8 @@ public class BliveDanmuManager : MonoBehaviour {
         _events.AddRange(new IBliveDispatch[] {
             DanmuEvent,
             SuperchatEvent,
-            GiftEvent,
+            SendGiftEvent,
+            ComboSendEvent,
             SuperchatDeleteEvent,
             InteractWordEvent,
             GuardBuyEvent,
@@ -202,16 +204,15 @@ public class BliveDanmuManager : MonoBehaviour {
                                     case "SEND_GIFT": {
                                         var data = m["data"];
 
-                                        var combo = data["super_batch_gift_num"].Value<int>();
-                                        if (combo == 0 ||
-                                            string.IsNullOrWhiteSpace(data["batch_combo_id"].Value<string>()))
-                                            combo = data["num"].Value<int>();
+                                        var combo = data["num"].Value<int>(); 
 
                                         var gift = new Gift {
                                             Time = DateTime.Now,
                                             Action = data["action"].Value<string>(),
                                             Name = data["giftName"].Value<string>(),
-                                            Currency = data["discount_price"].Value<float>(),
+                                            DiscountPrice = data["discount_price"].Value<float>(),
+                                            SinglePrice = data["price"].Value<float>(),
+                                            TotalCoin = data["total_coin"].Value<float>(),
                                             Unit = data["coin_type"].Value<string>(),
                                             UserId = data["uid"].Value<int>(),
                                             Username = data["uname"].Value<string>(),
@@ -225,9 +226,10 @@ public class BliveDanmuManager : MonoBehaviour {
                                                 ? data["medal_info"]["guard_level"].Value<int>()
                                                 : 0,
                                             ComboId = data["batch_combo_id"].Value<string>(),
-                                            Combo = combo
+                                            Combo = data["super_gift_num"].Value<int>(),
+                                            Count = data["num"].Value<int>(),
                                         };
-                                        GiftEvent.Enqueue(gift);
+                                        SendGiftEvent.Enqueue(gift);
                                         break;
                                     }
                                     case "COMBO_SEND": {
@@ -253,7 +255,7 @@ public class BliveDanmuManager : MonoBehaviour {
                                             Combo = data["batch_combo_num"].Value<int>(),
                                             IsFirst = data.ContainsKey("is_first") && data["is_first"].Value<bool>()
                                         };
-                                        GiftEvent.Enqueue(gift);
+                                        ComboSendEvent.Enqueue(gift);
                                         break;
                                     }
                                     case "USER_TOAST_MSG": {

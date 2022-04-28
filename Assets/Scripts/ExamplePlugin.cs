@@ -68,20 +68,25 @@ namespace VTS.Examples
                 show_danmu.text = $"{d.Username}: {d.Content}\n" + show_danmu.text;
             };
 
-            danmuManager.GiftEvent += g =>
+            danmuManager.SendGiftEvent += g =>
             {
-                show_danmu.text = $"{g.Username} 赠送了 {g.Name}x{g.Combo}"
-                                  + $" ({g.Unit} 瓜子 x {g.Currency})\n" + show_danmu.text;
+                show_danmu.text = $"{g.Username} 赠送了 {g.Name}x{g.Count}"
+                                  + $" ({(g.Unit == "gold" ? $"{g.Currency}元" : $"{g.TotalCoin}银瓜子")})\n" + show_danmu.text;
                 if (g.Unit == "silver")
                 {
-                    Tasks.testTrigerTask("yinguazi", new string[1] { g.Currency.ToString(CultureInfo.InvariantCulture) });
+                    Tasks.testTrigerTask("yinguazi", new string[1] { g.DiscountPrice.ToString(CultureInfo.InvariantCulture) });
                 }
                 else if (g.Unit == "gold")
                 {
-                    Tasks.testTrigerTask("jinguazi", new string[1] { g.Currency.ToString(CultureInfo.InvariantCulture) });
+                    Tasks.testTrigerTask("jinguazi", new string[1] { g.DiscountPrice.ToString(CultureInfo.InvariantCulture) });
                 }
                 Tasks.testTrigerTask("giftname", new string[1] { g.Name });
 
+            };
+            
+            danmuManager.ComboSendEvent += g =>
+            {
+                show_danmu.text = $"{g.Username} 总共赠送了 {g.Name}x{g.Combo}\n" + show_danmu.text;   
             };
 
             danmuManager.GuardBuyEvent += g =>

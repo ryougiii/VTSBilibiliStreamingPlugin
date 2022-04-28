@@ -79,7 +79,9 @@ public class Gift {
     public string Action { get; set; }
     public DateTime Time { get; set; }
     public string Name { get; set; }
-    public float Currency { get; set; }
+    public float DiscountPrice { get; set; }
+    public float SinglePrice { get; set; }
+    public float TotalCoin { get; set; }
     public string Unit { get; set; }
     public int UserId { get; set; }
     public string Username { get; set; }
@@ -90,11 +92,12 @@ public class Gift {
 
     public string ComboId { get; set; }
     public int Combo { get; set; } = 1; 
+    public int Count { get; set; } = 1; 
     public bool IsComboSend { get; set; }
-    public float Price {
+    public float Currency {
         get {
             if (Unit == "gold")
-                return Currency / 1000 * Combo;
+                return DiscountPrice / 1000 * Combo;
             return 0;
         }
     }
